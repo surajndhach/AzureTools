@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSender", "EventSender\EventSender.csproj", "{3D248990-BFFD-477C-937F-FBEE953696F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridSender", "EventGridSender\EventGridSender.csproj", "{3D248990-BFFD-477C-937F-FBEE953696F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventReceiver", "EventReceiver\EventReceiver.csproj", "{74CCFAE7-3F6C-4D72-9573-0ADCD2DFD512}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridReceiver", "EventGridReceiver\EventGridReceiver.csproj", "{74CCFAE7-3F6C-4D72-9573-0ADCD2DFD512}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHubPublish", "EventHubPublish\EventHubPublish.csproj", "{2FE49B11-8BA5-4FD5-BA53-FB0DD00E14A7}"
 EndProject

@@ -8,15 +8,13 @@ using ONE.Models.CSharp;
 using ONE.Models.CSharp.Instrument;
 using CloudEvent = Azure.Messaging.CloudEvent;
 using Instrument = ONE.Models.CSharp.Instrument.Instrument;
-using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
-using System.Diagnostics.Metrics;
 
 // Publish a batch of CloudEvents.
 SenderClient test = new SenderClient();
 
 
-var resu = await test.SendEventWithServicePrincipleAsync();
-Console.WriteLine(resu);
+var result = await test.SendEventWithServicePrincipleAsync();
+Console.WriteLine(result);
 
 Console.WriteLine("event have been published to the topic. Press any key to end the application.");
 Console.ReadKey();
@@ -27,7 +25,7 @@ public class SenderClient
 {
     public async Task<bool> SendEventWithServicePrincipleAsync()
     {
-        Response response = null;
+        Response? response = null;
         //Test
         //var spCredential = new ClientSecretCredential("2c518df7-6644-41f8-8350-3f75e61362ac", "68abd4d5-3ee7-4bde-8886-56e114c909cd", "abc");
         var spCredential = new ClientSecretCredential("2c518df7-6644-41f8-8350-3f75e61362ac", "587b105c-704f-450b-b3ce-16489aae1d67", "abc");
