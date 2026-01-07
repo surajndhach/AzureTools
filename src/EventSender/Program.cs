@@ -28,7 +28,9 @@ public class SenderClient
     public async Task<bool> SendEventWithServicePrincipleAsync()
     {
         Response response = null;
-        var spCredential = new ClientSecretCredential("2c518df7-6644-41f8-8350-3f75e61362ac", "68abd4d5-3ee7-4bde-8886-56e114c909cd", "Wp28Q~s_C3BoN.ZQ8Ipi3Of6Hm8Ti-3ZKek0naK6");
+        //Test
+        //var spCredential = new ClientSecretCredential("2c518df7-6644-41f8-8350-3f75e61362ac", "68abd4d5-3ee7-4bde-8886-56e114c909cd", "abc");
+        var spCredential = new ClientSecretCredential("2c518df7-6644-41f8-8350-3f75e61362ac", "587b105c-704f-450b-b3ce-16489aae1d67", "abc");
 
         var client = CreateEventGridSenderClient(spCredential);
 
@@ -41,7 +43,7 @@ public class SenderClient
 
     private EventGridSenderClient CreateEventGridSenderClient(TokenCredential credential)
     {
-        var topicEndpoint = new Uri("https://evgn-ihealth-feature-eastus-001.eastus-1.eventgrid.azure.net");
+        var topicEndpoint = new Uri("https://evgn-ihealth-integration-eastus-001.eastus-1.eventgrid.azure.net");
 
         // Create EventGridSenderClient with full endpoint
         return new EventGridSenderClient(topicEndpoint, "evgt-ihealth-iotregistry", credential);
