@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridReceiver", "EventG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHubPublish", "EventHubPublish\EventHubPublish.csproj", "{2FE49B11-8BA5-4FD5-BA53-FB0DD00E14A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrClient", "SignalrClient\SignalrClient.csproj", "{4958C3A1-257C-4DC3-A952-67BF009E12D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2FE49B11-8BA5-4FD5-BA53-FB0DD00E14A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FE49B11-8BA5-4FD5-BA53-FB0DD00E14A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FE49B11-8BA5-4FD5-BA53-FB0DD00E14A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4958C3A1-257C-4DC3-A952-67BF009E12D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4958C3A1-257C-4DC3-A952-67BF009E12D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4958C3A1-257C-4DC3-A952-67BF009E12D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4958C3A1-257C-4DC3-A952-67BF009E12D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
