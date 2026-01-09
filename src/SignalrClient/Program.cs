@@ -8,9 +8,9 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        const string negotiateUrl = "https://api-feature-us.aquaticinformatics.net/instrument/signalr/negotiate/InstrumentHub";
+        const string negotiateUrl = "https://api-feature-us.aquaticinformatics.net/instrument/signalr/negotiate/instrumentHub";
         const string bearerToken = "23A14E9E5A5BABA689BDEF2935F778CC4EC5ABC8EE0D56F11883E825A8AAD598-1";   // 🔴 Replace with your token
-        const string groupName = "440ae6c6-f4ad-4ec5-a78f-7b6c716f7270";
+        const string groupName = "testgroup";
 
         var http = new HttpClient();
 
@@ -43,10 +43,16 @@ internal class Program
             .Build();
 
         // 4️. Receive messages
-        connection.On<string>("ReceiveMessage", message =>
+        connection.On<string>("test-method", message =>
         {
-            Console.WriteLine($"📩 Message received: {message}");
+            Console.WriteLine($"Message received: {message}");
         });
+
+        //connection.On<string, string>("test-method",
+        //    (string server, string message) =>
+        //    {
+        //        Console.WriteLine($"[{DateTime.Now.ToString()}] Received message from server {server}: {message}");
+        //    });
 
         connection.Reconnecting += error =>
         {
@@ -66,7 +72,7 @@ internal class Program
 
         // 5️. Call your Function-triggered hub method to join the group
         Console.WriteLine($"Joining group: {groupName}");
-        //await connection.InvokeAsync("JoinGroup", groupName);
+        await connection.InvokeAsync("JoinGroup", groupName);
         await connection.SendAsync("JoinGroup", groupName);
 
 
