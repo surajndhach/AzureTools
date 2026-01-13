@@ -9,7 +9,7 @@ internal class Program
     private static async Task Main(string[] args)
     {
         const string negotiateUrl = "https://api-feature-us.aquaticinformatics.net/instrument/signalr/negotiate/instrumentHub";
-        const string bearerToken = "23A14E9E5A5BABA689BDEF2935F778CC4EC5ABC8EE0D56F11883E825A8AAD598-1";   // 🔴 Replace with your token
+        const string bearerToken = "CF52FB947DC22F9E123B0AF3E73E0E345C8041659CF06C72C7D562B379CEABF3-1";   // 🔴 Replace with your token
         const string groupName = "testgroup";
 
         var http = new HttpClient();
@@ -72,7 +72,7 @@ internal class Program
 
         // 5️. Call your Function-triggered hub method to join the group
         Console.WriteLine($"Joining group: {groupName}");
-        await connection.InvokeAsync("JoinGroup", groupName);
+        //await connection.InvokeAsync("JoinGroup", groupName);
         await connection.SendAsync("JoinGroup", groupName);
 
 
