@@ -38,14 +38,42 @@ class Program
         for (var i = 1; i <= 1; i++)
         {
 
-            var json = await File.ReadAllTextAsync("measurement.json");
+            var json = await File.ReadAllTextAsync("instrumentdata.json");
 
             var instrumentData = InstrumentData.Parser.ParseJson(json);
 
+            var timestamp = DateTime.UtcNow.ToClarosDateTime();
+
+            //measurement update
             foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
             {
-                instrumentMeasurementData.Measurement.TimestampUtc = DateTime.UtcNow.ToClarosDateTime();
+                instrumentMeasurementData.Measurement.TimestampUtc = timestamp;
             }
+
+            //status update
+            foreach(var instrumentStatusData in instrumentData.InstrumentStatuses.Items)
+            {
+                instrumentStatusData.StatusDateTimeUtc = timestamp;
+            }
+
+            //diagnostics update
+            foreach(var instrumentDiagnosticData in instrumentData.InstrumentDiagnostics.Items)
+            {
+                foreach(var instrumentDiagnosticDatum in instrumentDiagnosticData.Values)
+                {
+                    instrumentDiagnosticDatum.TimestampUtc = timestamp;
+                }
+            }
+
+            //events update
+            foreach(var instrumentEventData in instrumentData.InstrumentEventDatas.Items)
+            {
+                instrumentEventData.EventDateTimeUtc = timestamp;
+            }
+
+            //settings update
+            instrumentData.InstrumentSettings.SettingsDateTimeUtc = timestamp;
+            instrumentData.InstrumentSettings.Settings["name"] = $"Instrument-{DateTime.UtcNow.Ticks}";
 
             var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
 
@@ -53,7 +81,7 @@ class Program
             var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
 
             var eventData = new EventData(eventBytes);
-            eventData.Properties.Add("tenantId", "440ae6c6-f4ad-4ec5-a78f-7b6c716f7270");
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
 
             if (!eventBatch.TryAdd(eventData))
             {
