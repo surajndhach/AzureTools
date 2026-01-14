@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrClient", "SignalrCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrServer", "SignalrServer\SignalrServer.csproj", "{4BD592F0-E4D4-468D-B75A-9649CA87428F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONE.Shared.Helpers", "..\..\ONE.Shared.Helpers\src\ONE.Shared.Helpers\ONE.Shared.Helpers.csproj", "{0A39E525-6D2F-72D6-53BC-2CFFB3F4EFEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A39E525-6D2F-72D6-53BC-2CFFB3F4EFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A39E525-6D2F-72D6-53BC-2CFFB3F4EFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A39E525-6D2F-72D6-53BC-2CFFB3F4EFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A39E525-6D2F-72D6-53BC-2CFFB3F4EFEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
