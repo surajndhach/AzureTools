@@ -35,14 +35,14 @@ class Program
         using var eventBatch = await producer.CreateBatchAsync();
 
         // Add 5 events
-        for (var i = 1; i <= 1; i++)
+        for (var i = 0; i < 1; i++)
         {
 
             var json = await File.ReadAllTextAsync("instrumentdata.json");
 
             var instrumentData = InstrumentData.Parser.ParseJson(json);
 
-            var timestamp = DateTime.UtcNow.ToClarosDateTime();
+            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
 
             //measurement update
             foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
