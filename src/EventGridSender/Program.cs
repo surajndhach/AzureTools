@@ -74,6 +74,19 @@ public class SenderClient
             EdgeInstrumentReference = null,
             ConnectionStatus = EnumConnectionStatus.ConnectionStatusConnected,
             RegistryStatus = EnumInstrumentRegistryStatus.InstrumentRegistryStatusAssigned,
+            RecordAuditInfo = new RecordAuditInfo
+            {
+                CreatedById = "system",
+                CreatedOn = new JsonTicksDateTime
+                {
+                    JsonDateTime = "2025-10-10T10:00:00Z",
+                },
+                ModifiedById = "system",
+                ModifiedOn = new JsonTicksDateTime
+                {
+                    JsonDateTime = "2025-10-10T10:00:00Z",
+                },
+            }
         };
 
         string instrumentJson = JsonFormatter.Default.Format(instrument);
@@ -108,8 +121,20 @@ public class SenderClient
                 Identifier = new InstrumentTypeIdentifier { Id = subTypeId },
                 I18NKeyTextReference = new ClarosI18NKeyTextReference { I18NKey = "TestInstrumentSubType" },
                 InstrumentGroupId = typeId
-            },          
-            RecordAuditInfo = new RecordAuditInfo()
+            },
+            RecordAuditInfo = new RecordAuditInfo
+            {
+                CreatedById = "system",
+                CreatedOn = new JsonTicksDateTime
+                {
+                    JsonDateTime = "2025-10-10T10:00:00Z",
+                },
+                ModifiedById = "system",
+                ModifiedOn = new JsonTicksDateTime
+                {
+                    JsonDateTime = "2025-10-10T10:00:00Z",
+                },
+            }
         };
 
         string instrumentJson = JsonFormatter.Default.Format(manifest);
