@@ -8,10 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aquarius.ONE.Models.CSharp" Version="7.14.0-pre-40" />
+    <PackageReference Include="Aquarius.ONE.Models.CSharp" Version="7.16.0-Pre-1226-1193" />
     <PackageReference Include="Azure.Identity" Version="1.15.0" />
     <PackageReference Include="Azure.Messaging.EventGrid.Namespaces" Version="1.1.0" />
+    <PackageReference Include="Claros.Interfaces.CSharp" Version="22.0.33" />
     <PackageReference Include="Google.Protobuf" Version="3.33.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
