@@ -1,0 +1,433 @@
+{
+  "Version": "25.20.1",
+  "InstrumentGroup": {
+    "Id": "12ed4794-fda9-4187-af34-6da2774b4d28",
+    "I18NKeyTextReference": {
+      "I18NDatabaseName": "DeviceGroup",
+      "I18NModule": "FOUNDATION_LIBRARY",
+      "I18NKey": "DEVICEGROUP.HACH_SENSORS"
+    },
+    "RecordAuditInfo": null
+  },
+  "InstrumentType": {
+    "Identifier": {
+      "Id": "27056753-613f-4bc2-8b2f-72d1cdcada36",
+      "ManufacturerCode": "HL001",
+      "InstrumentCode": "17385"
+    },
+    "I18NKeyTextReference": {
+      "I18NDatabaseName": "DeviceType",
+      "I18NModule": "FOUNDATION_LIBRARY",
+      "I18NKey": "DEVICETYPE.HL001_17385_0"
+    },
+    "Attributes": {
+      "PictureSmallUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_17385_2025-05-23-10-36-32.png",
+      "PictureLargeUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_17385_2025-05-23-10-36-32.png",
+      "TransmissionInterval": null,
+      "LocalAccessSupport": false
+    },
+    "InstrumentGroupId": "12ed4794-fda9-4187-af34-6da2774b4d28",
+    "Name": null,
+    "imageUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_17385_2025-05-23-10-36-32.png"
+  },
+  "Id": "e1a1c2f4-3db4-4c13-ade1-010468358718",
+  "InstrumentMeasurementCapability": null,
+  "InstrumentPrognosysCapability": null,
+  "InstrumentTagCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "Identifier": {
+            "Id": 0,
+            "Guid": "4f0a04ac-e664-4613-a03a-db05ad9a69f4",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_1_0"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 9,
+            "Guid": "edfdc0d9-e64f-4365-bb6f-bba96210e7e8",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_10_9"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 10,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 10,
+            "Guid": "2c30e2d4-31af-406e-97d8-7e207f234b13",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_11_10"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 11,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 11,
+            "Guid": "419cf86a-f15f-4342-8712-c72caf9c6828",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_12_11"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 12,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 12,
+            "Guid": "e0a17043-e905-4b42-826b-0346d26bdf27",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_13_12"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 13,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 13,
+            "Guid": "7b62f722-4650-4960-8d37-99cb899a6a7a",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_14_13"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 14,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 14,
+            "Guid": "87c3c543-9858-4b97-93df-593268a53994",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_15_14"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 15,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 15,
+            "Guid": "fe2091c3-b66f-4a33-98ad-ce9a2eebabd3",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_16_15"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 16,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 1,
+            "Guid": "ebb6082e-9a21-4e48-9802-9756554d9a15",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_2_1"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 2,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 2,
+            "Guid": "63c04959-981e-469b-8d06-139d630ea86e",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_3_2"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 3,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 3,
+            "Guid": "74714291-324a-485a-8de2-53c79d30c0e4",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_4_3"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 4,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 4,
+            "Guid": "b80014be-dd28-4c4d-9c79-2ed2b5de6793",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_5_4"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 5,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 5,
+            "Guid": "17b4a7b3-397c-46b0-982c-fff418891345",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_6_5"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 6,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 6,
+            "Guid": "aa6c948f-0348-4802-a052-fb28c668a0e7",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_7_6"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 7,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 7,
+            "Guid": "c9278acf-1dd0-435f-9521-dad76f6dad07",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_8_7"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 8,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 8,
+            "Guid": "b106fff2-5b78-437f-882f-b355d2e05da3",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_17385_DEVICETYPETAG.MEASUREMENT_9_8"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 9,
+            "DisplayDecimalPoints": null
+          }
+        }
+      ]
+    }
+  },
+  "InstrumentSettingsCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "DefinitionBasedMenu": {
+            "Reference": 35340
+          },
+          "ComponentBasedMenu": null,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentSettingsDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "SETTINGS.HL001_17385_DEVICETYPEACTIONS.MENU"
+          },
+          "TypeCase": 1
+        },
+        {
+          "DefinitionBasedMenu": {
+            "Reference": 35341
+          },
+          "ComponentBasedMenu": null,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentSettingsDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "SETTINGS.HL001_17385_45"
+          },
+          "TypeCase": 1
+        },
+        {
+          "DefinitionBasedMenu": {
+            "Reference": 35343
+          },
+          "ComponentBasedMenu": null,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentSettingsDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "SETTINGS.HL001_17385_2"
+          },
+          "TypeCase": 1
+        }
+      ]
+    }
+  },
+  "Localizations": null,
+  "InstrumentPlatformCapability": {
+    "Enabled": true,
+    "RegistryType": 1,
+    "LocalAccessEnabled": false
+  },
+  "InstrumentFileTransferCapability": null,
+  "InstrumentErrorCapability": null,
+  "InstrumentWarningCapability": null,
+  "RecordAuditInfo": {
+    "CreatedById": "226170db-f495-446c-8d2f-b04804a63305",
+    "CreatedOn": {
+      "JsonDateTime": "2025-09-30T08:17:20.9937487Z",
+      "Ticks": null,
+      "ContextType": 0,
+      "TwinRefId": null,
+      "JsonTicksDateTimeCase": 1
+    },
+    "ModifiedById": "59871cbd-f814-4fb8-acc2-6b1a0d630274",
+    "ModifiedOn": {
+      "JsonDateTime": "2025-10-07T09:38:00.9351484Z",
+      "Ticks": null,
+      "ContextType": 0,
+      "TwinRefId": null,
+      "JsonTicksDateTimeCase": 1
+    }
+  }
+}

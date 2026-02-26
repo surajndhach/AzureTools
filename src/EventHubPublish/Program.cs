@@ -1,5 +1,8 @@
-﻿using Azure.Messaging.EventHubs;
+﻿using Azure.Identity;
+using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
+using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using ONE.Models.CSharp.External;
@@ -8,7 +11,7 @@ using System.Text;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main()
     {
         // Load configuration
         var config = new ConfigurationBuilder()
@@ -34,15 +37,92 @@ class Program
         // Create a batch to hold the events
         using var eventBatch = await producer.CreateBatchAsync();
 
-        // Add 5 events
+        var test = new MessageSenderClient();
+
+        await test.RunAsync(eventBatch, producer);
+    }
+}
+
+public class MessageSenderClient()
+{
+    public async Task RunAsync(EventDataBatch batch, EventHubProducerClient producer)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Select Operation:");
+            Console.WriteLine("1 - Publish Measurement");
+            Console.WriteLine("2 - Publish Status");
+            Console.WriteLine("3 - Publish Events");
+            Console.WriteLine("4 - Publish Diagnostics");
+            Console.WriteLine("5 - Publish Settings");
+            Console.WriteLine("5 - Publish All");
+            Console.WriteLine("0 - Exit");
+            Console.Write("Enter choice: ");
+
+            var choice = Console.ReadLine();
+
+            if (choice == "0")
+                break;
+
+            await ExecuteChoice(choice, batch, producer);
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+    }
+
+    private async Task ExecuteChoice(string? choice, EventDataBatch batch, EventHubProducerClient producer)
+    {      
+        switch (choice)
+        {
+            case "1":
+                await ProcessMeasurement(batch, producer);
+                break;
+
+            case "2":
+                await ProcessStatus(batch, producer);
+                break;
+
+            case "3":
+                await ProcessEvents(batch, producer);
+                break;
+
+            case "4":
+                await ProcessDiagnostics(batch, producer);
+                break;
+
+            case "5":
+                await ProcessSettings(batch, producer);
+                break;
+
+            case "6":
+                await ProcessMeasurement(batch, producer);
+                await ProcessStatus(batch, producer);
+                await ProcessEvents(batch, producer);
+                await ProcessDiagnostics(batch, producer);
+                await ProcessSettings(batch, producer);
+                break;
+
+            default:
+                Console.WriteLine("Invalid choice.");
+                break;
+        }
+    }
+
+    private async Task ProcessMeasurement(EventDataBatch eventBatch, EventHubProducerClient producer)
+    {
+        // Send 1 event
         for (var i = 0; i < 1; i++)
         {
 
-            var json = await File.ReadAllTextAsync("instrumentdata.json");
+            var json = await File.ReadAllTextAsync("instrumentmeasurementData.json");
 
-            var instrumentData = InstrumentData.Parser.ParseJson(json);
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
 
-            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-1).AddMinutes(i).ToClarosDateTime();
 
             //measurement update
             foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
@@ -50,26 +130,160 @@ class Program
                 instrumentMeasurementData.Measurement.TimestampUtc = timestamp;
             }
 
+            var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
+
+            // 2. Convert serialized event to bytes
+            var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
+
+            if (!eventBatch.TryAdd(eventData))
+            {
+                Console.WriteLine($"Event {i} too large for batch — skipping.");
+            }
+
+            Console.WriteLine($"Event with timestamp {timestamp}");
+        }
+
+        // Send batch
+        await producer.SendAsync(eventBatch);
+        Console.WriteLine("✅ Successfully sent events to Event Hub!");
+    }
+
+    private async Task ProcessStatus(EventDataBatch eventBatch, EventHubProducerClient producer)
+    {
+        // Send 1 event
+        for (var i = 0; i < 1; i++)
+        {
+
+            var json = await File.ReadAllTextAsync("instrumentstatusdata.json");
+
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
+
             //status update
-            foreach(var instrumentStatusData in instrumentData.InstrumentStatuses.Items)
+            foreach (var instrumentStatusData in instrumentData.InstrumentStatuses.Items)
             {
                 instrumentStatusData.StatusDateTimeUtc = timestamp;
             }
 
-            //diagnostics update
-            foreach(var instrumentDiagnosticData in instrumentData.InstrumentDiagnostics.Items)
+            var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
+
+            // 2. Convert serialized event to bytes
+            var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
+
+            if (!eventBatch.TryAdd(eventData))
             {
-                foreach(var instrumentDiagnosticDatum in instrumentDiagnosticData.Values)
+                Console.WriteLine($"Event {i} too large for batch — skipping.");
+            }
+        }
+
+        // Send batch
+        await producer.SendAsync(eventBatch);
+        Console.WriteLine("✅ Successfully sent events to Event Hub!");
+    }
+
+    private async Task ProcessEvents(EventDataBatch eventBatch, EventHubProducerClient producer)
+    {
+        // Send 1 event
+        for (var i = 0; i < 1; i++)
+        {
+
+            var json = await File.ReadAllTextAsync("instrumenteventdata.json");
+
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
+
+            //events update
+            foreach (var instrumentEventData in instrumentData.InstrumentEventDatas.Items)
+            {
+                instrumentEventData.EventDateTimeUtc = timestamp;
+            }
+
+            var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
+
+            // 2. Convert serialized event to bytes
+            var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
+
+            if (!eventBatch.TryAdd(eventData))
+            {
+                Console.WriteLine($"Event {i} too large for batch — skipping.");
+            }
+        }
+
+        // Send batch
+        await producer.SendAsync(eventBatch);
+        Console.WriteLine("✅ Successfully sent events to Event Hub!");
+    }
+
+    private async Task ProcessDiagnostics(EventDataBatch eventBatch, EventHubProducerClient producer)
+    {
+        // Send 1 event
+        for (var i = 0; i < 1; i++)
+        {
+
+            var json = await File.ReadAllTextAsync("instrumentdiagnosticdata.json");
+
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
+
+            //diagnostics update
+            foreach (var instrumentDiagnosticData in instrumentData.InstrumentDiagnostics.Items)
+            {
+                foreach (var instrumentDiagnosticDatum in instrumentDiagnosticData.Values)
                 {
                     instrumentDiagnosticDatum.TimestampUtc = timestamp;
                 }
             }
 
-            //events update
-            foreach(var instrumentEventData in instrumentData.InstrumentEventDatas.Items)
+            var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
+
+            // 2. Convert serialized event to bytes
+            var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
+
+            if (!eventBatch.TryAdd(eventData))
             {
-                instrumentEventData.EventDateTimeUtc = timestamp;
+                Console.WriteLine($"Event {i} too large for batch — skipping.");
             }
+        }
+
+        // Send batch
+        await producer.SendAsync(eventBatch);
+        Console.WriteLine("✅ Successfully sent events to Event Hub!");
+    }
+
+    private async Task ProcessSettings(EventDataBatch eventBatch, EventHubProducerClient producer)
+    {
+        // Send 1 event
+        for (var i = 0; i < 1; i++)
+        {
+
+            var json = await File.ReadAllTextAsync("instrumentsettingdata.json");
+
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-i).ToClarosDateTime();
 
             //settings update
             instrumentData.InstrumentSettings.SettingsDateTimeUtc = timestamp;

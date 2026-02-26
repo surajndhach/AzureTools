@@ -6,6 +6,7 @@ using Claros.Common.Core;
 using Claros.Instrument.Core;
 using Claros.IoT.Registry;
 using Google.Protobuf;
+using System.Security.Cryptography;
 using System.Text;
 using CloudEvent = Azure.Messaging.CloudEvent;
 
@@ -13,6 +14,200 @@ namespace EventGridSender
 {
     public static class EventGridData
     {
+        public static async Task<CloudEvent> GetInstrumentControllerUpdated()
+        {
+            var json = await File.ReadAllTextAsync("instrumentAssignedController.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrument = parser.Parse<Instrument>(json);
+
+            instrument.ConnectionStatus = EnumConnectionStatus.ConnectionStatusNotConnected;
+            instrument.ConnectionStatusReason = EnumConnectionStatusReason.ConnectionStatusReasonHeartbeat;
+
+            instrument.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentJson = JsonFormatter.Default.Format(instrument);
+
+            var instrumentBinaryData = BinaryData.FromString(instrumentJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "Instrument.Updated",
+                data: instrumentBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"Instrument/Updated/tenant/{instrument.TenantId}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentSensorUpdated()
+        {
+            var json = await File.ReadAllTextAsync("instrumentAssignedSensor.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrument = parser.Parse<Instrument>(json);
+
+            instrument.ConnectionStatus = EnumConnectionStatus.ConnectionStatusNotConnected;
+            instrument.ConnectionStatusReason = EnumConnectionStatusReason.ConnectionStatusReasonHeartbeat;
+            instrument.ConnectionStatusChangedOn = new ClarosDateTime()
+            {
+                Ticks = (ulong?)DateTime.UtcNow.Ticks
+            };
+
+            instrument.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentJson = JsonFormatter.Default.Format(instrument);
+
+            var instrumentBinaryData = BinaryData.FromString(instrumentJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "Instrument.Updated",
+                data: instrumentBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"Instrument/Updated/tenant/{instrument.TenantId}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentSensorAssigned()
+        {
+            var json = await File.ReadAllTextAsync("instrumentAssignedSensor.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrument = parser.Parse<Instrument>(json);
+
+            instrument.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentJson = JsonFormatter.Default.Format(instrument);
+
+            var instrumentBinaryData = BinaryData.FromString(instrumentJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "Instrument.Assigned",
+                data: instrumentBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"Instrument/Assigned/tenant/{instrument.TenantId}/operation/{"59958a7f-c546-4089-b725-fa74bb7ed54e"}/location/{"7917e3aa-a70e-4801-9f72-57343883de48"}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static CloudEvent GetInstrumentUnassigned(string tenantId, string instrumentId)
+        {
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "Instrument.Unassigned",
+                data: null,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"Instrument/Unassigned/tenant/{tenantId}/instrument/{instrumentId}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentControllerAssigned()
+        {
+            var json = await File.ReadAllTextAsync("instrumentAssignedController.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrument = parser.Parse<Instrument>(json);
+
+            instrument.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentJson = JsonFormatter.Default.Format(instrument);
+
+            var instrumentBinaryData = BinaryData.FromString(instrumentJson);
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "Instrument.Assigned",
+                data: instrumentBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"Instrument/Assigned/tenant/{instrument.TenantId}/operation/{"59958a7f-c546-4089-b725-fa74bb7ed54e"}/location/{"7917e3aa-a70e-4801-9f72-57343883de48"}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
         public static CloudEvent getInstrumentAssignedEvent()
         {
             var instrument = new Instrument
@@ -76,6 +271,178 @@ namespace EventGridSender
             {
                 Id = Guid.NewGuid().ToString(),
                 Subject = $"tenant/{instrument.TenantId}/operation/{Guid.NewGuid()}/location/{Guid.NewGuid()}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentManifestControllerUpdatedEvent()
+        {
+            var json = await File.ReadAllTextAsync("instrumentManifestController.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentManifest = parser.Parse<InstrumentManifest>(json);
+
+            instrumentManifest.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            instrumentManifest.InstrumentType.Name = "TestUpdate" + new Random().ToString();
+
+            string instrumentManifestJson = JsonFormatter.Default.Format(instrumentManifest);
+
+            var instrumentManifestBinaryData = BinaryData.FromString(instrumentManifestJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "InstrumentManifest.Created",
+                data: instrumentManifestBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"InstrumentManifest/Created/instrumentType/{instrumentManifest.InstrumentType.Identifier.Id}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentManifestSensorUpdatedEvent()
+        {
+            var json = await File.ReadAllTextAsync("instrumentManifestSensor.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentManifest = parser.Parse<InstrumentManifest>(json);
+
+            instrumentManifest.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            instrumentManifest.InstrumentType.Name = "TestUpdate" + new Random().ToString();
+
+            string instrumentManifestJson = JsonFormatter.Default.Format(instrumentManifest);
+
+            var instrumentManifestBinaryData = BinaryData.FromString(instrumentManifestJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "InstrumentManifest.Created",
+                data: instrumentManifestBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"InstrumentManifest/Created/instrumentType/{instrumentManifest.InstrumentType.Identifier.Id}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentManifestControllerAssignedEvent()
+        {
+            var json = await File.ReadAllTextAsync("instrumentManifestController.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentManifest = parser.Parse<InstrumentManifest>(json);
+
+            instrumentManifest.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentManifestJson = JsonFormatter.Default.Format(instrumentManifest);
+
+            var instrumentManifestBinaryData = BinaryData.FromString(instrumentManifestJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "InstrumentManifest.Created",
+                data: instrumentManifestBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"InstrumentManifest/Created/instrumentType/{instrumentManifest.InstrumentType.Identifier.Id}",
+                Time = DateTimeOffset.UtcNow
+            };
+
+            return cloudEvent;
+        }
+
+        public static async Task<CloudEvent> GetInstrumentManifestSensorAssignedEvent()
+        {
+            var json = await File.ReadAllTextAsync("instrumentManifestSensor.json");
+
+            // Just to parse and test if the json deserialization works
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentManifest = parser.Parse<InstrumentManifest>(json);
+
+            instrumentManifest.RecordAuditInfo = new RecordAuditInfo()
+            {
+                CreatedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                CreatedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+                ModifiedById = "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+                ModifiedOn = new ClarosDateTime()
+                {
+                    Ticks = (ulong?)DateTime.UtcNow.Ticks
+                },
+            };
+
+            string instrumentManifestJson = JsonFormatter.Default.Format(instrumentManifest);
+
+            var instrumentManifestBinaryData = BinaryData.FromString(instrumentManifestJson);
+
+            var cloudEvent = new CloudEvent(
+                source: "Claros.IoT.Registry",
+                type: "InstrumentManifest.Created",
+                data: instrumentManifestBinaryData,
+                dataContentType: "application/json"
+            )
+            {
+                Id = Guid.NewGuid().ToString(),
+                Subject = $"InstrumentManifest/Created/instrumentType/{instrumentManifest.InstrumentType.Identifier.Id}",
                 Time = DateTimeOffset.UtcNow
             };
 

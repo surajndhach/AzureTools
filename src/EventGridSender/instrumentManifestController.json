@@ -1,0 +1,1239 @@
+{
+  "Version": "0.17.4",
+  "InstrumentGroup": {
+    "Id": "55892762-da61-4f88-99d1-dc6c93b0f7b3",
+    "I18NKeyTextReference": {
+      "I18NDatabaseName": "DeviceGroup",
+      "I18NModule": "FOUNDATION_LIBRARY",
+      "I18NKey": "DEVICEGROUP.HACH_CONTROLLERS"
+    },
+    "RecordAuditInfo": null
+  },
+  "InstrumentType": {
+    "Identifier": {
+      "Id": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+      "ManufacturerCode": "HL001",
+      "InstrumentCode": "00119"
+    },
+    "I18NKeyTextReference": {
+      "I18NDatabaseName": "DeviceType",
+      "I18NModule": "FOUNDATION_LIBRARY",
+      "I18NKey": "DEVICETYPE.HL001_00119_181677321"
+    },
+    "Attributes": {
+      "PictureSmallUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png",
+      "PictureLargeUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png",
+      "TransmissionInterval": null,
+      "LocalAccessSupport": false
+    },
+    "InstrumentGroupId": "55892762-da61-4f88-99d1-dc6c93b0f7b3",
+    "Name": null,
+    "imageUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png"
+  },
+  "Id": "75b7f240-fd1c-4c1e-80ac-6203d19eed85",
+  "InstrumentMeasurementCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "ParameterId": "ce976ad0-1bd1-4a1f-9ba6-0130fba53c7e",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "5752117d-ce1d-4686-9b3b-b1d4c9fbb72b",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "984c5c19-0292-438f-9f4e-32b2a0aa18a4",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "2ffcd1be-6e4a-451a-bf9d-f5f0642c73c2",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "84b8bd7f-2420-4e16-855f-7278c5fcf990",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 2,
+            "DisplaySortOrder": 3,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "33a6a71a-1606-45fb-94c0-b34082919ca0",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 2,
+            "DisplaySortOrder": 4,
+            "DisplayDecimalPoints": 2
+          }
+        },
+        {
+          "ParameterId": "357d0ea1-a521-43e8-99ae-81aa426b102f",
+          "Attributes": {
+            "Visible": true,
+            "DisplayPriority": 99,
+            "DisplaySortOrder": 5,
+            "DisplayDecimalPoints": 2
+          }
+        }
+      ]
+    }
+  },
+  "InstrumentPrognosysCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "Identifier": {
+            "Id": 0,
+            "Guid": "79d1d3c2-7367-4242-a318-2852cbd20a79"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_0"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 1,
+            "Guid": "32b7452d-6915-4938-8652-e148ee7271e0"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_1"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 2,
+            "Guid": "41b78b3c-c2ff-43d3-8e4f-746a448cd18e"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_2"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 3,
+            "Guid": "40908e56-21f8-4344-bdb2-cb88f2ca8e67"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_3"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 4,
+            "Guid": "146d7666-c1c3-483c-b064-b645e09fa8e3"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_4"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 5,
+            "Guid": "32ed7abb-056c-4473-99d7-2206b41cb63f"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_5"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 6,
+            "Guid": "87b02a08-bfab-4c9c-a406-b04eaa60c9ea"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_6"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 7,
+            "Guid": "af331838-7e7f-46c8-9042-518ca35779f4"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_7"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 8,
+            "Guid": "aee99a24-c2e2-4054-9711-0b4919e3e0ea"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_8"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 9,
+            "Guid": "c2fb3fa8-d1f0-4487-80e9-7d5006271f29"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_9"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 10,
+            "Guid": "ff5f97a4-e558-45e7-bb33-efc49dd66be7"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_10"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 11,
+            "Guid": "83dc376e-a5b8-4659-8086-858b5832c130"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_11"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 12,
+            "Guid": "ed40284e-a954-4631-a977-fddf816f178c"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_12"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 13,
+            "Guid": "2ac5078b-64bd-468d-b603-70700eab0c27"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_13"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 14,
+            "Guid": "898fcc6c-4322-4ff4-95fc-eae9ceb0ec0d"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_14"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 15,
+            "Guid": "09108411-592d-46bf-9ef7-9193d3207dcb"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_15"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 16,
+            "Guid": "4def424b-ec93-49fa-98b7-12d34e95098e"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_16"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 17,
+            "Guid": "33be3292-f4a5-4e67-8cc6-58023e8a4ddd"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_17"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 18,
+            "Guid": "066e35e5-a75e-4bef-8a7c-f387f21d88aa"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_18"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 19,
+            "Guid": "b33f726b-2fff-47dc-ae2a-788099c83348"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_19"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 20,
+            "Guid": "16af4f19-4bef-4f04-b6cf-8d36851d3c0e"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_20"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 21,
+            "Guid": "30ddbcf1-c095-48df-b0aa-341175126ba0"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_21"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 22,
+            "Guid": "00a4310c-0908-4f6a-bb59-b5a304d2a22d"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_22"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 23,
+            "Guid": "cb7dd945-f867-4d5c-a26c-0164650cc488"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_23"
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 24,
+            "Guid": "b336de3d-c369-4dc3-982c-e030155a8b8c"
+          },
+          "InstrumentTypeGuid": "28dd1baa-a8b8-4066-b9f1-53dc027857f7",
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypePrognosysMessage",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "PROGNOSYS.HL001_00119_24"
+          }
+        }
+      ]
+    }
+  },
+  "InstrumentTagCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "Identifier": {
+            "Id": 1,
+            "Guid": "07b9c977-b517-4e90-8617-b569cb9a5fd6",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182918496_1"
+          },
+          "ParameterId": "ce976ad0-1bd1-4a1f-9ba6-0130fba53c7e",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 1,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 4,
+            "Guid": "3f2ccf6b-17c1-4138-bce0-0faa39017b36",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182918596_4"
+          },
+          "ParameterId": "5752117d-ce1d-4686-9b3b-b1d4c9fbb72b",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 2,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 7,
+            "Guid": "235d6e7d-5310-4230-933f-4b98e45b4157",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182918640_7"
+          },
+          "ParameterId": "984c5c19-0292-438f-9f4e-32b2a0aa18a4",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 3,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 10,
+            "Guid": "4ad25a46-0047-46bd-9e71-62f607cd2c53",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182918947_10"
+          },
+          "ParameterId": "2ffcd1be-6e4a-451a-bf9d-f5f0642c73c2",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 4,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 13,
+            "Guid": "d09b55d1-82c7-4924-a063-b7c5fc9a26e0",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182031999_13"
+          },
+          "ParameterId": "84b8bd7f-2420-4e16-855f-7278c5fcf990",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 5,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 16,
+            "Guid": "2cc9bceb-82a5-4b61-a222-54b50aa6af48",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_182032274_16"
+          },
+          "ParameterId": "33a6a71a-1606-45fb-94c0-b34082919ca0",
+          "UnitTypeId": "8503d0cf-1438-49c3-8201-2f4c0e36c49d",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 6,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 18,
+            "Guid": "c15242a9-e2a0-4f8d-9c45-6b57bcce2b08",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_248_18"
+          },
+          "ParameterId": "357d0ea1-a521-43e8-99ae-81aa426b102f",
+          "UnitTypeId": "c821a323-7275-4d50-96ec-c0a37223cf67",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 7,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 19,
+            "Guid": "3628e442-c506-46b2-8652-adc468c294a5",
+            "Type": 1
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_248_19"
+          },
+          "ParameterId": "357d0ea1-a521-43e8-99ae-81aa426b102f",
+          "UnitTypeId": "bc817a0c-4087-48ae-afcd-7920682d0e4b",
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 8,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 0,
+            "Guid": "66d0e084-100f-41f1-94f9-76e7889f4530",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.CLASSIFIED_ERROR"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 101,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 1,
+            "Guid": "5c1e8293-6d32-4a3b-b73c-3cf714849317",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.CLASSIFIED_STATUS_1"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 102,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 2,
+            "Guid": "481dd5ca-9df1-4464-882b-393b325c2396",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.CLASSIFIED_STATUS_2"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 103,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 3,
+            "Guid": "45da0060-ee36-4967-811d-299d57784a33",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.CLASSIFIED_STATUS_3"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 104,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 4,
+            "Guid": "e06c90eb-42b0-4999-ac19-8defeba34ed8",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.CLASSIFIED_STATUS_4"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 105,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 6,
+            "Guid": "b714fc45-0938-4515-8a41-39d52fdb9964",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_ERROR_CONDITION"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 107,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 12,
+            "Guid": "bb835d94-dd59-4bf9-8970-69a05b03e6a1",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_ERROR_CONDITION_1"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 113,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 13,
+            "Guid": "b8f4d5c8-2466-41f4-b68e-c42a8e39d959",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_ERROR_CONDITION_2"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 114,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 5,
+            "Guid": "8f001705-9bf1-4975-ae00-60cffc8bceb5",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_WARNING_CONDITION"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 106,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 10,
+            "Guid": "7ecb510d-4aff-443f-972d-38b12b24591c",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_WARNING_CONDITION_1"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 111,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 11,
+            "Guid": "00b82bcf-b735-4753-b3ad-9d2aa424db74",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.DEVICE_WARNING_CONDITION_2"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 112,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 7,
+            "Guid": "87938043-82b5-4682-a3f1-3cdd4a9a9888",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.HEARTBEAT"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 108,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 8,
+            "Guid": "7504a4a9-0de0-4197-84a1-473a33e71d6c",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.PROGNOSYS_MI"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 109,
+            "DisplayDecimalPoints": null
+          }
+        },
+        {
+          "Identifier": {
+            "Id": 9,
+            "Guid": "43d5ae3e-e92b-4fca-9462-8d799481d6bd",
+            "Type": 2
+          },
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "DeviceTypeTag",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "DEVICETYPETAG.HL001_00119_DEVICETYPETAG.PROGNOSYS_SI"
+          },
+          "ParameterId": null,
+          "UnitTypeId": null,
+          "Attributes": {
+            "Visible": false,
+            "DisplayPriority": 1,
+            "DisplaySortOrder": 110,
+            "DisplayDecimalPoints": null
+          }
+        }
+      ]
+    }
+  },
+  "InstrumentSettingsCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "DefinitionBasedMenu": null,
+          "ComponentBasedMenu": null,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentSettingsDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "SETTINGS.HL001_00119_DEVICETYPEACTIONS.MENU"
+          },
+          "TypeCase": 0
+        }
+      ]
+    }
+  },
+  "Localizations": null,
+  "InstrumentPlatformCapability": {
+    "Enabled": true,
+    "RegistryType": 2,
+    "LocalAccessEnabled": null
+  },
+  "InstrumentFileTransferCapability": {
+    "Enabled": false,
+    "Definitions": {
+      "Items": []
+    }
+  },
+  "InstrumentErrorCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "Id": 0,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_182698876"
+          }
+        },
+        {
+          "Id": 1,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294010670"
+          }
+        },
+        {
+          "Id": 2,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294202202"
+          }
+        },
+        {
+          "Id": 3,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294203748"
+          }
+        },
+        {
+          "Id": 4,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294203670"
+          }
+        },
+        {
+          "Id": 5,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294203821"
+          }
+        },
+        {
+          "Id": 6,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294208669"
+          }
+        },
+        {
+          "Id": 7,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294208755"
+          }
+        },
+        {
+          "Id": 8,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_294208812"
+          }
+        },
+        {
+          "Id": 9,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295210807"
+          }
+        },
+        {
+          "Id": 10,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295210870"
+          }
+        },
+        {
+          "Id": 11,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295210981"
+          }
+        },
+        {
+          "Id": 12,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295211020"
+          }
+        },
+        {
+          "Id": 13,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295211054"
+          }
+        },
+        {
+          "Id": 14,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295211080"
+          }
+        },
+        {
+          "Id": 15,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295211111"
+          }
+        },
+        {
+          "Id": 16,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentErrorDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTERROR.HL001_00119_295211133"
+          }
+        }
+      ]
+    }
+  },
+  "InstrumentWarningCapability": {
+    "Enabled": true,
+    "Definitions": {
+      "Items": [
+        {
+          "Id": 0,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_287083958"
+          }
+        },
+        {
+          "Id": 1,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294208982"
+          }
+        },
+        {
+          "Id": 2,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294202202"
+          }
+        },
+        {
+          "Id": 3,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294203748"
+          }
+        },
+        {
+          "Id": 4,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294203670"
+          }
+        },
+        {
+          "Id": 5,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294203821"
+          }
+        },
+        {
+          "Id": 6,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294208669"
+          }
+        },
+        {
+          "Id": 7,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294208755"
+          }
+        },
+        {
+          "Id": 8,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294208812"
+          }
+        },
+        {
+          "Id": 9,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295210807"
+          }
+        },
+        {
+          "Id": 10,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295210870"
+          }
+        },
+        {
+          "Id": 11,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295210981"
+          }
+        },
+        {
+          "Id": 12,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295211020"
+          }
+        },
+        {
+          "Id": 13,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295211054"
+          }
+        },
+        {
+          "Id": 14,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295211080"
+          }
+        },
+        {
+          "Id": 15,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295211111"
+          }
+        },
+        {
+          "Id": 16,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_295211133"
+          }
+        },
+        {
+          "Id": 17,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333671"
+          }
+        },
+        {
+          "Id": 18,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333700"
+          }
+        },
+        {
+          "Id": 19,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333738"
+          }
+        },
+        {
+          "Id": 20,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333772"
+          }
+        },
+        {
+          "Id": 21,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333797"
+          }
+        },
+        {
+          "Id": 22,
+          "I18NKeyTextReference": {
+            "I18NDatabaseName": "InstrumentWarningDefinition",
+            "I18NModule": "FOUNDATION_LIBRARY",
+            "I18NKey": "INSTRUMENTWARNING.HL001_00119_294333831"
+          }
+        }
+      ]
+    }
+  },
+  "RecordAuditInfo": {
+    "CreatedById": "226170db-f495-446c-8d2f-b04804a63305",
+    "CreatedOn": {
+      "JsonDateTime": "2025-09-30T08:17:21.7855974Z",
+      "Ticks": null,
+      "ContextType": 0,
+      "TwinRefId": null,
+      "JsonTicksDateTimeCase": 1
+    },
+    "ModifiedById": "226170db-f495-446c-8d2f-b04804a63305",
+    "ModifiedOn": {
+      "JsonDateTime": "2025-09-30T08:17:21.7855974Z",
+      "Ticks": null,
+      "ContextType": 0,
+      "TwinRefId": null,
+      "JsonTicksDateTimeCase": 1
+    }
+  }
+}
