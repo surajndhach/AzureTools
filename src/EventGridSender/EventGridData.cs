@@ -143,7 +143,7 @@ namespace EventGridSender
             )
             {
                 Id = Guid.NewGuid().ToString(),
-                Subject = $"Instrument/Assigned/tenant/{instrument.TenantId}/operation/{"59958a7f-c546-4089-b725-fa74bb7ed54e"}/location/{"7917e3aa-a70e-4801-9f72-57343883de48"}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
+                Subject = $"Instrument/Assigned/tenant/{instrument.TenantId}/instrument/{instrument.InstrumentReference.InstrumentIdentifier.Guid}",
                 Time = DateTimeOffset.UtcNow
             };
 
