@@ -1,12 +1,9 @@
-﻿using Azure.Identity;
-using Azure.Messaging.EventHubs;
+﻿using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using ONE.Models.CSharp.External;
-using ONE.Models.CSharp.Instrument;
 using System.Text;
 
 class Program

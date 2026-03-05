@@ -1,13 +1,7 @@
-﻿using Azure;
-using Azure.Core;
-using Azure.Identity;
-using Azure.Messaging.EventGrid.Namespaces;
-using Claros.Common.Core;
+﻿using Claros.Common.Core;
 using Claros.Instrument.Core;
 using Claros.IoT.Registry;
 using Google.Protobuf;
-using System.Security.Cryptography;
-using System.Text;
 using CloudEvent = Azure.Messaging.CloudEvent;
 
 namespace EventGridSender
