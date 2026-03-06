@@ -11,6 +11,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="instrumentrtcmeasurementdata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="instrumentsettingdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

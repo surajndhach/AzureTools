@@ -135,6 +135,17 @@ public class SenderClient
         var instrumentSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentSensorEventBodyString);
         response = await client.SendAsync(instrumentSensorAssignedEvent);
         Console.WriteLine($"Response: {response.Status}");
+
+        await Task.Delay(5000);
+
+        Console.WriteLine("Sending Rtc Sensor Assigned...");
+        //Validation
+        var instrumentRtcSensorAssignedEvent = await EventGridData.GetInstrumentRtcSensorAssigned();
+        var instrumentRtcSensorEventBodyString = instrumentRtcSensorAssignedEvent.Data is not null && instrumentRtcSensorAssignedEvent.Data.Length > 0
+            ? Encoding.UTF8.GetString(instrumentRtcSensorAssignedEvent.Data) : "{}";
+        var instrumentRtcSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentRtcSensorEventBodyString);
+        response = await client.SendAsync(instrumentRtcSensorAssignedEvent);
+        Console.WriteLine($"Response: {response.Status}");
     }
 
     private async Task CreateManifest(EventGridSenderClient client, JsonParser parser)

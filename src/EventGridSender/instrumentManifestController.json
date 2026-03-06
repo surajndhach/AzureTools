@@ -20,12 +20,6 @@
       "I18NModule": "FOUNDATION_LIBRARY",
       "I18NKey": "DEVICETYPE.HL001_00119_181677321"
     },
-    "Attributes": {
-      "PictureSmallUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png",
-      "PictureLargeUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png",
-      "TransmissionInterval": null,
-      "LocalAccessSupport": false
-    },
     "InstrumentGroupId": "55892762-da61-4f88-99d1-dc6c93b0f7b3",
     "Name": null,
     "imageUrl": "https://eufeaturedeea.blob.core.windows.net/iotr-instrumenttype-images/HL001_00119_2025-05-12-14-41-46.png"

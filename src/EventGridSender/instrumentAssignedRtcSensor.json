@@ -1,0 +1,44 @@
+{
+  "instrumentReference": {
+    "instrumentIdentifier": {
+      "fusionId": "HL001_00527_SURA02222222",
+      "guid": "71490252-01ee-451f-8f54-313e5ecbf753"
+    },
+    "serialNumber": "SURA02222222",
+    "instrumentTypeGuid": "647a0fa5-f009-4e99-a8f8-1cbc71dce96e",
+    "instrumentGroupGuid": "32b4784a-e5b3-4db7-bdb1-099af10e142e",
+    "instrumentManifestVersionString": "3.90.0.0",
+    "platformNumber": 0
+  },
+  "tenantId": "440ae6c6-f4ad-4ec5-a78f-7b6c716f7270",
+  "edgeInstrumentReference": {
+    "instrumentIdentifier": {
+      "fusionId": "HL001_17385_SURA001111111",
+      "guid": "9834952b-90ad-4cf7-9ab2-d65edf554f8d"
+    },
+    "serialNumber": "SURA001111111",
+    "instrumentTypeGuid": "27056753-613f-4bc2-8b2f-72d1cdcada36",
+    "instrumentGroupGuid": "12ed4794-fda9-4187-af34-6da2774b4d28",
+    "instrumentManifestVersionString": "3.90.0.0",
+    "platformNumber": 0
+  },
+  "connectionStatus": 2,
+  "registryStatus": 1,
+  "connectionStatusReason": 1,
+  "connectionStatusChangedOn": {
+    "ticks": 639065106797006248,
+    "clarosDateTimeCase": 3
+  },
+  "recordAuditInfo": {
+    "createdById": "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+    "createdOn": {
+      "ticks": 639046684776370000,
+      "clarosDateTimeCase": 3
+    },
+    "modifiedById": "ff31635e-5d1d-4085-928a-cf3bfacc0516",
+    "modifiedOn": {
+      "ticks": 639065106797006257,
+      "clarosDateTimeCase": 3
+    }
+  }
+}

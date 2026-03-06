@@ -143,6 +143,40 @@ public class MessageSenderClient()
             Console.WriteLine($"Event with timestamp {timestamp}");
         }
 
+        // Send 1 event RTC
+        for (var i = 0; i < 1; i++)
+        {
+
+            var json = await File.ReadAllTextAsync("instrumentrtcmeasurementdata.json");
+
+            var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
+
+            var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(json);
+
+            var timestamp = DateTime.UtcNow.AddHours(-1).AddMinutes(i).ToClarosDateTime();
+
+            //measurement update
+            foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
+            {
+                instrumentMeasurementData.Measurement.TimestampUtc = timestamp;
+            }
+
+            var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
+
+            // 2. Convert serialized event to bytes
+            var eventBytes = Encoding.UTF8.GetBytes(jsonObj.ToString());
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", instrumentData.TenantId);
+
+            if (!eventBatch.TryAdd(eventData))
+            {
+                Console.WriteLine($"Event {i} too large for batch — skipping.");
+            }
+
+            Console.WriteLine($"Event with timestamp {timestamp}");
+        }
+
         // Send batch
         await producer.SendAsync(eventBatch);
         Console.WriteLine("✅ Successfully sent events to Event Hub!");
