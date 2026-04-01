@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrClient", "SignalrCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrServer", "SignalrServer\SignalrServer.csproj", "{4BD592F0-E4D4-468D-B75A-9649CA87428F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\OneDrive - Veralto\Desktop\DeviceGenerator\TenantDeviceGenerator.ps1 = ..\..\..\..\OneDrive - Veralto\Desktop\DeviceGenerator\TenantDeviceGenerator.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
