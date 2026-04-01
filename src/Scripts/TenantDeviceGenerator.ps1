@@ -17,18 +17,22 @@ $deviceTypeConfiguration = @{
     Controller = @{
         FusionPrefix = "HL001_17385"
         DeviceTypeId = "27056753-613f-4bc2-8b2f-72d1cdcada36"
+        DeviceGroupId = "12ed4794-fda9-4187-af34-6da2774b4d28"
     }
     Anise = @{
         FusionPrefix = "HL001_00119"
         DeviceTypeId = "28dd1baa-a8b8-4066-b9f1-53dc027857f7"
+        DeviceGroupId = "55892762-da61-4f88-99d1-dc6c93b0f7b3"
     }
     Nitratax = @{
         FusionPrefix = "HL001_00103"
         DeviceTypeId = "9756ce17-da66-4876-9392-a92c44985c59"
+        DeviceGroupId = "55892762-da61-4f88-99d1-dc6c93b0f7b3"
     }
     Solitax = @{
         FusionPrefix = "HL001_00104"
         DeviceTypeId = "7c2bb0b6-439d-4f15-9c99-61e209f45aae"
+        DeviceGroupId = "55892762-da61-4f88-99d1-dc6c93b0f7b3"
     }
 }
 
@@ -118,6 +122,7 @@ function New-Sensor {
         FusionId     = "{0}_{1}" -f $typeConfig.FusionPrefix, $serialNumber
         DeviceId     = [System.Guid]::NewGuid().ToString()
         DeviceTypeId = $typeConfig.DeviceTypeId
+        DeviceGroupId = $typeConfig.DeviceGroupId
     }
 }
 
@@ -152,6 +157,7 @@ function New-Controller {
         DeviceName   = "Controller-$ControllerIndex"
         FusionId     = "{0}_{1}" -f $controllerTypeConfig.FusionPrefix, $serialNumber
         DeviceId     = [System.Guid]::NewGuid().ToString()
+        DeviceGroupId = $controllerTypeConfig.DeviceGroupId
         DeviceTypeId = $controllerTypeConfig.DeviceTypeId
         Sensors      = $sensors
     }
