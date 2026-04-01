@@ -1,60 +1,94 @@
 param (
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
     [int]$TenantCount,
 
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
     [int]$ControllersPerTenant,
 
-    [Parameter(Mandatory = $true)]
-    [int]$LDOCount = 0,
+    [Parameter(Mandatory = $false)]
+    [hashtable]$SensorCounts = @{},
 
-    [Parameter(Mandatory = $true)]
-    [int]$NitrataxCount = 0
+    [Parameter(Mandatory = $false)]
+    [switch]$ListSensorTypes
 )
 
 # Device type configuration: Add new types here by following the same pattern
 $deviceTypeConfiguration = @{
     Controller = @{
         FusionPrefix = "HL001_17385"
-        DeviceTypeId = "5d0f7f5a-6d5a-4d06-b0d3-1f2b8c3d1001"
+        DeviceTypeId = "27056753-613f-4bc2-8b2f-72d1cdcada36"
     }
-    LDO = @{
-        FusionPrefix = "HL001_0019"
-        DeviceTypeId = "d2df6b3b-f3b5-4cb8-9a39-6f5bf11d1002"
+    Anise = @{
+        FusionPrefix = "HL001_00119"
+        DeviceTypeId = "28dd1baa-a8b8-4066-b9f1-53dc027857f7"
     }
     Nitratax = @{
-        FusionPrefix = "HL001_0018"
-        DeviceTypeId = "40a1a62e-8f31-4af0-93f3-c5146e8f1003"
+        FusionPrefix = "HL001_00103"
+        DeviceTypeId = "9756ce17-da66-4876-9392-a92c44985c59"
     }
-    GenericSensor = @{
-        FusionPrefix = "HL001_00119"
-        DeviceTypeId = "0f1d69f0-0ef5-49f6-b44f-6ef7c8a91004"
+    Solitax = @{
+        FusionPrefix = "HL001_00104"
+        DeviceTypeId = "7c2bb0b6-439d-4f15-9c99-61e209f45aae"
     }
+}
+
+function Show-AvailableSensorTypes {
+    param (
+        [hashtable]$DeviceTypeConfiguration
+    )
+
+    $sensorTypes = $DeviceTypeConfiguration.Keys | Where-Object { $_ -ne 'Controller' } | Sort-Object
+
+    Write-Host "`nAvailable sensor types:" -ForegroundColor Cyan
+    Write-Host "========================" -ForegroundColor Cyan
+    foreach ($type in $sensorTypes) {
+        $config = $DeviceTypeConfiguration[$type]
+        Write-Host "  - $type" -ForegroundColor Yellow -NoNewline
+        Write-Host "  (FusionPrefix: $($config.FusionPrefix), DeviceTypeId: $($config.DeviceTypeId))"
+    }
+    Write-Host "`nUsage example:" -ForegroundColor Cyan
+    Write-Host "  .\TenantDeviceGenerator.ps1 -TenantCount 2 -ControllersPerTenant 3 -SensorCounts @{ $($sensorTypes[0]) = 2; $($sensorTypes[1]) = 1 }" -ForegroundColor Green
+    Write-Host ""
+}
+
+if ($ListSensorTypes) {
+    Show-AvailableSensorTypes -DeviceTypeConfiguration $deviceTypeConfiguration
+    return
+}
+
+if (-not $TenantCount -or -not $ControllersPerTenant) {
+    Write-Host "Error: -TenantCount and -ControllersPerTenant are required (unless using -ListSensorTypes)." -ForegroundColor Red
+    Show-AvailableSensorTypes -DeviceTypeConfiguration $deviceTypeConfiguration
+    return
 }
 
 function Build-SensorConfiguration {
     param (
-        [int]$LDOCount,
-        [int]$NitrataxCount
+        [hashtable]$SensorCounts,
+        [hashtable]$DeviceTypeConfiguration
     )
 
-    if ($LDOCount -lt 0 -or $NitrataxCount -lt 0) {
-        throw "Sensor count parameters cannot be negative."
+    $validSensorTypes = $DeviceTypeConfiguration.Keys | Where-Object { $_ -ne 'Controller' }
+
+    foreach ($key in $SensorCounts.Keys) {
+        if ($key -notin $validSensorTypes) {
+            throw "Unknown sensor type '$key'. Valid types: $($validSensorTypes -join ', ')"
+        }
+        if ($SensorCounts[$key] -lt 0) {
+            throw "Sensor count for '$key' cannot be negative."
+        }
     }
 
     $requestedSensorConfig = @()
 
-    if ($LDOCount -gt 0) {
-        $requestedSensorConfig += [PSCustomObject]@{
-            SensorType = 'LDO'
-            Count = $LDOCount
-        }
-    }
+    foreach ($sensorType in $validSensorTypes) {
+        $count = if ($SensorCounts.ContainsKey($sensorType)) { $SensorCounts[$sensorType] } else { 0 }
 
-    if ($NitrataxCount -gt 0) {
-        $requestedSensorConfig += [PSCustomObject]@{
-            SensorType = 'Nitratax'
-            Count = $NitrataxCount
+        if ($count -gt 0) {
+            $requestedSensorConfig += [PSCustomObject]@{
+                SensorType = $sensorType
+                Count      = $count
+            }
         }
     }
 
@@ -62,7 +96,7 @@ function Build-SensorConfiguration {
         return $requestedSensorConfig
     }
 
-    throw "Provide at least one sensor type count using -LDOCount or -NitrataxCount."
+    throw "Provide at least one sensor count via -SensorCounts. Valid types: $($validSensorTypes -join ', '). Example: -SensorCounts @{ Anise = 2; Nitratax = 1 }"
 }
 
 function New-Sensor {
@@ -76,7 +110,7 @@ function New-Sensor {
 
     $typeConfig = $DeviceTypeConfiguration[$SensorType]
     $serialNumber = Get-Random -Minimum 100000000 -Maximum 999999999
-    $deviceName = if ($SensorType -eq 'GenericSensor') { "Sensor-$SensorIndex" } else { "$SensorType-Sensor-$SensorIndex" }
+    $deviceName = "$SensorType-Sensor-$SensorIndex"
 
     return @{
         DeviceName   = $deviceName
@@ -125,8 +159,8 @@ function New-Controller {
 
 # Build tenant hierarchy with controllers and sensors
 $requestedSensorConfig = Build-SensorConfiguration `
-    -LDOCount $LDOCount `
-    -NitrataxCount $NitrataxCount
+    -SensorCounts $SensorCounts `
+    -DeviceTypeConfiguration $deviceTypeConfiguration
 $sensorsPerController = ($requestedSensorConfig | Measure-Object -Property Count -Sum).Sum
 
 $tenantHierarchy = @()
