@@ -1,0 +1,25 @@
+﻿[
+    {
+        "Controllers":  [
+                            {
+                                "DeviceName":  "Controller-1",
+                                "DeviceGroupId":  "12ed4794-fda9-4187-af34-6da2774b4d28",
+                                "Sensors":  [
+                                                {
+                                                    "DeviceName":  "Anise-Sensor-1",
+                                                    "SensorType":  "Anise",
+                                                    "DeviceGroupId":  "55892762-da61-4f88-99d1-dc6c93b0f7b3",
+                                                    "FusionId":  "HL001_00119_517121137",
+                                                    "DeviceId":  "ad3cd719-9d26-4792-9182-4f7ad482d9e5",
+                                                    "DeviceTypeId":  "28dd1baa-a8b8-4066-b9f1-53dc027857f7"
+                                                }
+                                            ],
+                                "FusionId":  "HL001_17385_874336454",
+                                "DeviceId":  "e5915058-e6e3-4197-ae5f-dd4eadb2d32f",
+                                "DeviceTypeId":  "27056753-613f-4bc2-8b2f-72d1cdcada36"
+                            }
+                        ],
+        "TenantId":  "3e80f2e9-b9ba-404e-87f1-47c41481fe0a",
+        "TenantName":  "Tenant-1"
+    }
+]
