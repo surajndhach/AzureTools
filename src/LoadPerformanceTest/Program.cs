@@ -26,8 +26,6 @@ var credential = new ClientSecretCredential(options.TenantId, options.ClientId, 
 var client = new EventGridSenderClient(new Uri(options.TopicEndpoint), options.TopicName, credential);
 var publisher = new EventGridPublisher(client);
 
-bool tenantsCreated = false;
-bool controllersCreated = false;
 bool exit = false;
 
 while (!exit)
@@ -45,39 +43,23 @@ while (!exit)
     {
         case "1":
             // TODO: Add tenant creation logic
-            tenantsCreated = true;
             Console.WriteLine("Tenants created successfully.\n");
             break;
 
         case "2":
-            if (!tenantsCreated)
-            {
-                Console.WriteLine("Error: You must create Tenants (option 1) before creating Controllers.\n");
-                break;
-            }
-
             var controllerEvents = CloudEventBuilder.BuildControllerAssignedEvents(tenants);
             Console.WriteLine($"Built {controllerEvents.Count} Controller Instrument.Assigned cloud event(s).");
 
             var (controllerSuccess, controllerFail) = await publisher.SendAllAsync(controllerEvents);
             Console.WriteLine($"Controllers completed: {controllerSuccess} succeeded, {controllerFail} failed out of {controllerEvents.Count} total events.\n");
-
-            controllersCreated = true;
             break;
 
         case "3":
-            if (!tenantsCreated || !controllersCreated)
-            {
-                Console.WriteLine("Error: You must create Tenants (option 1) and Controllers (option 2) before creating Sensors.\n");
-                break;
-            }
-
             var sensorEvents = CloudEventBuilder.BuildSensorAssignedEvents(tenants);
             Console.WriteLine($"Built {sensorEvents.Count} Sensor Instrument.Assigned cloud event(s).");
 
             var (sensorSuccess, sensorFail) = await publisher.SendAllAsync(sensorEvents);
             Console.WriteLine($"Sensors completed: {sensorSuccess} succeeded, {sensorFail} failed out of {sensorEvents.Count} total events.\n");
-
             break;
 
         case "Q":
