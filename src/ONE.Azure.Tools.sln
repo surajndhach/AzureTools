@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrClient", "SignalrCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrServer", "SignalrServer\SignalrServer.csproj", "{4BD592F0-E4D4-468D-B75A-9649CA87428F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadPerformanceTest", "LoadPerformanceTest\LoadPerformanceTest.csproj", "{A6754120-52B2-D75E-6C3F-D5C52B5CD6CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BD592F0-E4D4-468D-B75A-9649CA87428F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6754120-52B2-D75E-6C3F-D5C52B5CD6CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6754120-52B2-D75E-6C3F-D5C52B5CD6CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6754120-52B2-D75E-6C3F-D5C52B5CD6CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6754120-52B2-D75E-6C3F-D5C52B5CD6CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
