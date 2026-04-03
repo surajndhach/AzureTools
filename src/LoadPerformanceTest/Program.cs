@@ -34,6 +34,7 @@ while (!exit)
     Console.WriteLine("  1 - Create Tenants");
     Console.WriteLine("  2 - Create Controllers");
     Console.WriteLine("  3 - Create Sensors");
+    Console.WriteLine("  4 - Delete Tenants");
     Console.WriteLine("  Q - Quit");
     Console.Write("\nYour choice: ");
 
@@ -42,8 +43,8 @@ while (!exit)
     switch (input)
     {
         case "1":
-            // TODO: Add tenant creation logic
-            Console.WriteLine("Tenants created successfully.\n");
+           var count =  await TenantFacade.CreateTenantsAsync(tenants);
+            Console.WriteLine($"Tenant creation completed: {count} out of {tenants.Count} tenants created successfully.\n");
             break;
 
         case "2":
@@ -60,6 +61,11 @@ while (!exit)
 
             var (sensorSuccess, sensorFail) = await publisher.SendAllAsync(sensorEvents);
             Console.WriteLine($"Sensors completed: {sensorSuccess} succeeded, {sensorFail} failed out of {sensorEvents.Count} total events.\n");
+            break;
+
+        case "4":
+            var deleteCount = await TenantFacade.DeleteTenantsAsync(tenants);
+            Console.WriteLine($"Tenant deletion completed: {deleteCount} out of {tenants.Count} tenants deleted successfully.\n");
             break;
 
         case "Q":

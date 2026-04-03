@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aquarius.ONE.Models.CSharp" Version="7.19.0" />
     <PackageReference Include="Azure.Identity" Version="1.15.0" />
     <PackageReference Include="Azure.Messaging.EventGrid.Namespaces" Version="1.1.0" />
     <PackageReference Include="Claros.Interfaces.CSharp" Version="22.0.33" />
