@@ -15,7 +15,7 @@ using var host = Host.CreateDefaultBuilder(args)
 
 var config = host.Services.GetRequiredService<IConfiguration>();
 var options = config.GetSection("EventGridSender").Get<EventGridSenderOptions>()!;
-var inventoryFilePath = config["DeviceInventoryFilePath"] ?? "Scripts\\device-inventory-tenants2-sensors12.json";
+var inventoryFilePath = config["DeviceInventoryFilePath"];
 
 // Parse device inventory
 var tenants = await DeviceInventoryParser.ParseFromFileAsync(inventoryFilePath);
