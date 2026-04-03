@@ -1,36 +1,29 @@
-using EventGridSender.Models;
+using LoadPerformanceTest.Models;
 using Newtonsoft.Json;
 
-namespace EventGridSender
+namespace LoadPerformanceTest;
+
+public static class DeviceInventoryParser
 {
-    public static class DeviceInventoryParser
+    public static async Task<List<Tenant>> ParseFromFileAsync(string filePath)
     {
-        public static async Task<List<Tenant>> ParseFromFileAsync(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                throw new FileNotFoundException($"Device inventory file not found: {filePath}");
-            }
+        if (!File.Exists(filePath))
+            throw new FileNotFoundException($"Device inventory file not found: {filePath}");
 
-            var json = await File.ReadAllTextAsync(filePath);
-            return Parse(json);
-        }
+        var json = await File.ReadAllTextAsync(filePath);
+        return Parse(json);
+    }
 
-        public static List<Tenant> Parse(string json)
-        {
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                throw new ArgumentException("JSON content cannot be null or empty.", nameof(json));
-            }
+    public static List<Tenant> Parse(string json)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(json);
 
-            var tenants = JsonConvert.DeserializeObject<List<Tenant>>(json);
+        var tenants = JsonConvert.DeserializeObject<List<Tenant>>(json)
+            ?? throw new InvalidOperationException("Failed to deserialize device inventory JSON.");
 
-            if (tenants == null || tenants.Count == 0)
-            {
-                throw new InvalidOperationException("No tenants found in the device inventory JSON.");
-            }
-
-            return tenants;
-        }
+        return tenants.Count > 0
+            ? tenants
+            : throw new InvalidOperationException("No tenants found in the device inventory JSON.");
     }
 }
+
