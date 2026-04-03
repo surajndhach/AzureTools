@@ -34,6 +34,39 @@ public static class CloudEventBuilder
         return events;
     }
 
+    public static List<CloudEvent> BuildControllerAssignedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                events.Add(BuildControllerAssignedEvent(tenant, controller));
+            }
+        }
+
+        return events;
+    }
+
+    public static List<CloudEvent> BuildSensorAssignedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                foreach (var sensor in controller.Sensors)
+                {
+                    events.Add(BuildSensorAssignedEvent(tenant, controller, sensor));
+                }
+            }
+        }
+
+        return events;
+    }
+
     private static CloudEvent BuildControllerAssignedEvent(Tenant tenant, Controller controller)
     {
         var instrument = new Instrument
@@ -75,13 +108,13 @@ public static class CloudEventBuilder
 
     private static InstrumentReference BuildInstrumentReference(
         string fusionId, string deviceId, string typeId, string groupId) => new()
-    {
-        InstrumentIdentifier = new InstrumentIdentifier { FusionId = fusionId, Guid = deviceId },
-        SerialNumber = ExtractSerialNumber(fusionId),
-        InstrumentTypeGuid = typeId,
-        InstrumentGroupGuid = groupId,
-        InstrumentManifestVersionString = DefaultManifestVersion
-    };
+        {
+            InstrumentIdentifier = new InstrumentIdentifier { FusionId = fusionId, Guid = deviceId },
+            SerialNumber = ExtractSerialNumber(fusionId),
+            InstrumentTypeGuid = typeId,
+            InstrumentGroupGuid = groupId,
+            InstrumentManifestVersionString = DefaultManifestVersion
+        };
 
     private static CloudEvent CreateCloudEvent(Instrument instrument, string tenantId, string instrumentId)
     {

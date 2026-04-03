@@ -17,21 +17,79 @@ var config = host.Services.GetRequiredService<IConfiguration>();
 var options = config.GetSection("EventGridSender").Get<EventGridSenderOptions>()!;
 var inventoryFilePath = config["DeviceInventoryFilePath"] ?? "Scripts\\device-inventory-tenants2-sensors12.json";
 
-// Step 1: Parse device inventory
+// Parse device inventory
 var tenants = await DeviceInventoryParser.ParseFromFileAsync(inventoryFilePath);
-Console.WriteLine($"Loaded {tenants.Count} tenant(s) from device inventory.");
+Console.WriteLine($"Loaded {tenants.Count} tenant(s) from device inventory.\n");
 
-// Step 2: Build cloud events for all tenants, controllers, and sensors
-var cloudEvents = CloudEventBuilder.BuildInstrumentAssignedEvents(tenants);
-Console.WriteLine($"Built {cloudEvents.Count} Instrument.Assigned cloud event(s).\n");
-
-// Step 3: Send events to EventGrid
+// Set up EventGrid client
 var credential = new ClientSecretCredential(options.TenantId, options.ClientId, options.ClientSecret);
 var client = new EventGridSenderClient(new Uri(options.TopicEndpoint), options.TopicName, credential);
-
 var publisher = new EventGridPublisher(client);
-var (successCount, failCount) = await publisher.SendAllAsync(cloudEvents);
 
-Console.WriteLine($"\nCompleted: {successCount} succeeded, {failCount} failed out of {cloudEvents.Count} total events.");
-Console.WriteLine("Press any key to exit.");
+bool tenantsCreated = false;
+bool controllersCreated = false;
+bool exit = false;
+
+while (!exit)
+{
+    Console.WriteLine("Select an option:");
+    Console.WriteLine("  1 - Create Tenants");
+    Console.WriteLine("  2 - Create Controllers");
+    Console.WriteLine("  3 - Create Sensors");
+    Console.WriteLine("  Q - Quit");
+    Console.Write("\nYour choice: ");
+
+    var input = Console.ReadLine()?.Trim();
+
+    switch (input)
+    {
+        case "1":
+            // TODO: Add tenant creation logic
+            tenantsCreated = true;
+            Console.WriteLine("Tenants created successfully.\n");
+            break;
+
+        case "2":
+            if (!tenantsCreated)
+            {
+                Console.WriteLine("Error: You must create Tenants (option 1) before creating Controllers.\n");
+                break;
+            }
+
+            var controllerEvents = CloudEventBuilder.BuildControllerAssignedEvents(tenants);
+            Console.WriteLine($"Built {controllerEvents.Count} Controller Instrument.Assigned cloud event(s).");
+
+            var (controllerSuccess, controllerFail) = await publisher.SendAllAsync(controllerEvents);
+            Console.WriteLine($"Controllers completed: {controllerSuccess} succeeded, {controllerFail} failed out of {controllerEvents.Count} total events.\n");
+
+            controllersCreated = true;
+            break;
+
+        case "3":
+            if (!tenantsCreated || !controllersCreated)
+            {
+                Console.WriteLine("Error: You must create Tenants (option 1) and Controllers (option 2) before creating Sensors.\n");
+                break;
+            }
+
+            var sensorEvents = CloudEventBuilder.BuildSensorAssignedEvents(tenants);
+            Console.WriteLine($"Built {sensorEvents.Count} Sensor Instrument.Assigned cloud event(s).");
+
+            var (sensorSuccess, sensorFail) = await publisher.SendAllAsync(sensorEvents);
+            Console.WriteLine($"Sensors completed: {sensorSuccess} succeeded, {sensorFail} failed out of {sensorEvents.Count} total events.\n");
+
+            break;
+
+        case "Q":
+        case "q":
+            exit = true;
+            break;
+
+        default:
+            Console.WriteLine("Invalid selection. Please try again.\n");
+            break;
+    }
+}
+
+Console.WriteLine("Exiting. Press any key to close.");
 Console.ReadKey();
