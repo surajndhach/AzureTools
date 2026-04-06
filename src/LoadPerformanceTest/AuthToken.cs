@@ -15,7 +15,7 @@ namespace LoadPerformanceTest
             {
                 { "grant_type", "password" },
                 { "username", "Abhi01" },
-                { "password", "Password3637*" },
+                { "password", "Password3637#" },
                 { "client_id", "VSTestClient" },
                 { "client_secret", "0CCBB786-9412-4088-BC16-78D3A10158B7" },
                 { "scope", "FFAccessAPI openid" }
