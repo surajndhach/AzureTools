@@ -34,6 +34,8 @@ while (!exit)
     Console.WriteLine("  1 - Create Tenants");
     Console.WriteLine("  2 - Create Controllers");
     Console.WriteLine("  3 - Create Sensors");
+    Console.WriteLine("  4 - Update Instruments");
+    Console.WriteLine("  5 - Delete Instruments");
     Console.WriteLine("  Q - Quit");
     Console.Write("\nYour choice: ");
 
@@ -60,6 +62,30 @@ while (!exit)
 
             var (sensorSuccess, sensorFail) = await publisher.SendAllAsync(sensorEvents);
             Console.WriteLine($"Sensors completed: {sensorSuccess} succeeded, {sensorFail} failed out of {sensorEvents.Count} total events.\n");
+            break;
+
+        case "4":
+            var controllerUpdateEvents = CloudEventBuilder.BuildControllerUpdatedEvents(tenants);
+            var sensorUpdateEvents = CloudEventBuilder.BuildSensorUpdatedEvents(tenants);
+            var allUpdateEvents = new List<Azure.Messaging.CloudEvent>();
+            allUpdateEvents.AddRange(controllerUpdateEvents);
+            allUpdateEvents.AddRange(sensorUpdateEvents);
+            Console.WriteLine($"Built {allUpdateEvents.Count} Instrument.Updated cloud event(s) ({controllerUpdateEvents.Count} controllers, {sensorUpdateEvents.Count} sensors).");
+
+            var (updateSuccess, updateFail) = await publisher.SendAllAsync(allUpdateEvents);
+            Console.WriteLine($"Update completed: {updateSuccess} succeeded, {updateFail} failed out of {allUpdateEvents.Count} total events.\n");
+            break;
+
+        case "5":
+            var sensorUnassignEvents = CloudEventBuilder.BuildSensorUnassignedEvents(tenants);
+            var controllerUnassignEvents = CloudEventBuilder.BuildControllerUnassignedEvents(tenants);
+            var allDeleteEvents = new List<Azure.Messaging.CloudEvent>();
+            allDeleteEvents.AddRange(sensorUnassignEvents);
+            allDeleteEvents.AddRange(controllerUnassignEvents);
+            Console.WriteLine($"Built {allDeleteEvents.Count} Instrument.Unassigned cloud event(s) ({sensorUnassignEvents.Count} sensors, {controllerUnassignEvents.Count} controllers).");
+
+            var (deleteSuccess, deleteFail) = await publisher.SendAllAsync(allDeleteEvents);
+            Console.WriteLine($"Delete completed: {deleteSuccess} succeeded, {deleteFail} failed out of {allDeleteEvents.Count} total events.\n");
             break;
 
         case "Q":
