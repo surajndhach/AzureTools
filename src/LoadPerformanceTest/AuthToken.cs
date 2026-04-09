@@ -7,8 +7,6 @@ namespace LoadPerformanceTest
     {
         internal static async Task<string?> GetAdminTokenAsync()
         {
-            Logger.LogInfo("Requesting admin token...");
-
             try
             {
                 using var client = new HttpClient();
@@ -45,8 +43,6 @@ namespace LoadPerformanceTest
                     Logger.LogWarning("Token response was successful but access_token is null or empty.");
                     return null;
                 }
-
-                Logger.LogInfo("Admin token acquired successfully.");
                 return tokenResponse.AccessToken;
             }
             catch (HttpRequestException ex)
