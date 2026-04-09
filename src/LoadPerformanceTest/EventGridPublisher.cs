@@ -35,11 +35,17 @@ public class EventGridPublisher(EventGridSenderClient client, int delayBetweenEv
 
             Console.WriteLine($"[{status}] Sent {cloudEvent.Type} | Subject: {cloudEvent.Subject} | Status: {response.Status}");
 
+            if (isSuccess)
+                Logger.LogInfo($"Published {cloudEvent.Type} | Subject: {cloudEvent.Subject} | Status: {response.Status}");
+            else
+                Logger.LogError($"Failed to publish {cloudEvent.Type} | Subject: {cloudEvent.Subject} | Status: {response.Status}");
+
             return isSuccess;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"[ERROR] Failed to send {cloudEvent.Type} | Subject: {cloudEvent.Subject} | Error: {ex.Message}");
+            Logger.LogError($"Exception sending {cloudEvent.Type} | Subject: {cloudEvent.Subject}", ex);
             return false;
         }
     }
