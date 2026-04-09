@@ -192,9 +192,10 @@ for ($t = 1; $t -le $TenantCount; $t++) {
 
 # Generate output file
 $totalDevices = $TenantCount * $ControllersPerTenant * $sensorsPerController
-$outputFileName = "device-inventory-tenants{0}-sensors{1}.json" -f $TenantCount, $totalDevices
+$timestamp = Get-Date -Format "ddMMyyhhmm"
+$outputFileName = "device-inventory-tenants{0}-sensors{1}-{2}.json" -f $TenantCount, $totalDevices, $timestamp
 $outputPath = Join-Path -Path "." -ChildPath $outputFileName
 
-$tenantHierarchy | ConvertTo-Json -Depth 10 | Out-File $outputPath -Encoding utf8
+ConvertTo-Json -InputObject $tenantHierarchy -Depth 10 | Out-File $outputPath -Encoding utf8
 
 Write-Host "Device inventory JSON generated successfully at: $outputPath"  -ForegroundColor Green

@@ -11,6 +11,8 @@ public static class CloudEventBuilder
 {
     private const string EventSource = "Claros.IoT.Registry";
     private const string AssignedEventType = "Instrument.Assigned";
+    private const string UpdatedEventType = "Instrument.Updated";
+    private const string UnassignedEventType = "Instrument.Unassigned";
     private const string ControllerGroupGuid = "12ed4794-fda9-4187-af34-6da2774b4d28";
     private const string DefaultManifestVersion = "3.90.0.0";
 
@@ -67,6 +69,72 @@ public static class CloudEventBuilder
         return events;
     }
 
+    public static List<CloudEvent> BuildControllerUpdatedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                events.Add(BuildControllerUpdatedEvent(tenant, controller));
+            }
+        }
+
+        return events;
+    }
+
+    public static List<CloudEvent> BuildSensorUpdatedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                foreach (var sensor in controller.Sensors)
+                {
+                    events.Add(BuildSensorUpdatedEvent(tenant, controller, sensor));
+                }
+            }
+        }
+
+        return events;
+    }
+
+    public static List<CloudEvent> BuildControllerUnassignedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                events.Add(BuildUnassignedEvent(tenant.TenantId, controller.DeviceId));
+            }
+        }
+
+        return events;
+    }
+
+    public static List<CloudEvent> BuildSensorUnassignedEvents(List<Tenant> tenants)
+    {
+        var events = new List<CloudEvent>();
+
+        foreach (var tenant in tenants)
+        {
+            foreach (var controller in tenant.Controllers)
+            {
+                foreach (var sensor in controller.Sensors)
+                {
+                    events.Add(BuildUnassignedEvent(tenant.TenantId, sensor.DeviceId));
+                }
+            }
+        }
+
+        return events;
+    }
+
     private static CloudEvent BuildControllerAssignedEvent(Tenant tenant, Controller controller)
     {
         var instrument = new Instrument
@@ -106,6 +174,57 @@ public static class CloudEventBuilder
         return CreateCloudEvent(instrument, tenant.TenantId, sensor.DeviceId);
     }
 
+    private static CloudEvent BuildControllerUpdatedEvent(Tenant tenant, Controller controller)
+    {
+        var instrument = new Instrument
+        {
+            InstrumentReference = BuildInstrumentReference(
+                controller.FusionId, controller.DeviceId,
+                controller.DeviceTypeId, ResolveGroupId(controller.DeviceGroupId)),
+            TenantId = tenant.TenantId,
+            ConnectionStatus = EnumConnectionStatus.ConnectionStatusNotConnected,
+            ConnectionStatusReason = EnumConnectionStatusReason.ConnectionStatusReasonHeartbeat,
+            ConnectionStatusChangedOn = CreateTimestamp(),
+            RecordAuditInfo = CreateAuditInfo()
+        };
+
+        return CreateCloudEvent(instrument, tenant.TenantId, controller.DeviceId, UpdatedEventType);
+    }
+
+    private static CloudEvent BuildSensorUpdatedEvent(Tenant tenant, Controller controller, Sensor sensor)
+    {
+        var instrument = new Instrument
+        {
+            InstrumentReference = BuildInstrumentReference(
+                sensor.FusionId, sensor.DeviceId,
+                sensor.DeviceTypeId, sensor.DeviceGroupId),
+            TenantId = tenant.TenantId,
+            EdgeInstrumentReference = BuildInstrumentReference(
+                controller.FusionId, controller.DeviceId,
+                controller.DeviceTypeId, ResolveGroupId(controller.DeviceGroupId)),
+            ConnectionStatus = EnumConnectionStatus.ConnectionStatusNotConnected,
+            ConnectionStatusReason = EnumConnectionStatusReason.ConnectionStatusReasonHeartbeat,
+            ConnectionStatusChangedOn = CreateTimestamp(),
+            RecordAuditInfo = CreateAuditInfo()
+        };
+
+        return CreateCloudEvent(instrument, tenant.TenantId, sensor.DeviceId, UpdatedEventType);
+    }
+
+    private static CloudEvent BuildUnassignedEvent(string tenantId, string instrumentId)
+    {
+        return new CloudEvent(
+            source: EventSource,
+            type: UnassignedEventType,
+            data: null,
+            dataContentType: "application/json")
+        {
+            Id = Guid.NewGuid().ToString(),
+            Subject = $"Instrument/Unassigned/tenant/{tenantId}/instrument/{instrumentId}",
+            Time = DateTimeOffset.UtcNow
+        };
+    }
+
     private static InstrumentReference BuildInstrumentReference(
         string fusionId, string deviceId, string typeId, string groupId) => new()
         {
@@ -116,18 +235,19 @@ public static class CloudEventBuilder
             InstrumentManifestVersionString = DefaultManifestVersion
         };
 
-    private static CloudEvent CreateCloudEvent(Instrument instrument, string tenantId, string instrumentId)
+    private static CloudEvent CreateCloudEvent(Instrument instrument, string tenantId, string instrumentId, string eventType = AssignedEventType)
     {
         var json = JsonFormatter.Default.Format(instrument);
+        var action = eventType.Split('.').LastOrDefault() ?? "Assigned";
 
         return new CloudEvent(
             source: EventSource,
-            type: AssignedEventType,
+            type: eventType,
             data: BinaryData.FromString(json),
             dataContentType: "application/json")
         {
             Id = Guid.NewGuid().ToString(),
-            Subject = $"Instrument/Assigned/tenant/{tenantId}/instrument/{instrumentId}",
+            Subject = $"Instrument/{action}/tenant/{tenantId}/instrument/{instrumentId}",
             Time = DateTimeOffset.UtcNow
         };
     }
