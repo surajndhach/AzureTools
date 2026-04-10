@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2026-04-09 12:35:54",
+    "level": "ERROR",
+    "message": "Exception occurred while calling Create Tenant API.",
+    "exception": {
+      "type": "System.DivideByZeroException",
+      "message": "Attempted to divide by zero.",
+      "stackTrace": "   at LoadPerformanceTest.TenantFacade.CallCreateTenantApiAsync(String tenantId, String name) in C:\\Users\\achougale\\source\\repos\\IH\\Helper tool\\src\\LoadPerformanceTest\\TenantFacade.cs:line 56"
+    }
+  },
+  {
+    "timestamp": "2026-04-09 12:36:31",
+    "level": "ERROR",
+    "message": "Exception occurred while calling Create Tenant API.",
+    "exception": {
+      "type": "System.DivideByZeroException",
+      "message": "Attempted to divide by zero.",
+      "stackTrace": "   at LoadPerformanceTest.TenantFacade.CallCreateTenantApiAsync(String tenantId, String name) in C:\\Users\\achougale\\source\\repos\\IH\\Helper tool\\src\\LoadPerformanceTest\\TenantFacade.cs:line 56"
+    }
+  }
+]

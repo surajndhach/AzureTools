@@ -3,7 +3,7 @@ using Azure.Messaging.EventGrid.Namespaces;
 
 namespace LoadPerformanceTest;
 
-public class EventGridPublisher(EventGridSenderClient client, int delayBetweenEventsMs = 1000)
+public class EventGridPublisher(EventGridSenderClient client, int delayBetweenEventsMs = 100)
 {
     public async Task<(int SuccessCount, int FailCount)> SendAllAsync(List<CloudEvent> cloudEvents)
     {

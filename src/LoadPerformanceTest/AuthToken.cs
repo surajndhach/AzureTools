@@ -20,11 +20,13 @@ namespace LoadPerformanceTest
 
         internal static async Task<string?> GetAdminTokenAsync()
         {
-            using var client = new HttpClient();
+            try
+            {
+                using var client = new HttpClient();
 
-            var request = new HttpRequestMessage(HttpMethod.Post, _authConfig["TokenEndpoint"]);
+                var request = new HttpRequestMessage(HttpMethod.Post, _authConfig["TokenEndpoint"]);
 
-            var body = new Dictionary<string, string>
+                var body = new Dictionary<string, string>
             {
                 { "grant_type", _authConfig["GrantType"] ?? "password" },
                 { "username", _authConfig["Username"] ?? string.Empty },
@@ -34,19 +36,43 @@ namespace LoadPerformanceTest
                 { "scope", _authConfig["Scope"] ?? string.Empty }
             };
 
-            request.Content = new FormUrlEncodedContent(body);
+                request.Content = new FormUrlEncodedContent(body);
 
-            var response = await client.SendAsync(request);
-           
-            if (!response.IsSuccessStatusCode)
+                var response = await client.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    Logger.LogWarning($"Token request failed. HTTP {(int)response.StatusCode} {response.StatusCode}.");
+                    return null;
+                }
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(
+                    content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                if (tokenResponse?.AccessToken is null or "")
+                {
+                    Logger.LogWarning("Token response was successful but access_token is null or empty.");
+                    return null;
+                }
+                return tokenResponse.AccessToken;
+            }
+            catch (HttpRequestException ex)
+            {
+                Logger.LogError("Network error while requesting admin token.", ex);
                 return null;
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(
-                content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-            return tokenResponse?.AccessToken;
+            }
+            catch (JsonException ex)
+            {
+                Logger.LogError("Failed to deserialize token response.", ex);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Unexpected error while requesting admin token.", ex);
+                return null;
+            }
         }
 
         public class TokenResponse

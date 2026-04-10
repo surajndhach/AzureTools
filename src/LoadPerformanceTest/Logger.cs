@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace LoadPerformanceTest
 {
@@ -9,6 +11,8 @@ namespace LoadPerformanceTest
         private static readonly string _infoFile;
         private static readonly string _warningFile;
         private static readonly string _errorFile;
+
+        private static readonly JsonSerializerOptions _jsonOptions = new() { WriteIndented = true };
 
         static Logger()
         {
@@ -23,14 +27,14 @@ namespace LoadPerformanceTest
 
             string basePath = Path.Combine(projectDir, logFolder);
 
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
-            _logDirectory = Path.Combine(basePath, timestamp);
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+            _logDirectory = Path.Combine(basePath, today);
 
             Directory.CreateDirectory(_logDirectory);
 
-            _infoFile = Path.Combine(_logDirectory, "info.log");
-            _warningFile = Path.Combine(_logDirectory, "warning.log");
-            _errorFile = Path.Combine(_logDirectory, "error.log");
+            _infoFile = Path.Combine(_logDirectory, "info.json");
+            _warningFile = Path.Combine(_logDirectory, "warning.json");
+            _errorFile = Path.Combine(_logDirectory, "error.json");
         }
 
         public static void LogInfo(string message)
@@ -52,23 +56,47 @@ namespace LoadPerformanceTest
         {
             try
             {
-                string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{level}] {message}";
+                var entry = new JsonObject
+                {
+                    ["timestamp"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    ["level"]     = level,
+                    ["message"]   = message
+                };
 
                 if (exception is not null)
                 {
-                    logEntry += Environment.NewLine +
-                                $"  Exception: {exception.GetType().FullName}: {exception.Message}" +
-                                Environment.NewLine +
-                                $"  StackTrace: {exception.StackTrace}";
+                    var exNode = new JsonObject
+                    {
+                        ["type"]       = exception.GetType().FullName,
+                        ["message"]    = exception.Message,
+                        ["stackTrace"] = exception.StackTrace
+                    };
 
                     if (exception.InnerException is not null)
                     {
-                        logEntry += Environment.NewLine +
-                                    $"  InnerException: {exception.InnerException.GetType().FullName}: {exception.InnerException.Message}";
+                        exNode["innerException"] = new JsonObject
+                        {
+                            ["type"]    = exception.InnerException.GetType().FullName,
+                            ["message"] = exception.InnerException.Message
+                        };
                     }
+
+                    entry["exception"] = exNode;
                 }
 
-                File.AppendAllText(filePath, logEntry + Environment.NewLine);
+                // Read existing array or start a new one
+                JsonArray logs = [];
+
+                if (File.Exists(filePath))
+                {
+                    var existing = File.ReadAllText(filePath);
+                    if (!string.IsNullOrWhiteSpace(existing))
+                        logs = JsonNode.Parse(existing)?.AsArray() ?? [];
+                }
+
+                logs.Add(entry);
+
+                File.WriteAllText(filePath, logs.ToJsonString(_jsonOptions));
             }
             catch (Exception ex)
             {
