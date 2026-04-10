@@ -188,10 +188,12 @@ for ($t = 1; $t -le $TenantCount; $t++) {
             -DeviceTypeConfiguration $deviceTypeConfiguration
     }
 
-    $tenantTimestamp = Get-Date -Format "ddMMyyyyHHmmss"
+    $tenantId = [System.Guid]::NewGuid().ToString()
+    $shortGuid = $tenantId.Split('-')[0]
+
     $tenantHierarchy += @{
-        TenantId   = [System.Guid]::NewGuid().ToString()
-        TenantName = "Tenant-$tenantTimestamp"
+        TenantId    = $tenantId
+        TenantName  = "Tenant-$shortGuid"
         Controllers = $controllers
     }
 }
