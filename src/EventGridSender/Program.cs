@@ -50,7 +50,8 @@ public class SenderClient
             Console.WriteLine("3 - UnAssigned (Sensor + Controller)");
             Console.WriteLine("4 - Assigned (Manifest)");
             Console.WriteLine("5 - Updated (Manifest)");
-            Console.WriteLine("6 - Run All");
+            Console.WriteLine("6 - UnAssigned All (Sensor + Controller)");
+            Console.WriteLine("7 - Run All");
             Console.WriteLine("0 - Exit");
             Console.Write("Enter choice: ");
 
@@ -99,9 +100,13 @@ public class SenderClient
                 break;
 
             case "6":
+                await DeleteInstrument(client, parser);
+                break;
+
+            case "7":
                 await CreateInstrument(client, parser);
                 await UpdateInstrument(client, parser);
-                await DeleteInstrument(client);
+                await DeleteInstrument(client, parser);
                 await CreateManifest(client, parser);
                 await UpdateManifest(client, parser);
                 break;
@@ -114,7 +119,7 @@ public class SenderClient
 
     private async Task CreateInstrument(EventGridSenderClient client, JsonParser parser)
     {
-        Response? response = null;
+        Response[]? response = null;
 
         Console.WriteLine("Sending Controller Assigned...");
         // Validation
@@ -122,10 +127,7 @@ public class SenderClient
         var instrumentControllerEventBodyString = instrumentControllerAssignedEvent.Data is not null && instrumentControllerAssignedEvent.Data.Length > 0
                 ? Encoding.UTF8.GetString(instrumentControllerAssignedEvent.Data) : "{}";
         var instrumentController = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentControllerEventBodyString);
-        response = await client.SendAsync(instrumentControllerAssignedEvent);
-        Console.WriteLine($"Response: {response.Status}");
-
-        await Task.Delay(5000);
+        var instrumentController1 = client.SendAsync(instrumentControllerAssignedEvent);
 
         Console.WriteLine("Sending Sensor Assigned...");
         //Validation
@@ -133,10 +135,7 @@ public class SenderClient
         var instrumentSensorEventBodyString = instrumentSensorAssignedEvent.Data is not null && instrumentSensorAssignedEvent.Data.Length > 0
             ? Encoding.UTF8.GetString(instrumentSensorAssignedEvent.Data) : "{}";
         var instrumentSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentSensorEventBodyString);
-        response = await client.SendAsync(instrumentSensorAssignedEvent);
-        Console.WriteLine($"Response: {response.Status}");
-
-        await Task.Delay(5000);
+        var instrumentSensor1 = client.SendAsync(instrumentSensorAssignedEvent);
 
         Console.WriteLine("Sending Rtc Sensor Assigned...");
         //Validation
@@ -144,8 +143,10 @@ public class SenderClient
         var instrumentRtcSensorEventBodyString = instrumentRtcSensorAssignedEvent.Data is not null && instrumentRtcSensorAssignedEvent.Data.Length > 0
             ? Encoding.UTF8.GetString(instrumentRtcSensorAssignedEvent.Data) : "{}";
         var instrumentRtcSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentRtcSensorEventBodyString);
-        response = await client.SendAsync(instrumentRtcSensorAssignedEvent);
-        Console.WriteLine($"Response: {response.Status}");
+        var instrumentSensor2 = client.SendAsync(instrumentRtcSensorAssignedEvent);
+
+        response = await Task.WhenAll(instrumentController1, instrumentSensor1, instrumentSensor2);
+        Console.WriteLine($"Response: {@response.ToList()}");
     }
 
     private async Task CreateManifest(EventGridSenderClient client, JsonParser parser)
@@ -221,6 +222,39 @@ public class SenderClient
         var instrumentSensorUpdated = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentSensorUpdatedEventBodyString);
         response = await client.SendAsync(instrumentSensorUpdatedEvent);
         Console.WriteLine($"Response: {response.Status}");
+    }
+
+    private async Task DeleteInstrument(EventGridSenderClient client, JsonParser parser)
+    {
+        Response[]? response = null;
+
+        // Validation
+        var instrumentControllerAssignedEvent = await EventGridData.GetInstrumentControllerAssigned();
+        var instrumentControllerEventBodyString = instrumentControllerAssignedEvent.Data is not null && instrumentControllerAssignedEvent.Data.Length > 0
+                ? Encoding.UTF8.GetString(instrumentControllerAssignedEvent.Data) : "{}";
+        var instrumentController = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentControllerEventBodyString);
+
+        //Validation
+        var instrumentSensorAssignedEvent = await EventGridData.GetInstrumentSensorAssigned();
+        var instrumentSensorEventBodyString = instrumentSensorAssignedEvent.Data is not null && instrumentSensorAssignedEvent.Data.Length > 0
+            ? Encoding.UTF8.GetString(instrumentSensorAssignedEvent.Data) : "{}";
+        var instrumentSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentSensorEventBodyString);
+
+        //Validation
+        var instrumentRtcSensorAssignedEvent = await EventGridData.GetInstrumentRtcSensorAssigned();
+        var instrumentRtcSensorEventBodyString = instrumentRtcSensorAssignedEvent.Data is not null && instrumentRtcSensorAssignedEvent.Data.Length > 0
+            ? Encoding.UTF8.GetString(instrumentRtcSensorAssignedEvent.Data) : "{}";
+        var instrumentRtcSensor = parser.Parse<ONE.Models.CSharp.Instrument.Instrument>(instrumentRtcSensorEventBodyString);
+
+        Console.WriteLine("Deleting Instrument...");
+        response = await Task.WhenAll(client.SendAsync(EventGridData.GetInstrumentUnassigned(
+                instrumentController.TenantId, instrumentController.InstrumentReference.InstrumentIdentifier.Guid)),
+                client.SendAsync(EventGridData.GetInstrumentUnassigned(
+                instrumentController.TenantId, instrumentSensor.InstrumentReference.InstrumentIdentifier.Guid)),
+                client.SendAsync(EventGridData.GetInstrumentUnassigned(
+                instrumentController.TenantId, instrumentRtcSensor.InstrumentReference.InstrumentIdentifier.Guid)));
+        
+        Console.WriteLine($"Response: {@response.ToList()}");
     }
 
     private async Task DeleteInstrument(EventGridSenderClient client)
