@@ -34,6 +34,11 @@ $deviceTypeConfiguration = @{
         DeviceTypeId = "7c2bb0b6-439d-4f15-9c99-61e209f45aae"
         DeviceGroupId = "55892762-da61-4f88-99d1-dc6c93b0f7b3"
     }
+    RTC = @{
+        FusionPrefix = "HL001_00533"
+        DeviceTypeId = "f0fb21a9-ac6e-429a-905f-e997d891604c"
+        DeviceGroupId = "32b4784a-e5b3-4db7-bdb1-099af10e142e"
+    }
 }
 
 function Show-AvailableSensorTypes {
