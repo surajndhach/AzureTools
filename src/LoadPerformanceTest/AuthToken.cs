@@ -1,24 +1,37 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
 
 namespace LoadPerformanceTest
 {
     internal static class AuthToken
     {
+        private static readonly IConfigurationSection _authConfig;
+
+        static AuthToken()
+        {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false)
+                .Build();
+
+            _authConfig = config.GetSection("AdminAuth");
+        }
+
         internal static async Task<string?> GetAdminTokenAsync()
         {
             using var client = new HttpClient();
 
-            var request = new HttpRequestMessage(HttpMethod.Post,"https://api-feature-us.aquaticinformatics.net/connect/token");
+            var request = new HttpRequestMessage(HttpMethod.Post, _authConfig["TokenEndpoint"]);
 
             var body = new Dictionary<string, string>
             {
-                { "grant_type", "password" },
-                { "username", "Abhi01" },
-                { "password", "Password3637#" },
-                { "client_id", "VSTestClient" },
-                { "client_secret", "0CCBB786-9412-4088-BC16-78D3A10158B7" },
-                { "scope", "FFAccessAPI openid" }
+                { "grant_type", _authConfig["GrantType"] ?? "password" },
+                { "username", _authConfig["Username"] ?? string.Empty },
+                { "password", _authConfig["Password"] ?? string.Empty },
+                { "client_id", _authConfig["ClientId"] ?? string.Empty },
+                { "client_secret", _authConfig["ClientSecret"] ?? string.Empty },
+                { "scope", _authConfig["Scope"] ?? string.Empty }
             };
 
             request.Content = new FormUrlEncodedContent(body);
@@ -31,7 +44,7 @@ namespace LoadPerformanceTest
             var content = await response.Content.ReadAsStringAsync();
 
             var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(
-                content,new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return tokenResponse?.AccessToken;
         }
