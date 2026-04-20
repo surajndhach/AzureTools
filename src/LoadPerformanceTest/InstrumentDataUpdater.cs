@@ -17,9 +17,9 @@ public static class InstrumentDataUpdater
     /// </summary>
     /// <param name="dataJson">The JSON string of the instrument data template.</param>
     /// <param name="tenants">The tenants model (parsed from inventory file).</param>
-    /// <param name="dataType">The type of data ("measurement", "diagnostic", "event", "status", "settings").</param>
+    /// <param name="dataType">The type of data to process.</param>
     /// <returns>List of updated JSON strings, one per instrument to publish.</returns>
-    public static List<string> UpdateWithInventory(string dataJson, IEnumerable<Tenant> tenants, string dataType)
+    public static List<string> UpdateWithInventory(string dataJson, IEnumerable<Tenant> tenants, InstrumentDataType? dataType)
     {
         var result = new List<string>();
         var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
@@ -27,7 +27,7 @@ public static class InstrumentDataUpdater
         foreach (var tenant in tenants)
         {
             // CONTROLLERS: settings, event
-            if (dataType is "settings" or "event")
+            if (dataType is InstrumentDataType.Settings or InstrumentDataType.Event)
             {
                 foreach (var controller in tenant.Controllers)
                 {
@@ -48,7 +48,8 @@ public static class InstrumentDataUpdater
             }
 
             // SENSORS: measurement, diagnostic, event, status
-            if (dataType is "measurement" or "diagnostic" or "event" or "status")
+            if (dataType is InstrumentDataType.Measurement or InstrumentDataType.Diagnostic or
+                InstrumentDataType.Event or InstrumentDataType.Status)
             {
                 foreach (var controller in tenant.Controllers)
                 {
@@ -78,13 +79,13 @@ public static class InstrumentDataUpdater
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
-    private static void UpdateDataTypeSpecificProperties(ONE.Models.CSharp.Instrument.InstrumentData instrumentData, string dataType)
+    private static void UpdateDataTypeSpecificProperties(ONE.Models.CSharp.Instrument.InstrumentData instrumentData, InstrumentDataType? dataType)
     {
         var timestamp = DateTime.UtcNow.ToClarosDateTime();
 
         switch (dataType)
         {
-            case "measurement":
+            case InstrumentDataType.Measurement:
                 // Update measurement timestamps - follows ProcessMeasurement logic
                 foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
                 {
@@ -92,7 +93,7 @@ public static class InstrumentDataUpdater
                 }
                 break;
 
-            case "status":
+            case InstrumentDataType.Status:
                 // Update status timestamps - follows ProcessStatus logic
                 foreach (var instrumentStatusData in instrumentData.InstrumentStatuses.Items)
                 {
@@ -100,7 +101,7 @@ public static class InstrumentDataUpdater
                 }
                 break;
 
-            case "event":
+            case InstrumentDataType.Event:
                 // Update event timestamps - follows ProcessEvents logic
                 foreach (var instrumentEventData in instrumentData.InstrumentEventDatas.Items)
                 {
@@ -108,7 +109,7 @@ public static class InstrumentDataUpdater
                 }
                 break;
 
-            case "diagnostic":
+            case InstrumentDataType.Diagnostic:
                 // Update diagnostic timestamps - follows ProcessDiagnostics logic
                 foreach (var instrumentDiagnosticData in instrumentData.InstrumentDiagnostics.Items)
                 {
@@ -119,15 +120,18 @@ public static class InstrumentDataUpdater
                 }
                 break;
 
-            case "settings":
+            case InstrumentDataType.Settings:
                 // Update settings timestamp and properties - follows ProcessSettings logic
                 instrumentData.InstrumentSettings.SettingsDateTimeUtc = timestamp;
                 instrumentData.InstrumentSettings.Settings["name"] = $"Instrument-{DateTime.UtcNow.Ticks}";
                 break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
         }
     }
-}
 
+}
 /// <summary>
 /// Helper extensions following EventHubPublish pattern.
 /// </summary>

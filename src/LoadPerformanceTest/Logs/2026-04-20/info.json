@@ -23,5 +23,10 @@
     "timestamp": "2026-04-20 15:54:25",
     "level": "INFO",
     "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-20 16:23:51",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
   }
 ]
