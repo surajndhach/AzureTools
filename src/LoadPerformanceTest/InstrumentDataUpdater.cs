@@ -35,7 +35,7 @@ public static class InstrumentDataUpdater
             {
                 foreach (var controller in tenant.Controllers)
                 {
-                    var instrumentData = SerializationHelper.Deserialize<InstrumentData>(dataJson);
+                    var instrumentData = InstrumentData.Parser.ParseJson(dataJson);
                     instrumentData.TenantId = tenant.TenantId;
                     instrumentData.FusionId = controller.FusionId;
                     UpdateDataTypeSpecificProperties(instrumentData, dataType);
@@ -52,7 +52,7 @@ public static class InstrumentDataUpdater
                 {
                     foreach (var sensor in controller.Sensors)
                     {
-                        var instrumentData = SerializationHelper.Deserialize<InstrumentData>(dataJson);
+                        var instrumentData = InstrumentData.Parser.ParseJson(dataJson);
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
 
