@@ -1,7 +1,9 @@
 using LoadPerformanceTest.Models;
 using Newtonsoft.Json.Linq;
-using Google.Protobuf;
 using ONE.Models.CSharp.External;
+using ONE.Instrument.Twin.Core.Helpers;
+using ONE.Models.CSharp.Instrument;
+using ONE.Models.CSharp;
 
 namespace LoadPerformanceTest;
 
@@ -19,10 +21,12 @@ public static class InstrumentDataUpdater
     /// <param name="tenants">The tenants model (parsed from inventory file).</param>
     /// <param name="dataType">The type of data to process.</param>
     /// <returns>List of updated JSON strings, one per instrument to publish.</returns>
-    public static List<string> UpdateWithInventory(string dataJson, IEnumerable<Tenant> tenants, InstrumentDataType? dataType)
+    public static List<string> UpdateWithInventory(
+         string dataJson,
+         IEnumerable<Models.Tenant> tenants,
+         InstrumentDataType? dataType)
     {
         var result = new List<string>();
-        var parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
 
         foreach (var tenant in tenants)
         {
@@ -31,17 +35,10 @@ public static class InstrumentDataUpdater
             {
                 foreach (var controller in tenant.Controllers)
                 {
-                    // Parse JSON into strongly-typed protobuf object
-                    var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(dataJson);
-
-                    // Update tenant and fusion IDs
+                    var instrumentData = SerializationHelper.Deserialize<InstrumentData>(dataJson);
                     instrumentData.TenantId = tenant.TenantId;
                     instrumentData.FusionId = controller.FusionId;
-
-                    // Update timestamps and properties based on data type
                     UpdateDataTypeSpecificProperties(instrumentData, dataType);
-
-                    // Convert back to JSON
                     var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                     result.Add(jsonObj.ToString());
                 }
@@ -55,17 +52,45 @@ public static class InstrumentDataUpdater
                 {
                     foreach (var sensor in controller.Sensors)
                     {
-                        // Parse JSON into strongly-typed protobuf object
-                        var instrumentData = parser.Parse<ONE.Models.CSharp.Instrument.InstrumentData>(dataJson);
-
-                        // Update tenant and fusion IDs
+                        var instrumentData = SerializationHelper.Deserialize<InstrumentData>(dataJson);
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
+                        instrumentData.InstrumentMeasurementDatas = new InstrumentMeasurementDatas();
 
-                        // Update timestamps and properties based on data type
+
+                        // --- Begin Manifest Parameter/Unit Injection ---
+                        if (dataType == InstrumentDataType.Measurement)
+                        {
+                            // Find the manifest for this sensor
+                            var manifest = Program._instrumentManifests
+                                .FirstOrDefault(m => m.InstrumentType?.Identifier?.Id == sensor.DeviceTypeId);
+
+                            if (manifest != null && manifest.InstrumentMeasurementCapability?.Definitions?.Items != null)
+                            {
+
+                                foreach (var def in manifest.InstrumentMeasurementCapability.Definitions.Items)
+                                {
+                                    var measurement = new InstrumentMeasurement
+                                    {
+                                        ParameterId = def.ParameterId,
+                                        Value = 2, // Set a dummy value or use a default/test value
+                                        DecimalPrecision = def.Attributes?.DisplayDecimalPoints ?? 2,
+                                        UnitId = "30d9f576-a6d2-4439-9907-7e147af64508",
+                                        TimestampUtc = DateTime.UtcNow.ToClarosDateTime(),
+                                    };
+                                    instrumentData.InstrumentMeasurementDatas.Items.Add(
+                                        new InstrumentMeasurementData
+                                        {
+                                            Measurement = measurement,
+                                            ChannelNumber = 0,
+                                        }
+                                    );
+                                }
+                            }
+                        }
+                        // --- End Manifest Parameter/Unit Injection ---
+
                         UpdateDataTypeSpecificProperties(instrumentData, dataType);
-
-                        // Convert back to JSON
                         var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                         result.Add(jsonObj.ToString());
                     }
@@ -75,7 +100,6 @@ public static class InstrumentDataUpdater
 
         return result;
     }
-
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>

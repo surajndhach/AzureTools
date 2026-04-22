@@ -1,0 +1,117 @@
+[
+  {
+    "timestamp": "2026-04-22 09:13:35",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:16:51",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:18:28",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:22:31",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:22:31",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:22:52",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:33:20",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:57:36",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 09:57:53",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:16:46",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:16:52",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:23:21",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:23:25",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:26:44",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:26:44",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:29:17",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:29:17",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:29:21",
+    "level": "INFO",
+    "message": "Starting tenant creation for 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:29:23",
+    "level": "INFO",
+    "message": "Tenant creation completed: 0/2 succeeded."
+  },
+  {
+    "timestamp": "2026-04-22 12:39:12",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:39:12",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:41:37",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:41:37",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  }
+]

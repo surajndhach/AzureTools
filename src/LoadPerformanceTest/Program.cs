@@ -4,6 +4,8 @@ using LoadPerformanceTest.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ONE.Models.CSharp.Instrument;
+
 
 namespace LoadPerformanceTest
 {
@@ -13,6 +15,8 @@ namespace LoadPerformanceTest
         private static List<Tenant> _tenants = null!;
         private static string _inventoryFileName = null!;
         private static EventGridPublisher _publisher = null!;
+        private static List<InstrumentTwinSubType> _instrumentSubTypes = null!;
+        public static List<InstrumentManifest> _instrumentManifests = null!;
 
         public static async Task Main(string[] args)
         {
@@ -24,7 +28,7 @@ namespace LoadPerformanceTest
         }
 
         /// <summary>
-        /// Initializes the application configuration, inventory, and services.
+        /// Initializes the application configuration, inventory, manifests, and services.
         /// </summary>
         private static async Task InitializeApplicationAsync()
         {
@@ -39,18 +43,50 @@ namespace LoadPerformanceTest
 
             _config = host.Services.GetRequiredService<IConfiguration>();
             var options = _config.GetSection("EventGridSender").Get<EventGridSenderOptions>()!;
+
+            // Initialize file paths
             var inventoryFilePath = _config["DeviceInventoryFilePath"];
+            var manifestsFilePath = "manifests.json";
 
             // Parse device inventory
             _tenants = await DeviceInventoryParser.ParseFromFileAsync(inventoryFilePath);
             _inventoryFileName = Path.GetFileName(inventoryFilePath);
-            Console.WriteLine($"Loaded {_tenants.Count} tenant(s) from device inventory.\n");
+            Console.WriteLine($"Loaded {_tenants.Count} tenant(s) from device inventory.");
             Logger.LogInfo($"Parsed inventory file: {_inventoryFileName} — loaded {_tenants.Count} tenant(s).");
+
+            await LoadManifestsAsync(manifestsFilePath);
 
             // Set up EventGrid client
             var credential = new ClientSecretCredential(options.TenantId, options.ClientId, options.ClientSecret);
             var client = new EventGridSenderClient(new Uri(options.TopicEndpoint), options.TopicName, credential);
             _publisher = new EventGridPublisher(client);
+        }
+
+        private static async Task LoadManifestsAsync(string manifestsFilePath)
+        {
+            // Parse manifests and extract instrument manifests
+            try
+            {
+                var (subTypes, manifests) = await ManifestParser.ParseManifestsCompleteAsync(manifestsFilePath);
+                _instrumentSubTypes = subTypes;
+                _instrumentManifests = manifests;
+
+                var manifestsFileName = Path.GetFileName(manifestsFilePath);
+                Console.WriteLine($"Loaded {_instrumentSubTypes.Count} instrument sub-type(s) from manifests file.");
+                Console.WriteLine($"Extracted {_instrumentManifests.Count} instrument manifest(s) from property bags.\n");
+
+                Logger.LogInfo($"Parsed manifests file: {manifestsFileName} — loaded {_instrumentSubTypes.Count} sub-type(s), extracted {_instrumentManifests.Count} manifest(s).");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading manifests: {ex.Message}");
+                Logger.LogError("Failed to load manifests file.", ex);
+
+                // Initialize empty collections to prevent null reference exceptions
+                _instrumentSubTypes = [];
+                _instrumentManifests = [];
+            }
         }
 
         /// <summary>

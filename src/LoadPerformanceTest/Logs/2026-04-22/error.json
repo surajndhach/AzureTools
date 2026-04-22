@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2026-04-22 12:29:22",
+    "level": "ERROR",
+    "message": "Skipping tenant creation for \u0027f8965330-7aad-4c3a-975a-42536bec9e4b\u0027 \u2014 failed to acquire auth token."
+  },
+  {
+    "timestamp": "2026-04-22 12:29:23",
+    "level": "ERROR",
+    "message": "Skipping tenant creation for \u00275506fdf7-b629-454f-9375-49178a594158\u0027 \u2014 failed to acquire auth token."
+  }
+]
