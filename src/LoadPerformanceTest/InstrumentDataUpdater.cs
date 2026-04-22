@@ -55,42 +55,9 @@ public static class InstrumentDataUpdater
                         var instrumentData = SerializationHelper.Deserialize<InstrumentData>(dataJson);
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
-                        instrumentData.InstrumentMeasurementDatas = new InstrumentMeasurementDatas();
 
 
-                        // --- Begin Manifest Parameter/Unit Injection ---
-                        if (dataType == InstrumentDataType.Measurement)
-                        {
-                            // Find the manifest for this sensor
-                            var manifest = Program._instrumentManifests
-                                .FirstOrDefault(m => m.InstrumentType?.Identifier?.Id == sensor.DeviceTypeId);
-
-                            if (manifest != null && manifest.InstrumentMeasurementCapability?.Definitions?.Items != null)
-                            {
-
-                                foreach (var def in manifest.InstrumentMeasurementCapability.Definitions.Items)
-                                {
-                                    var measurement = new InstrumentMeasurement
-                                    {
-                                        ParameterId = def.ParameterId,
-                                        Value = 2, // Set a dummy value or use a default/test value
-                                        DecimalPrecision = def.Attributes?.DisplayDecimalPoints ?? 2,
-                                        UnitId = "30d9f576-a6d2-4439-9907-7e147af64508",
-                                        TimestampUtc = DateTime.UtcNow.ToClarosDateTime(),
-                                    };
-                                    instrumentData.InstrumentMeasurementDatas.Items.Add(
-                                        new InstrumentMeasurementData
-                                        {
-                                            Measurement = measurement,
-                                            ChannelNumber = 0,
-                                        }
-                                    );
-                                }
-                            }
-                        }
-                        // --- End Manifest Parameter/Unit Injection ---
-
-                        UpdateDataTypeSpecificProperties(instrumentData, dataType);
+                        UpdateDataTypeSpecificProperties(instrumentData, dataType, sensor.DeviceTypeId);
                         var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                         result.Add(jsonObj.ToString());
                     }
@@ -103,17 +70,83 @@ public static class InstrumentDataUpdater
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
-    private static void UpdateDataTypeSpecificProperties(ONE.Models.CSharp.Instrument.InstrumentData instrumentData, InstrumentDataType? dataType)
+    private static void UpdateDataTypeSpecificProperties(ONE.Models.CSharp.Instrument.InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "")
     {
         var timestamp = DateTime.UtcNow.ToClarosDateTime();
 
         switch (dataType)
         {
             case InstrumentDataType.Measurement:
-                // Update measurement timestamps - follows ProcessMeasurement logic
-                foreach (var instrumentMeasurementData in instrumentData.InstrumentMeasurementDatas.Items)
+                instrumentData.InstrumentMeasurementDatas = new InstrumentMeasurementDatas();
+                // Find the manifest for this sensor
+                var manifest = Program._instrumentManifests
+                    .FirstOrDefault(m => m.InstrumentType?.Identifier?.Id == deviceTypeId);
+
+                if (manifest != null)
                 {
-                    instrumentMeasurementData.Measurement.TimestampUtc = timestamp;
+                    // Check if device is RTC type
+                    bool isRtcDevice = deviceTypeId?.Equals("f0fb21a9-ac6e-429a-905f-e997d891604c", StringComparison.OrdinalIgnoreCase) == true;
+
+                    if (isRtcDevice && manifest.InstrumentTagCapability?.Definitions?.Items != null)
+                    {
+                        // For RTC devices, use InstrumentTagCapability definitions
+                        foreach (var def in manifest.InstrumentTagCapability.Definitions.Items)
+                        {
+                            try
+                            {
+                                var measurement = new InstrumentMeasurement
+                                {
+                                    ParameterId = def.ParameterId,
+                                    Value = 2, // Set a dummy value or use a default/test value
+                                    DecimalPrecision = def.Attributes?.DisplayDecimalPoints ?? 2,
+                                    UnitId = def.UnitTypeId,
+                                    TimestampUtc = DateTime.UtcNow.ToClarosDateTime(),
+                                };
+                                instrumentData.InstrumentMeasurementDatas.Items.Add(
+                                    new InstrumentMeasurementData
+                                    {
+                                        Measurement = measurement,
+                                        ChannelNumber = 0,
+                                    }
+                                );
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.LogError($"Error creating measurement for RTC device with ParameterId: {def.ParameterId}", ex);
+                            }
+                           
+                        }
+                    }
+                    else if (!isRtcDevice && manifest.InstrumentMeasurementCapability?.Definitions?.Items != null)
+                    {
+                        // For non-RTC devices, use InstrumentMeasurementCapability definitions
+                        foreach (var def in manifest.InstrumentMeasurementCapability.Definitions.Items)
+                        {
+                            try
+                            {
+                                var measurement = new InstrumentMeasurement
+                                {
+                                    ParameterId = def.ParameterId,
+                                    Value = 2, // Set a dummy value or use a default/test value
+                                    DecimalPrecision = def.Attributes?.DisplayDecimalPoints ?? 2,
+                                    UnitId = "30d9f576-a6d2-4439-9907-7e147af64508",
+                                    TimestampUtc = DateTime.UtcNow.ToClarosDateTime(),
+                                };
+                                instrumentData.InstrumentMeasurementDatas.Items.Add(
+                                    new InstrumentMeasurementData
+                                    {
+                                        Measurement = measurement,
+                                        ChannelNumber = 0,
+                                    }
+                                );
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.LogError($"Error creating measurement for device with ParameterId: {def.ParameterId}", ex);
+                            }
+                           
+                        }
+                    }
                 }
                 break;
 

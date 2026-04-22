@@ -113,5 +113,55 @@
     "timestamp": "2026-04-22 12:41:37",
     "level": "INFO",
     "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:57:33",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants2-sensors18-2004261146.json \u2014 loaded 2 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 12:57:33",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:05:04",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:05:05",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:06:04",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:06:04",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:11:47",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:11:47",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:16:25",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-22 13:16:25",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
   }
 ]
