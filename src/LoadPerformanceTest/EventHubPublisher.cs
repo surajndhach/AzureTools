@@ -1,6 +1,7 @@
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace LoadPerformanceTest
 {
@@ -19,14 +20,12 @@ namespace LoadPerformanceTest
         /// <summary>
         /// Publishes a single data object as a JSON event to Event Hub.
         /// </summary>
-        public async Task PublishAsync<T>(T data, string eventType, CancellationToken cancellationToken = default)
+        public async Task PublishAsync(string jsonData, string eventType, string tenantId, CancellationToken cancellationToken = default)
         {
-            var json = JsonConvert.SerializeObject(data);
-            var eventData = new EventData(json)
-            {
-                ContentType = "application/json"
-            };
-            eventData.Properties["EventType"] = eventType;
+            var eventBytes = Encoding.UTF8.GetBytes(jsonData);
+
+            var eventData = new EventData(eventBytes);
+            eventData.Properties.Add("tenantId", tenantId);
 
             using EventDataBatch batch = await _client.CreateBatchAsync(cancellationToken);
             if (!batch.TryAdd(eventData))
@@ -34,6 +33,7 @@ namespace LoadPerformanceTest
 
             await _client.SendAsync(batch, cancellationToken);
         }
+
 
         public async ValueTask DisposeAsync() => await _client.DisposeAsync();
     }

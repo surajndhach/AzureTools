@@ -20,13 +20,13 @@ public static class InstrumentDataUpdater
     /// <param name="dataJson">The JSON string of the instrument data template.</param>
     /// <param name="tenants">The tenants model (parsed from inventory file).</param>
     /// <param name="dataType">The type of data to process.</param>
-    /// <returns>List of updated JSON strings, one per instrument to publish.</returns>
-    public static List<string> UpdateWithInventory(
+    /// <returns>List of tuples containing updated JSON strings and their corresponding tenant IDs.</returns>
+    public static List<(string json, string tenantId)> UpdateWithInventory(
          string dataJson,
          IEnumerable<Models.Tenant> tenants,
          InstrumentDataType? dataType)
     {
-        var result = new List<string>();
+        var result = new List<(string json, string tenantId)>();
 
         foreach (var tenant in tenants)
         {
@@ -40,7 +40,7 @@ public static class InstrumentDataUpdater
                     instrumentData.FusionId = controller.FusionId;
                     UpdateDataTypeSpecificProperties(instrumentData, dataType);
                     var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
-                    result.Add(jsonObj.ToString());
+                    result.Add((jsonObj.ToString(), tenant.TenantId));
                 }
             }
 
@@ -56,10 +56,9 @@ public static class InstrumentDataUpdater
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
 
-
                         UpdateDataTypeSpecificProperties(instrumentData, dataType, sensor.DeviceTypeId);
                         var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
-                        result.Add(jsonObj.ToString());
+                        result.Add((jsonObj.ToString(), tenant.TenantId));
                     }
                 }
             }
@@ -67,6 +66,7 @@ public static class InstrumentDataUpdater
 
         return result;
     }
+
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
@@ -114,7 +114,7 @@ public static class InstrumentDataUpdater
                             {
                                 Logger.LogError($"Error creating measurement for RTC device with ParameterId: {def.ParameterId}", ex);
                             }
-                           
+
                         }
                     }
                     else if (!isRtcDevice && manifest.InstrumentMeasurementCapability?.Definitions?.Items != null)
@@ -144,7 +144,7 @@ public static class InstrumentDataUpdater
                             {
                                 Logger.LogError($"Error creating measurement for device with ParameterId: {def.ParameterId}", ex);
                             }
-                           
+
                         }
                     }
                 }

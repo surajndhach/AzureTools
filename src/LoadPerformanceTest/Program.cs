@@ -346,7 +346,7 @@ namespace LoadPerformanceTest
         /// <summary>
         /// Publishes the updated data list to Event Hub.
         /// </summary>
-        private static async Task PublishToEventHubAsync(List<string> updatedDataList, string fileName)
+        private static async Task PublishToEventHubAsync(List<(string json, string tenantId)> updatedDataList, string fileName)
         {
             var eventType = Path.GetFileNameWithoutExtension(fileName);
             var eventHubConfig = _config.GetSection("EventHub");
@@ -356,11 +356,11 @@ namespace LoadPerformanceTest
             await using var eventHubPublisher = new EventHubPublisher(eventHubConnectionString, eventHubName);
 
             int successCount = 0, failCount = 0;
-            foreach (var updatedJson in updatedDataList)
+            foreach (var (updatedJson, tenantId) in updatedDataList)
             {
                 try
                 {
-                    await eventHubPublisher.PublishAsync(updatedJson, eventType);
+                    await eventHubPublisher.PublishAsync(updatedJson, eventType, tenantId);
                     successCount++;
                 }
                 catch (Exception ex)

@@ -338,5 +338,2339 @@
       "message": "Value cannot be null. (Parameter \u0027value\u0027)",
       "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
     }
+  },
+  {
+    "timestamp": "2026-04-22 14:53:11",
+    "level": "ERROR",
+    "message": "Exception sending Instrument.Assigned | Subject: Instrument/Assigned/tenant/e23a4515-4368-4f45-96af-b071195f82fa/instrument/8e18893f-7df8-46a6-bb5c-9a4ebabd1698",
+    "exception": {
+      "type": "Azure.RequestFailedException",
+      "message": "Provided JWT token is not allowed to perform following operation\r\nStatus: 401 (Unauthorized)\r\nErrorCode: Unauthorized\r\n\r\nContent:\r\n{\u0022error\u0022:{\u0022code\u0022:\u0022Unauthorized\u0022,\u0022message\u0022:\u0022Provided JWT token is not allowed to perform following operation\u0022,\u0022timestamp_utc\u0022:\u00222026-04-22T09:23:11.340782619\u002B00:00\u0022,\u0022tracking_id\u0022:\u00225612C2DF-324D-4236-B0B1-F6E4D18C067F\u0022}}\r\n\r\nHeaders:\r\nbroker-errorcode: REDACTED\r\nDate: Wed, 22 Apr 2026 09:23:11 GMT\r\nContent-Length: 217\r\nContent-Type: application/json; charset=utf-8\r\n",
+      "stackTrace": "   at Azure.Messaging.EventGrid.Namespaces.ClientPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext context)\r\n   at Azure.Messaging.EventGrid.Namespaces.EventGridSenderClient.SendAsync(String topicName, RequestContent content, RequestContext context)\r\n   at Azure.Messaging.EventGrid.Namespaces.EventGridSenderClient.SendAsync(CloudEvent cloudEvent, CancellationToken cancellationToken)\r\n   at LoadPerformanceTest.EventGridPublisher.SendAsync(CloudEvent cloudEvent) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\EventGridPublisher.cs:line 32"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:05:31",
+    "level": "ERROR",
+    "message": "Exception sending Instrument.Assigned | Subject: Instrument/Assigned/tenant/e23a4515-4368-4f45-96af-b071195f82fa/instrument/8e18893f-7df8-46a6-bb5c-9a4ebabd1698",
+    "exception": {
+      "type": "Azure.Identity.AuthenticationFailedException",
+      "message": "ClientSecretCredential authentication failed: ",
+      "stackTrace": "   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)\r\n   at Azure.Identity.ClientSecretCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AccessTokenCache.SetResultOnTcsFromCredentialAsync(TokenRequestContext context, TaskCompletionSource\u00601 targetTcs, Boolean async, CancellationToken cancellationToken)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AccessTokenCache.GetAuthHeaderValueAsync(HttpMessage message, TokenRequestContext context, Boolean async)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AccessTokenCache.TokenRequestState.GetCurrentHeaderValue(Boolean async, Boolean checkForCompletion, CancellationToken cancellationToken)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AccessTokenCache.GetAuthHeaderValueAsync(HttpMessage message, TokenRequestContext context, Boolean async)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AuthenticateAndAuthorizeRequestAsync(HttpMessage message, TokenRequestContext context)\r\n   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory\u00601 pipeline, Boolean async)\r\n   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory\u00601 pipeline, Boolean async)\r\n   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory\u00601 pipeline, Boolean async)\r\n   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory\u00601 pipeline, Boolean async)\r\n   at Azure.Messaging.EventGrid.Namespaces.ClientPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext context)\r\n   at Azure.Messaging.EventGrid.Namespaces.EventGridSenderClient.SendAsync(String topicName, RequestContent content, RequestContext context)\r\n   at Azure.Messaging.EventGrid.Namespaces.EventGridSenderClient.SendAsync(CloudEvent cloudEvent, CancellationToken cancellationToken)\r\n   at LoadPerformanceTest.EventGridPublisher.SendAsync(CloudEvent cloudEvent) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\EventGridPublisher.cs:line 32",
+      "innerException": {
+        "type": "Microsoft.Identity.Client.MsalServiceException",
+        "message": "A configuration issue is preventing authentication - check the error message from the server for details. You can modify the configuration in the application registration portal. See https://aka.ms/msal-net-invalid-client for details.  Original exception: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app \u002768abd4d5-3ee7-4bde-8886-56e114c909cd\u0027. Trace ID: 8794d88e-13f6-4e56-a366-3d01ff7f0000 Correlation ID: c12d8a30-7aa9-4edd-a6bf-d34f7987a633 Timestamp: 2026-04-22 09:35:31Z"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:11",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:11:12",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:48",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 15:13:49",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:08",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:08",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:16:09",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:01",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:01",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:01",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:01",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:01",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:27:02",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:29:19",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:57",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:58",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:58",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:58",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:32:58",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:53",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:53",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ada27c02-044d-443d-93fe-31cda47e5bc1",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:53",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:53",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 820f2a08-403a-48fd-9c42-b45e5be8fac8",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: 70661ffd-f087-4e4e-a54f-e13dc64f89b7",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_UnitId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
+  },
+  {
+    "timestamp": "2026-04-22 16:42:54",
+    "level": "ERROR",
+    "message": "Error creating measurement for RTC device with ParameterId: ",
+    "exception": {
+      "type": "System.ArgumentNullException",
+      "message": "Value cannot be null. (Parameter \u0027value\u0027)",
+      "stackTrace": "   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)\r\n   at ONE.Models.CSharp.Instrument.InstrumentMeasurement.set_ParameterId(String value)\r\n   at LoadPerformanceTest.InstrumentDataUpdater.UpdateDataTypeSpecificProperties(InstrumentData instrumentData, Nullable\u00601 dataType, String deviceTypeId) in C:\\Users\\rsingh\\Source\\Repos\\ONE.Instrument.Tools\\src\\LoadPerformanceTest\\InstrumentDataUpdater.cs:line 97"
+    }
   }
 ]
