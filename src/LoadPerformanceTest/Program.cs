@@ -275,40 +275,204 @@ namespace LoadPerformanceTest
         {
             try
             {
-                var (fileName, dataType) = GetDataTypeSelection();
-                if (fileName == null || dataType == null)
+                var (selections, isContinuous) = GetDataTypeSelection();
+                if (selections == null)
                 {
                     Console.WriteLine("Invalid data type selection.\n");
+                    Logger.LogWarning("User made an invalid data type selection for publishing instrument data.");
                     return;
                 }
 
-                if (!File.Exists(fileName))
+                // Validate that all files exist
+                var missingFiles = selections.Where(s => !File.Exists(s.fileName)).ToList();
+                if (missingFiles.Any())
                 {
-                    Console.WriteLine($"File '{fileName}' not found.\n");
+                    Console.WriteLine($"The following files were not found:");
+                    foreach (var (fileName, _) in missingFiles)
+                    {
+                        Console.WriteLine($"  - {fileName}");
+                    }
+                    Logger.LogError($"Missing data files: {string.Join(", ", missingFiles.Select(f => f.fileName))}");
                     return;
                 }
 
-                var json = await File.ReadAllTextAsync(fileName);
-                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(json, _tenants, dataType);
-
-                if (updatedDataList.Count == 0)
+                if (isContinuous)
                 {
-                    Console.WriteLine("No data to publish for the selected type and inventory.\n");
-                    return;
+                    Console.WriteLine("Starting continuous publishing. Press 'Q' to stop...\n");
+                    Logger.LogInfo("Starting continuous publishing of all data types.");
+                    await PublishContinuouslyAsync(selections);
                 }
+                else
+                {
+                    // Single publish for the selected type
+                    var (fileName, dataType) = selections.First();
+                    var json = await File.ReadAllTextAsync(fileName);
+                    var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(json, _tenants, dataType);
 
-                await PublishToEventHubAsync(updatedDataList, fileName);
+                    if (updatedDataList.Count == 0)
+                    {
+                        Console.WriteLine("No data to publish for the selected type and inventory.\n");
+                        return;
+                    }
+
+                    await PublishToEventHubAsync(updatedDataList, fileName);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error publishing to Event Hub: {ex.Message}\n");
+                Logger.LogError("Error in HandlePublishInstrumentDataAsync", ex);
             }
         }
 
         /// <summary>
+        /// Publishes all data types continuously at their configured intervals.
+        /// </summary>
+        private static async Task PublishContinuouslyAsync(List<(string fileName, InstrumentDataType dataType)> selections)
+        {
+            using var cts = new CancellationTokenSource();
+
+            // Start monitoring for 'Q' key press to stop
+            var keyMonitorTask = Task.Run(() =>
+            {
+                while (!cts.Token.IsCancellationRequested)
+                {
+                    if (Console.KeyAvailable)
+                    {
+                        var keyInfo = Console.ReadKey(true);
+                        if (keyInfo.Key == ConsoleKey.Q)
+                        {
+                            Console.WriteLine("\nStopping continuous publishing...");
+                            Logger.LogInfo("User requested stop for continuous publishing.");
+                            cts.Cancel();
+                            break;
+                        }
+                    }
+                    Thread.Sleep(100);
+                }
+            });
+
+            // Get publishing intervals from configuration
+            var publishingConfig = _config.GetSection("PublishingIntervals");
+            var intervals = new Dictionary<InstrumentDataType, int>
+            {
+                [InstrumentDataType.Measurement] = publishingConfig.GetValue<int>("MeasurementIntervalMs", 5000),
+                [InstrumentDataType.Diagnostic] = publishingConfig.GetValue<int>("DiagnosticIntervalMs", 10000),
+                [InstrumentDataType.Status] = publishingConfig.GetValue<int>("StatusIntervalMs", 15000),
+                [InstrumentDataType.Event] = publishingConfig.GetValue<int>("EventIntervalMs", 8000),
+                [InstrumentDataType.Settings] = publishingConfig.GetValue<int>("SettingsIntervalMs", 20000)
+            };
+
+            // Load all JSON files once
+            var dataTypeFiles = new Dictionary<InstrumentDataType, string>();
+            foreach (var (fileName, dataType) in selections)
+            {
+                dataTypeFiles[dataType] = await File.ReadAllTextAsync(fileName);
+            }
+
+            // Create publishing tasks for each data type
+            var publishingTasks = selections.Select(selection =>
+                PublishDataTypeContinuouslyAsync(
+                    selection.dataType,
+                    dataTypeFiles[selection.dataType],
+                    selection.fileName,
+                    intervals[selection.dataType],
+                    cts.Token))
+                .ToArray();
+
+            try
+            {
+                // Wait for either all tasks to complete or cancellation
+                await Task.WhenAny(Task.WhenAll(publishingTasks), keyMonitorTask);
+            }
+            catch (OperationCanceledException)
+            {
+                // Expected when cancellation is requested
+            }
+            finally
+            {
+                cts.Cancel(); // Ensure all tasks are cancelled
+                try
+                {
+                    await Task.WhenAll(publishingTasks.Where(t => !t.IsCompleted));
+                }
+                catch (OperationCanceledException)
+                {
+                    // Expected during cleanup
+                }
+            }
+
+            Console.WriteLine("Continuous publishing stopped.\n");
+            Logger.LogInfo("Continuous publishing session ended.");
+        }
+
+        /// <summary>
+        /// Publishes a specific data type continuously at the configured interval.
+        /// </summary>
+        private static async Task PublishDataTypeContinuouslyAsync(
+            InstrumentDataType dataType,
+            string jsonTemplate,
+            string fileName,
+            int intervalMs,
+            CancellationToken cancellationToken)
+        {
+            var eventHubConfig = _config.GetSection("EventHub");
+            var eventHubConnectionString = eventHubConfig["ConnectionString"];
+            var eventHubName = eventHubConfig["Name"];
+
+            await using var eventHubPublisher = new EventHubPublisher(eventHubConnectionString, eventHubName);
+
+            var publishCount = 0;
+            var startTime = DateTime.UtcNow;
+
+            Logger.LogInfo($"Started continuous publishing for {dataType} with {intervalMs}ms interval.");
+
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(jsonTemplate, _tenants, dataType);
+
+                    if (updatedDataList.Count > 0)
+                    {
+                        int successCount = 0, failCount = 0;
+
+                        foreach (var (updatedJson, tenantId) in updatedDataList)
+                        {
+                            try
+                            {
+                                await eventHubPublisher.PublishAsync(updatedJson, Path.GetFileNameWithoutExtension(fileName), tenantId, cancellationToken);
+                                successCount++;
+                            }
+                            catch (Exception ex) when (!(ex is OperationCanceledException))
+                            {
+                                failCount++;
+                                Logger.LogError($"Failed to publish {dataType} for instrument: {ex.Message}", ex);
+                            }
+                        }
+
+                        publishCount++;
+                        var elapsed = DateTime.UtcNow - startTime;
+                        Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] {dataType}: Published batch #{publishCount} - {successCount} succeeded, {failCount} failed (Running: {elapsed:hh\\:mm\\:ss})");
+                    }
+
+                    await Task.Delay(intervalMs, cancellationToken);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                // Expected when stopping
+            }
+
+            Logger.LogInfo($"Stopped continuous publishing for {dataType}. Total batches published: {publishCount}");
+        }
+
+
+
+        /// <summary>
         /// Gets the user's data type selection and returns the corresponding file name and data type.
         /// </summary>
-        private static (string? fileName, InstrumentDataType? dataType) GetDataTypeSelection()
+        private static (List<(string fileName, InstrumentDataType dataType)>? selections, bool isContinuous) GetDataTypeSelection()
         {
             Console.WriteLine("Select data type to publish:");
             Console.WriteLine("  1 - Measurement Data");
@@ -316,32 +480,29 @@ namespace LoadPerformanceTest
             Console.WriteLine("  3 - Status Data");
             Console.WriteLine("  4 - Event Data");
             Console.WriteLine("  5 - Settings Data");
+            Console.WriteLine("  6 - All Data Types (Continuous)");
             Console.Write("Your choice: ");
 
             var dataTypeInput = Console.ReadLine()?.Trim();
 
-            string? fileName = dataTypeInput switch
+            return dataTypeInput switch
             {
-                "1" => "instrumentmeasurementdata.json",
-                "2" => "instrumentdiagnosticdata.json",
-                "3" => "instrumentstatusdata.json",
-                "4" => "instrumenteventdata.json",
-                "5" => "instrumentsettingdata.json",
-                _ => null
+                "1" => ([("instrumentmeasurementdata.json", InstrumentDataType.Measurement)], true),
+                "2" => ([("instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic)], true),
+                "3" => ([("instrumentstatusdata.json", InstrumentDataType.Status)], true),
+                "4" => ([("instrumenteventdata.json", InstrumentDataType.Event)], true),
+                "5" => ([("instrumentsettingdata.json", InstrumentDataType.Settings)], true),
+                "6" => ([
+                    ("instrumentmeasurementdata.json", InstrumentDataType.Measurement),
+            ("instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic),
+            ("instrumentstatusdata.json", InstrumentDataType.Status),
+            ("instrumenteventdata.json", InstrumentDataType.Event),
+            ("instrumentsettingdata.json", InstrumentDataType.Settings)
+                ], true),
+                _ => (null, false)
             };
-
-            InstrumentDataType? dataType = dataTypeInput switch
-            {
-                "1" => InstrumentDataType.Measurement,
-                "2" => InstrumentDataType.Diagnostic,
-                "3" => InstrumentDataType.Status,
-                "4" => InstrumentDataType.Event,
-                "5" => InstrumentDataType.Settings,
-                _ => null
-            };
-
-            return (fileName, dataType);
         }
+
 
         /// <summary>
         /// Publishes the updated data list to Event Hub.
