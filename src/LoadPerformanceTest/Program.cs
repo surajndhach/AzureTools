@@ -51,7 +51,7 @@ namespace LoadPerformanceTest
 
             // Initialize file paths
             var inventoryFilePath = _config["DeviceInventoryFilePath"];
-            var manifestsFilePath = "Data\\manifests.json";
+            var manifestsFilePath = _config["ManifestsFilePath"];
 
             // Parse device inventory
             _tenants = await DeviceInventoryParser.ParseFromPathAsync(inventoryFilePath, true);
@@ -490,19 +490,26 @@ namespace LoadPerformanceTest
 
             var dataTypeInput = Console.ReadLine()?.Trim();
 
+            // Read file paths from configuration
+            var measurementFile = _config["DataFilePaths:Measurement"];
+            var diagnosticFile = _config["DataFilePaths:Diagnostic"];
+            var statusFile = _config["DataFilePaths:Status"];
+            var eventFile = _config["DataFilePaths:Event"];
+            var settingsFile = _config["DataFilePaths:Settings"];
+
             return dataTypeInput switch
             {
-                "1" => ([("Data\\instrumentmeasurementdata.json", InstrumentDataType.Measurement)], true),
-                "2" => ([("Data\\instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic)], true),
-                "3" => ([("Data\\instrumentstatusdata.json", InstrumentDataType.Status)], true),
-                "4" => ([("Data\\instrumenteventdata.json", InstrumentDataType.Event)], true),
-                "5" => ([("Data\\instrumentsettingdata.json", InstrumentDataType.Settings)], true),
+                "1" => ([(measurementFile, InstrumentDataType.Measurement)], true),
+                "2" => ([(diagnosticFile, InstrumentDataType.Diagnostic)], true),
+                "3" => ([(statusFile, InstrumentDataType.Status)], true),
+                "4" => ([(eventFile, InstrumentDataType.Event)], true),
+                "5" => ([(settingsFile, InstrumentDataType.Settings)], true),
                 "6" => ([
-                    ("Data\\instrumentmeasurementdata.json", InstrumentDataType.Measurement),
-            ("Data\\instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic),
-            ("Data\\instrumentstatusdata.json", InstrumentDataType.Status),
-            ("Data\\instrumenteventdata.json", InstrumentDataType.Event),
-            ("Data\\instrumentsettingdata.json", InstrumentDataType.Settings)
+                    (measurementFile, InstrumentDataType.Measurement),
+            (diagnosticFile, InstrumentDataType.Diagnostic),
+            (statusFile, InstrumentDataType.Status),
+            (eventFile, InstrumentDataType.Event),
+            (settingsFile, InstrumentDataType.Settings)
                 ], true),
                 _ => (null, false)
             };
