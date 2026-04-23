@@ -357,15 +357,15 @@ namespace LoadPerformanceTest
                 }
             });
 
-            // Get publishing intervals from configuration
+            // Get publishing intervals from configuration (in seconds, convert to milliseconds)
             var publishingConfig = _config.GetSection("PublishingIntervals");
             var intervals = new Dictionary<InstrumentDataType, int>
             {
-                [InstrumentDataType.Measurement] = publishingConfig.GetValue<int>("MeasurementIntervalMs", 5000),
-                [InstrumentDataType.Diagnostic] = publishingConfig.GetValue<int>("DiagnosticIntervalMs", 10000),
-                [InstrumentDataType.Status] = publishingConfig.GetValue<int>("StatusIntervalMs", 15000),
-                [InstrumentDataType.Event] = publishingConfig.GetValue<int>("EventIntervalMs", 8000),
-                [InstrumentDataType.Settings] = publishingConfig.GetValue<int>("SettingsIntervalMs", 20000)
+                [InstrumentDataType.Measurement] = publishingConfig.GetValue<int>("MeasurementIntervalSeconds", 30) * 1000,
+                [InstrumentDataType.Diagnostic] = publishingConfig.GetValue<int>("DiagnosticIntervalSeconds", 600) * 1000,
+                [InstrumentDataType.Status] = publishingConfig.GetValue<int>("StatusIntervalSeconds", 900) * 1000,
+                [InstrumentDataType.Event] = publishingConfig.GetValue<int>("EventIntervalSeconds", 480) * 1000,
+                [InstrumentDataType.Settings] = publishingConfig.GetValue<int>("SettingsIntervalSeconds", 1200) * 1000
             };
 
             // Load all JSON files once
@@ -429,8 +429,9 @@ namespace LoadPerformanceTest
 
             var publishCount = 0;
             var startTime = DateTime.UtcNow;
+            var intervalSeconds = intervalMs / 1000.0;
 
-            Logger.LogInfo($"Started continuous publishing for {dataType} with {intervalMs}ms interval.");
+            Logger.LogInfo($"Started continuous publishing for {dataType} with {intervalSeconds} second(s) interval.");
 
             try
             {
