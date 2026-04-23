@@ -54,7 +54,7 @@ namespace LoadPerformanceTest
             var manifestsFilePath = "Data\\manifests.json";
 
             // Parse device inventory
-            _tenants = await DeviceInventoryParser.ParseFromFileAsync(inventoryFilePath);
+            _tenants = await DeviceInventoryParser.ParseFromPathAsync(inventoryFilePath, true);
             _inventoryFileName = Path.GetFileName(inventoryFilePath);
             Console.WriteLine($"Loaded {_tenants.Count} tenant(s) from device inventory.");
             Logger.LogInfo($"Parsed inventory file: {_inventoryFileName} — loaded {_tenants.Count} tenant(s).");
