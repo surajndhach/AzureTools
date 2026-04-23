@@ -1,5 +1,4 @@
-
-namespace LoadPerformanceTest
+namespace LoadPerformanceTest.Utilities
 {
     /// <summary>
     /// Represents the different types of instrument data that can be published.

@@ -28,28 +28,28 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentdata.json">
+    <None Update="Data\instrumentdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentdiagnosticdata.json">
+    <None Update="Data\instrumentdiagnosticdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumenteventdata.json">
+    <None Update="Data\instrumenteventdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentmeasurementdata.json">
+    <None Update="Data\instrumentmeasurementdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentrtcmeasurementdata.json">
+    <None Update="Data\instrumentrtcmeasurementdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentsettingdata.json">
+    <None Update="Data\instrumentsettingdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="instrumentstatusdata.json">
+    <None Update="Data\instrumentstatusdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="manifests.json">
+    <None Update="Data\manifests.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

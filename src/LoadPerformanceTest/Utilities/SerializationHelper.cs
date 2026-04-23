@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace ONE.Instrument.Twin.Core.Helpers
+namespace LoadPerformanceTest.Utilities
 {
     public static class SerializationHelper
     {

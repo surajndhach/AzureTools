@@ -1,0 +1,87 @@
+[
+  {
+    "timestamp": "2026-04-23 14:02:32",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:16:44",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-23 14:16:45",
+    "level": "INFO",
+    "message": "Started continuous publishing for Measurement with 5000ms interval."
+  },
+  {
+    "timestamp": "2026-04-23 14:22:29",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:22:37",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-23 14:22:37",
+    "level": "INFO",
+    "message": "Started continuous publishing for Measurement with 5000ms interval."
+  },
+  {
+    "timestamp": "2026-04-23 14:23:02",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:23:59",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-23 14:23:59",
+    "level": "INFO",
+    "message": "Started continuous publishing for Measurement with 5000ms interval."
+  },
+  {
+    "timestamp": "2026-04-23 14:26:40",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:26:40",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:26:44",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-23 14:26:44",
+    "level": "INFO",
+    "message": "Started continuous publishing for Measurement with 5000ms interval."
+  },
+  {
+    "timestamp": "2026-04-23 14:28:23",
+    "level": "INFO",
+    "message": "Parsed inventory file: device-inventory-tenants1-sensors4-2204260104.json \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:28:23",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-23 14:28:27",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-23 14:28:27",
+    "level": "INFO",
+    "message": "Started continuous publishing for Status with 15000ms interval."
+  }
+]

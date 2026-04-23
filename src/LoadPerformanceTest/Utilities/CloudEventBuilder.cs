@@ -5,7 +5,7 @@ using LoadPerformanceTest.Models;
 using Google.Protobuf;
 using CloudEvent = Azure.Messaging.CloudEvent;
 
-namespace LoadPerformanceTest;
+namespace LoadPerformanceTest.Utilities;
 
 public static class CloudEventBuilder
 {

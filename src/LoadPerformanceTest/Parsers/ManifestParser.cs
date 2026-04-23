@@ -1,9 +1,8 @@
-using Google.Protobuf;
+using LoadPerformanceTest.Utilities;
 using Newtonsoft.Json;
-using ONE.Instrument.Twin.Core.Helpers;
 using ONE.Models.CSharp.Instrument;
 
-namespace LoadPerformanceTest;
+namespace LoadPerformanceTest.Parsers;
 
 /// <summary>
 /// Handles parsing of manifests JSON file into strongly-typed protobuf objects.

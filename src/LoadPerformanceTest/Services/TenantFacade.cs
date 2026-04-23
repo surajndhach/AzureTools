@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using Tenant = LoadPerformanceTest.Models.Tenant;
 
-namespace LoadPerformanceTest
+namespace LoadPerformanceTest.Services
 {
     public static class TenantFacade
     {

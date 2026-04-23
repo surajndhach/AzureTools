@@ -1,11 +1,8 @@
-using LoadPerformanceTest.Models;
 using Newtonsoft.Json.Linq;
 using ONE.Models.CSharp.External;
-using ONE.Instrument.Twin.Core.Helpers;
 using ONE.Models.CSharp.Instrument;
-using ONE.Models.CSharp;
 
-namespace LoadPerformanceTest;
+namespace LoadPerformanceTest.Utilities;
 
 /// <summary>
 /// Updates instrument data JSON with fusionId and tenantId for each sensor/controller in tenants.
@@ -70,7 +67,7 @@ public static class InstrumentDataUpdater
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
-    private static void UpdateDataTypeSpecificProperties(ONE.Models.CSharp.Instrument.InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "")
+    private static void UpdateDataTypeSpecificProperties(InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "")
     {
         var timestamp = DateTime.UtcNow.ToClarosDateTime();
 

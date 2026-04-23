@@ -1,6 +1,11 @@
 ﻿using Azure.Identity;
 using Azure.Messaging.EventGrid.Namespaces;
+using LoadPerformanceTest.Configurations;
 using LoadPerformanceTest.Models;
+using LoadPerformanceTest.Parsers;
+using LoadPerformanceTest.Publishers;
+using LoadPerformanceTest.Services;
+using LoadPerformanceTest.Utilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,7 +51,7 @@ namespace LoadPerformanceTest
 
             // Initialize file paths
             var inventoryFilePath = _config["DeviceInventoryFilePath"];
-            var manifestsFilePath = "manifests.json";
+            var manifestsFilePath = "Data\\manifests.json";
 
             // Parse device inventory
             _tenants = await DeviceInventoryParser.ParseFromFileAsync(inventoryFilePath);
@@ -487,17 +492,17 @@ namespace LoadPerformanceTest
 
             return dataTypeInput switch
             {
-                "1" => ([("instrumentmeasurementdata.json", InstrumentDataType.Measurement)], true),
-                "2" => ([("instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic)], true),
-                "3" => ([("instrumentstatusdata.json", InstrumentDataType.Status)], true),
-                "4" => ([("instrumenteventdata.json", InstrumentDataType.Event)], true),
-                "5" => ([("instrumentsettingdata.json", InstrumentDataType.Settings)], true),
+                "1" => ([("Data\\instrumentmeasurementdata.json", InstrumentDataType.Measurement)], true),
+                "2" => ([("Data\\instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic)], true),
+                "3" => ([("Data\\instrumentstatusdata.json", InstrumentDataType.Status)], true),
+                "4" => ([("Data\\instrumenteventdata.json", InstrumentDataType.Event)], true),
+                "5" => ([("Data\\instrumentsettingdata.json", InstrumentDataType.Settings)], true),
                 "6" => ([
-                    ("instrumentmeasurementdata.json", InstrumentDataType.Measurement),
-            ("instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic),
-            ("instrumentstatusdata.json", InstrumentDataType.Status),
-            ("instrumenteventdata.json", InstrumentDataType.Event),
-            ("instrumentsettingdata.json", InstrumentDataType.Settings)
+                    ("Data\\instrumentmeasurementdata.json", InstrumentDataType.Measurement),
+            ("Data\\instrumentdiagnosticdata.json", InstrumentDataType.Diagnostic),
+            ("Data\\instrumentstatusdata.json", InstrumentDataType.Status),
+            ("Data\\instrumenteventdata.json", InstrumentDataType.Event),
+            ("Data\\instrumentsettingdata.json", InstrumentDataType.Settings)
                 ], true),
                 _ => (null, false)
             };

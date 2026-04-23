@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LoadPerformanceTest
+namespace LoadPerformanceTest.Services
 {
     internal static class AuthToken
     {

@@ -1,7 +1,7 @@
 using Azure.Messaging;
 using Azure.Messaging.EventGrid.Namespaces;
 
-namespace LoadPerformanceTest;
+namespace LoadPerformanceTest.Publishers;
 
 public class EventGridPublisher(EventGridSenderClient client, int delayBetweenEventsMs = 100)
 {
