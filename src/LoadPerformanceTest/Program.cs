@@ -1,6 +1,7 @@
-ï»¿using Azure.Identity;
+using Azure.Identity;
 using Azure.Messaging.EventGrid.Namespaces;
 using LoadPerformanceTest.Configurations;
+using LoadPerformanceTest.Logging;
 using LoadPerformanceTest.Models;
 using LoadPerformanceTest.Parsers;
 using LoadPerformanceTest.Publishers;
@@ -57,7 +58,7 @@ namespace LoadPerformanceTest
             _tenants = await DeviceInventoryParser.ParseFromPathAsync(inventoryFilePath, true);
             _inventoryFileName = Path.GetFileName(inventoryFilePath);
             Console.WriteLine($"Loaded {_tenants.Count} tenant(s) from device inventory.");
-            Logger.LogInfo($"Parsed inventory file: {_inventoryFileName} â€” loaded {_tenants.Count} tenant(s).");
+            Logger.LogInfo($"Parsed inventory file: {_inventoryFileName} — loaded {_tenants.Count} tenant(s).");
 
             await LoadManifestsAsync(manifestsFilePath);
 
@@ -80,7 +81,7 @@ namespace LoadPerformanceTest
                 Console.WriteLine($"Loaded {_instrumentSubTypes.Count} instrument sub-type(s) from manifests file.");
                 Console.WriteLine($"Extracted {_instrumentManifests.Count} instrument manifest(s) from property bags.\n");
 
-                Logger.LogInfo($"Parsed manifests file: {manifestsFileName} â€” loaded {_instrumentSubTypes.Count} sub-type(s), extracted {_instrumentManifests.Count} manifest(s).");
+                Logger.LogInfo($"Parsed manifests file: {manifestsFileName} — loaded {_instrumentSubTypes.Count} sub-type(s), extracted {_instrumentManifests.Count} manifest(s).");
 
             }
             catch (Exception ex)

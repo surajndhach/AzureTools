@@ -1,3 +1,4 @@
+using LoadPerformanceTest.Logging;
 using LoadPerformanceTest.Models;
 using Newtonsoft.Json;
 

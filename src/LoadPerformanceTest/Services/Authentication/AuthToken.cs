@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+using LoadPerformanceTest.Logging;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

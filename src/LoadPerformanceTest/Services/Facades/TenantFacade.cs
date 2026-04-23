@@ -1,4 +1,5 @@
-ï»¿using ONE.Models.CSharp;
+using LoadPerformanceTest.Logging;
+using ONE.Models.CSharp;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -58,7 +59,7 @@ namespace LoadPerformanceTest.Services
                 var token = await AuthToken.GetAdminTokenAsync();
                 if (string.IsNullOrEmpty(token))
                 {
-                    Logger.LogError($"Skipping tenant creation for '{tenantId}' â€” failed to acquire auth token.");
+                    Logger.LogError($"Skipping tenant creation for '{tenantId}' — failed to acquire auth token.");
                     return HttpStatusCode.Unauthorized;
                 }
 
@@ -124,7 +125,7 @@ namespace LoadPerformanceTest.Services
                 var token = await AuthToken.GetAdminTokenAsync();
                 if (string.IsNullOrEmpty(token))
                 {
-                    Logger.LogError($"Skipping tenant deletion for '{tenantId}' â€” failed to acquire auth token.");
+                    Logger.LogError($"Skipping tenant deletion for '{tenantId}' — failed to acquire auth token.");
                     return HttpStatusCode.Unauthorized;
                 }
 
