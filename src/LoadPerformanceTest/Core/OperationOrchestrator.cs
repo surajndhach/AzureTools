@@ -1,8 +1,7 @@
 using LoadPerformanceTest.Logging;
 using LoadPerformanceTest.Core.Publishing;
-using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Services.Facades;
 using LoadPerformanceTest.Utilities;
+using LoadPerformanceTest.Services;
 
 namespace LoadPerformanceTest.Core;
 
@@ -12,12 +11,12 @@ namespace LoadPerformanceTest.Core;
 public class OperationOrchestrator
 {
     private readonly ApplicationContext _context;
-    private readonly ContinuousPublisher _publisher;
+    private readonly InstrumentDataPublisher _publisher;
 
     public OperationOrchestrator(ApplicationContext context)
     {
         _context = context;
-        _publisher = new ContinuousPublisher(context);
+        _publisher = new InstrumentDataPublisher(context);
     }
 
     /// <summary>
@@ -25,7 +24,7 @@ public class OperationOrchestrator
     /// </summary>
     public async Task CreateTenantsAsync()
     {
-        var count = await TenantFacade.CreateTenantsAsync(_context.Tenants);
+        var count = await TenantService.CreateTenantsAsync(_context.Tenants);
         Console.WriteLine($"Tenant creation completed: {count} out of {_context.Tenants.Count} tenants created successfully.\n");
     }
 
@@ -132,7 +131,7 @@ public class OperationOrchestrator
     /// </summary>
     public async Task DeleteTenantsAsync()
     {
-        var deleteCount = await TenantFacade.DeleteTenantsAsync(_context.Tenants);
+        var deleteCount = await TenantService.DeleteTenantsAsync(_context.Tenants);
         Console.WriteLine($"Tenant deletion completed: {deleteCount} out of {_context.Tenants.Count} tenants deleted successfully.\n");
     }
 

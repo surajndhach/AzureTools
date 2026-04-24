@@ -188,5 +188,40 @@
     "timestamp": "2026-04-24 13:39:40",
     "level": "INFO",
     "message": "Continuous publishing session ended."
+  },
+  {
+    "timestamp": "2026-04-24 14:04:10",
+    "level": "INFO",
+    "message": "Successfully parsed 1 tenant(s) from device-inventory-tenants1-sensors4-2204260104.json"
+  },
+  {
+    "timestamp": "2026-04-24 14:04:10",
+    "level": "INFO",
+    "message": "Combined parsing complete: 1 total tenant(s) from 1 files"
+  },
+  {
+    "timestamp": "2026-04-24 14:04:10",
+    "level": "INFO",
+    "message": "Parsed inventory file:  \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-24 14:04:10",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-24 14:04:14",
+    "level": "INFO",
+    "message": "[] Built 1 Controller Instrument.Assigned cloud event(s)."
+  },
+  {
+    "timestamp": "2026-04-24 14:04:17",
+    "level": "INFO",
+    "message": "Published Instrument.Assigned | Subject: Instrument/Assigned/tenant/e23a4515-4368-4f45-96af-b071195f82fa/instrument/8e18893f-7df8-46a6-bb5c-9a4ebabd1698 | Status: 200"
+  },
+  {
+    "timestamp": "2026-04-24 14:04:17",
+    "level": "INFO",
+    "message": "[] Controllers completed: 1 succeeded, 0 failed out of 1 total events."
   }
 ]

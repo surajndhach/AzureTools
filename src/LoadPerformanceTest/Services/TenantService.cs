@@ -7,9 +7,9 @@ using System.Text;
 using System.Text.Json;
 using Tenant = LoadPerformanceTest.Models.Tenant;
 
-namespace LoadPerformanceTest.Services.Facades
+namespace LoadPerformanceTest.Services
 {
-    public static class TenantFacade
+    public static class TenantService
     {
         /// <summary>
         /// Creates the tenants from the list of data provided.
@@ -57,7 +57,7 @@ namespace LoadPerformanceTest.Services.Facades
                 var json = JsonSerializer.Serialize(tenant);
                 var request = new HttpRequestMessage(HttpMethod.Post, url);
 
-                var token = await AuthToken.GetAdminTokenAsync();
+                var token = await AuthTokenProvider.GetAdminTokenAsync();
                 if (string.IsNullOrEmpty(token))
                 {
                     Logger.LogError($"Skipping tenant creation for '{tenantId}' — failed to acquire auth token.");
@@ -123,7 +123,7 @@ namespace LoadPerformanceTest.Services.Facades
                 var url = $"https://api-feature-us.aquaticinformatics.net/enterprise/core/v1/tenant/{tenantId}";
                 var request = new HttpRequestMessage(HttpMethod.Delete, url);
 
-                var token = await AuthToken.GetAdminTokenAsync();
+                var token = await AuthTokenProvider.GetAdminTokenAsync();
                 if (string.IsNullOrEmpty(token))
                 {
                     Logger.LogError($"Skipping tenant deletion for '{tenantId}' — failed to acquire auth token.");

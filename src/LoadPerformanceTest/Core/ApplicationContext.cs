@@ -1,5 +1,4 @@
 using LoadPerformanceTest.Models;
-using LoadPerformanceTest.Models;
 using LoadPerformanceTest.Services.Publishers;
 using Microsoft.Extensions.Configuration;
 using ONE.Models.CSharp.Instrument;

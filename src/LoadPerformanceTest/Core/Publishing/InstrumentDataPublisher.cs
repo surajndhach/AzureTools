@@ -1,5 +1,4 @@
 using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Models;
 using LoadPerformanceTest.Services.Publishers;
 using LoadPerformanceTest.Utilities;
 using Microsoft.Extensions.Configuration;
@@ -9,11 +8,11 @@ namespace LoadPerformanceTest.Core.Publishing;
 /// <summary>
 /// Handles continuous publishing of instrument data to Event Hub.
 /// </summary>
-public class ContinuousPublisher
+public class InstrumentDataPublisher
 {
     private readonly ApplicationContext _context;
 
-    public ContinuousPublisher(ApplicationContext context)
+    public InstrumentDataPublisher(ApplicationContext context)
     {
         _context = context;
     }
