@@ -1,5 +1,7 @@
 using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Services;
+using LoadPerformanceTest.Core.Publishing;
+using LoadPerformanceTest.Logging;
+using LoadPerformanceTest.Services.Facades;
 using LoadPerformanceTest.Utilities;
 
 namespace LoadPerformanceTest.Core;
@@ -173,7 +175,7 @@ public class OperationOrchestrator
                 // Single publish for the selected type
                 var (fileName, dataType) = selections.First();
                 var json = await File.ReadAllTextAsync(fileName);
-                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(json, _context.Tenants, dataType);
+                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(json, _context.Tenants, dataType, _context.InstrumentManifests);
 
                 if (updatedDataList.Count == 0)
                 {

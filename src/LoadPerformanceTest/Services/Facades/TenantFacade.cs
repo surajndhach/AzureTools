@@ -1,4 +1,5 @@
 using LoadPerformanceTest.Logging;
+using LoadPerformanceTest.Services.Authentication;
 using ONE.Models.CSharp;
 using System.Net;
 using System.Net.Http.Headers;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using Tenant = LoadPerformanceTest.Models.Tenant;
 
-namespace LoadPerformanceTest.Services
+namespace LoadPerformanceTest.Services.Facades
 {
     public static class TenantFacade
     {

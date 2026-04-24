@@ -2,7 +2,7 @@ using LoadPerformanceTest.Logging;
 using LoadPerformanceTest.Models;
 using Newtonsoft.Json;
 
-namespace LoadPerformanceTest.Parsers;
+namespace LoadPerformanceTest.Services.Parsers;
 
 public static class DeviceInventoryParser
 {

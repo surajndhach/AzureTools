@@ -3,7 +3,7 @@ using LoadPerformanceTest.Utilities;
 using Newtonsoft.Json;
 using ONE.Models.CSharp.Instrument;
 
-namespace LoadPerformanceTest.Parsers;
+namespace LoadPerformanceTest.Services.Parsers;
 
 /// <summary>
 /// Handles parsing of manifests JSON file into strongly-typed protobuf objects.

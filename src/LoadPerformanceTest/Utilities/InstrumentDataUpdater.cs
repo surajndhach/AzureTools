@@ -18,11 +18,13 @@ public static class InstrumentDataUpdater
     /// <param name="dataJson">The JSON string of the instrument data template.</param>
     /// <param name="tenants">The tenants model (parsed from inventory file).</param>
     /// <param name="dataType">The type of data to process.</param>
+    /// <param name="instrumentManifests">The list of instrument manifests for measurement data processing.</param>
     /// <returns>List of tuples containing updated JSON strings and their corresponding tenant IDs.</returns>
     public static List<(string json, string tenantId)> UpdateWithInventory(
          string dataJson,
          IEnumerable<Models.Tenant> tenants,
-         InstrumentDataType? dataType)
+         InstrumentDataType? dataType,
+         List<InstrumentManifest>? instrumentManifests = null)
     {
         var result = new List<(string json, string tenantId)>();
 
@@ -54,7 +56,7 @@ public static class InstrumentDataUpdater
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
 
-                        UpdateDataTypeSpecificProperties(instrumentData, dataType, sensor.DeviceTypeId);
+                        UpdateDataTypeSpecificProperties(instrumentData, dataType, sensor.DeviceTypeId, instrumentManifests);
                         var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                         result.Add((jsonObj.ToString(), tenant.TenantId));
                     }
@@ -68,7 +70,7 @@ public static class InstrumentDataUpdater
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
-    private static void UpdateDataTypeSpecificProperties(InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "")
+    private static void UpdateDataTypeSpecificProperties(InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "", List<InstrumentManifest>? instrumentManifests = null)
     {
         var timestamp = DateTime.UtcNow.ToClarosDateTime();
 
@@ -77,7 +79,7 @@ public static class InstrumentDataUpdater
             case InstrumentDataType.Measurement:
                 instrumentData.InstrumentMeasurementDatas = new InstrumentMeasurementDatas();
                 // Find the manifest for this sensor
-                var manifest = Program._instrumentManifests
+                var manifest = instrumentManifests?
                     .FirstOrDefault(m => m.InstrumentType?.Identifier?.Id == deviceTypeId);
 
                 if (manifest != null)

@@ -3,7 +3,7 @@ using Azure.Messaging.EventHubs.Producer;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace LoadPerformanceTest.Publishers
+namespace LoadPerformanceTest.Services.Publishers
 {
     /// <summary>
     /// Publishes strongly-typed data to Azure Event Hub.

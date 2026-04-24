@@ -2,7 +2,7 @@ using Azure.Messaging;
 using Azure.Messaging.EventGrid.Namespaces;
 using LoadPerformanceTest.Logging;
 
-namespace LoadPerformanceTest.Publishers;
+namespace LoadPerformanceTest.Services.Publishers;
 
 public class EventGridPublisher(EventGridSenderClient client, int delayBetweenEventsMs = 100)
 {

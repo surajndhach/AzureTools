@@ -1,10 +1,10 @@
 using LoadPerformanceTest.Logging;
 using LoadPerformanceTest.Models;
-using LoadPerformanceTest.Publishers;
+using LoadPerformanceTest.Services.Publishers;
 using LoadPerformanceTest.Utilities;
 using Microsoft.Extensions.Configuration;
 
-namespace LoadPerformanceTest.Core;
+namespace LoadPerformanceTest.Core.Publishing;
 
 /// <summary>
 /// Handles continuous publishing of instrument data to Event Hub.
@@ -196,7 +196,7 @@ public class ContinuousPublisher
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(jsonTemplate, _context.Tenants, dataType);
+                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(jsonTemplate, _context.Tenants, dataType, _context.InstrumentManifests);
 
                 if (updatedDataList.Count > 0)
                 {

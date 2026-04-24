@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LoadPerformanceTest.Services
+namespace LoadPerformanceTest.Services.Authentication
 {
     internal static class AuthToken
     {
