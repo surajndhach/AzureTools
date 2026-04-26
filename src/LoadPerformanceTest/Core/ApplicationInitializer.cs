@@ -1,11 +1,8 @@
 using Azure.Identity;
-using Azure.Identity;
 using Azure.Messaging.EventGrid.Namespaces;
-using LoadPerformanceTest.Configuration;
 using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Models;
-using LoadPerformanceTest.Services.Parsers;
-using LoadPerformanceTest.Services.Publishers;
+using LoadPerformanceTest.Parsers;
+using LoadPerformanceTest.Services.EventGrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

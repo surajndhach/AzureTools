@@ -9,7 +9,7 @@ namespace LoadPerformanceTest.Utilities;
 /// Updates instrument data JSON with fusionId and tenantId for each sensor/controller in tenants.
 /// Follows the same parsing logic as EventHubPublish project using Protocol Buffers.
 /// </summary>
-public static class InstrumentDataUpdater
+public static class InstrumentDataBuilder
 {
     /// <summary>
     /// Generates updated instrument data objects for publishing, based on tenants and data type.
@@ -20,7 +20,7 @@ public static class InstrumentDataUpdater
     /// <param name="dataType">The type of data to process.</param>
     /// <param name="instrumentManifests">The list of instrument manifests for measurement data processing.</param>
     /// <returns>List of tuples containing updated JSON strings and their corresponding tenant IDs.</returns>
-    public static List<(string json, string tenantId)> UpdateWithInventory(
+    public static List<(string json, string tenantId)> GenerateInstrumentDataFromInventory(
          string dataJson,
          IEnumerable<Models.Tenant> tenants,
          InstrumentDataType? dataType,
@@ -38,7 +38,7 @@ public static class InstrumentDataUpdater
                     var instrumentData = InstrumentData.Parser.ParseJson(dataJson);
                     instrumentData.TenantId = tenant.TenantId;
                     instrumentData.FusionId = controller.FusionId;
-                    UpdateDataTypeSpecificProperties(instrumentData, dataType);
+                    SetDataTypeSpecificFields(instrumentData, dataType);
                     var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                     result.Add((jsonObj.ToString(), tenant.TenantId));
                 }
@@ -56,7 +56,7 @@ public static class InstrumentDataUpdater
                         instrumentData.TenantId = tenant.TenantId;
                         instrumentData.FusionId = sensor.FusionId;
 
-                        UpdateDataTypeSpecificProperties(instrumentData, dataType, sensor.DeviceTypeId, instrumentManifests);
+                        SetDataTypeSpecificFields(instrumentData, dataType, sensor.DeviceTypeId, instrumentManifests);
                         var jsonObj = JObject.Parse(instrumentData.ToString() ?? throw new InvalidOperationException());
                         result.Add((jsonObj.ToString(), tenant.TenantId));
                     }
@@ -70,7 +70,7 @@ public static class InstrumentDataUpdater
     /// <summary>
     /// Updates data type specific properties following EventHubPublish patterns.
     /// </summary>
-    private static void UpdateDataTypeSpecificProperties(InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "", List<InstrumentManifest>? instrumentManifests = null)
+    private static void SetDataTypeSpecificFields(InstrumentData instrumentData, InstrumentDataType? dataType, string deviceTypeId = "", List<InstrumentManifest>? instrumentManifests = null)
     {
         var timestamp = DateTime.UtcNow.ToClarosDateTime();
 

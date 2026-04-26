@@ -1,4 +1,4 @@
-namespace LoadPerformanceTest.Configuration;
+namespace LoadPerformanceTest.Core;
 
 public class EventGridSenderOptions
 {

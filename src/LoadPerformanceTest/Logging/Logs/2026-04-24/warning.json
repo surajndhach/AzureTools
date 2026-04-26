@@ -1,7 +1,0 @@
-[
-  {
-    "timestamp": "2026-04-24 13:23:14",
-    "level": "WARNING",
-    "message": "Tenant \u0027e23a4515-4368-4f45-96af-b071195f82fa\u0027 was not created. HTTP 401 Unauthorized."
-  }
-]

@@ -1,7 +1,8 @@
 using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Core.Publishing;
 using LoadPerformanceTest.Utilities;
 using LoadPerformanceTest.Services;
+using LoadPerformanceTest.UI;
+using LoadPerformanceTest.Services.EventGrid;
 
 namespace LoadPerformanceTest.Core;
 
@@ -12,11 +13,13 @@ public class OperationOrchestrator
 {
     private readonly ApplicationContext _context;
     private readonly InstrumentDataPublisher _publisher;
+    private readonly DataTypeSelectorMenu _dataTypeSelector;
 
     public OperationOrchestrator(ApplicationContext context)
     {
         _context = context;
         _publisher = new InstrumentDataPublisher(context);
+        _dataTypeSelector = new DataTypeSelectorMenu(context.Configuration);
     }
 
     /// <summary>
@@ -142,7 +145,7 @@ public class OperationOrchestrator
     {
         try
         {
-            var (selections, isContinuous) = _publisher.GetDataTypeSelection();
+            var (selections, isContinuous) = _dataTypeSelector.GetDataTypeSelection();
             if (selections == null)
             {
                 Console.WriteLine("Invalid data type selection.\n");
@@ -174,7 +177,7 @@ public class OperationOrchestrator
                 // Single publish for the selected type
                 var (fileName, dataType) = selections.First();
                 var json = await File.ReadAllTextAsync(fileName);
-                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(json, _context.Tenants, dataType, _context.InstrumentManifests);
+                var updatedDataList = InstrumentDataBuilder.GenerateInstrumentDataFromInventory(json, _context.Tenants, dataType, _context.InstrumentManifests);
 
                 if (updatedDataList.Count == 0)
                 {

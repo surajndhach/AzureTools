@@ -1,4 +1,6 @@
-namespace LoadPerformanceTest.Core;
+using LoadPerformanceTest.Core;
+
+namespace LoadPerformanceTest.UI;
 
 /// <summary>
 /// Handles the interactive menu display and user input processing.

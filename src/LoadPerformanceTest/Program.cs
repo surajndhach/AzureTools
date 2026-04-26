@@ -1,4 +1,5 @@
 using LoadPerformanceTest.Core;
+using LoadPerformanceTest.UI;
 
 namespace LoadPerformanceTest;
 

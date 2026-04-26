@@ -1,5 +1,5 @@
 using LoadPerformanceTest.Models;
-using LoadPerformanceTest.Services.Publishers;
+using LoadPerformanceTest.Services.EventGrid;
 using Microsoft.Extensions.Configuration;
 using ONE.Models.CSharp.Instrument;
 

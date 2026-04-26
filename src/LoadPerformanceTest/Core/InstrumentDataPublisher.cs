@@ -1,9 +1,9 @@
 using LoadPerformanceTest.Logging;
-using LoadPerformanceTest.Services.Publishers;
+using LoadPerformanceTest.Services.EventHub;
 using LoadPerformanceTest.Utilities;
 using Microsoft.Extensions.Configuration;
 
-namespace LoadPerformanceTest.Core.Publishing;
+namespace LoadPerformanceTest.Core;
 
 /// <summary>
 /// Handles continuous publishing of instrument data to Event Hub.
@@ -15,47 +15,6 @@ public class InstrumentDataPublisher
     public InstrumentDataPublisher(ApplicationContext context)
     {
         _context = context;
-    }
-
-    /// <summary>
-    /// Gets the user's data type selection and returns the corresponding file name and data type.
-    /// </summary>
-    public (List<(string fileName, InstrumentDataType dataType)>? selections, bool isContinuous) GetDataTypeSelection()
-    {
-        Console.WriteLine("Select data type to publish:");
-        Console.WriteLine("  1 - Measurement Data");
-        Console.WriteLine("  2 - Diagnostic Data");
-        Console.WriteLine("  3 - Status Data");
-        Console.WriteLine("  4 - Event Data");
-        Console.WriteLine("  5 - Settings Data");
-        Console.WriteLine("  6 - All Data Types (Continuous)");
-        Console.Write("Your choice: ");
-
-        var dataTypeInput = Console.ReadLine()?.Trim();
-
-        // Read file paths from configuration
-        var measurementFile = _context.Configuration["DataFilePaths:Measurement"];
-        var diagnosticFile = _context.Configuration["DataFilePaths:Diagnostic"];
-        var statusFile = _context.Configuration["DataFilePaths:Status"];
-        var eventFile = _context.Configuration["DataFilePaths:Event"];
-        var settingsFile = _context.Configuration["DataFilePaths:Settings"];
-
-        return dataTypeInput switch
-        {
-            "1" => ([(measurementFile, InstrumentDataType.Measurement)], true),
-            "2" => ([(diagnosticFile, InstrumentDataType.Diagnostic)], true),
-            "3" => ([(statusFile, InstrumentDataType.Status)], true),
-            "4" => ([(eventFile, InstrumentDataType.Event)], true),
-            "5" => ([(settingsFile, InstrumentDataType.Settings)], true),
-            "6" => ([
-                (measurementFile, InstrumentDataType.Measurement),
-                (diagnosticFile, InstrumentDataType.Diagnostic),
-                (statusFile, InstrumentDataType.Status),
-                (eventFile, InstrumentDataType.Event),
-                (settingsFile, InstrumentDataType.Settings)
-            ], true),
-            _ => (null, false)
-        };
     }
 
     /// <summary>
@@ -119,11 +78,11 @@ public class InstrumentDataPublisher
         var publishingConfig = _context.Configuration.GetSection("PublishingIntervals");
         var intervals = new Dictionary<InstrumentDataType, int>
         {
-            [InstrumentDataType.Measurement] = publishingConfig.GetValue<int>("MeasurementIntervalSeconds", 30) * 1000,
-            [InstrumentDataType.Diagnostic] = publishingConfig.GetValue<int>("DiagnosticIntervalSeconds", 600) * 1000,
-            [InstrumentDataType.Status] = publishingConfig.GetValue<int>("StatusIntervalSeconds", 900) * 1000,
-            [InstrumentDataType.Event] = publishingConfig.GetValue<int>("EventIntervalSeconds", 480) * 1000,
-            [InstrumentDataType.Settings] = publishingConfig.GetValue<int>("SettingsIntervalSeconds", 1200) * 1000
+            [InstrumentDataType.Measurement] = publishingConfig.GetValue("MeasurementIntervalSeconds", 30) * 1000,
+            [InstrumentDataType.Diagnostic] = publishingConfig.GetValue("DiagnosticIntervalSeconds", 600) * 1000,
+            [InstrumentDataType.Status] = publishingConfig.GetValue("StatusIntervalSeconds", 900) * 1000,
+            [InstrumentDataType.Event] = publishingConfig.GetValue("EventIntervalSeconds", 480) * 1000,
+            [InstrumentDataType.Settings] = publishingConfig.GetValue("SettingsIntervalSeconds", 1200) * 1000
         };
 
         // Load all JSON files once
@@ -195,7 +154,7 @@ public class InstrumentDataPublisher
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var updatedDataList = InstrumentDataUpdater.UpdateWithInventory(jsonTemplate, _context.Tenants, dataType, _context.InstrumentManifests);
+                var updatedDataList = InstrumentDataBuilder.GenerateInstrumentDataFromInventory(jsonTemplate, _context.Tenants, dataType, _context.InstrumentManifests);
 
                 if (updatedDataList.Count > 0)
                 {

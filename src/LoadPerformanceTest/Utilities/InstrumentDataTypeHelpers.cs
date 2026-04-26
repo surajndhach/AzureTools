@@ -15,7 +15,7 @@ namespace LoadPerformanceTest.Utilities
     /// <summary>
     /// Extension methods for InstrumentDataType enum.
     /// </summary>
-    public static class InstrumentDataTypeExtensions
+    public static class InstrumentDataTypeHelpers
     {
         /// <summary>
         /// Gets the corresponding JSON file name for the data type.
