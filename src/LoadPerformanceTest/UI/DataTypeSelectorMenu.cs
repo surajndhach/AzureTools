@@ -18,7 +18,7 @@ public class DataTypeSelectorMenu
     /// <summary>
     /// Gets the user's data type selection and returns the corresponding file name and data type.
     /// </summary>
-    public (List<(string fileName, InstrumentDataType dataType)>? selections, bool isContinuous) GetDataTypeSelection()
+    public (List<(string fileName, InstrumentDataType dataType)>? selections, bool isContinuous) GetDataTypeChoices()
     {
         Console.WriteLine("Select data type to publish:");
         Console.WriteLine("  1 - Measurement Data");

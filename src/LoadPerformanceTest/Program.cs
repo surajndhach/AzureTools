@@ -5,10 +5,9 @@ namespace LoadPerformanceTest;
 
 internal static class Program
 {
-    public static async Task Main(string[] args)
+    public static async Task Main()
     {
-        var initializer = new ApplicationInitializer();
-        var context = await initializer.InitializeAsync();
+        var context = await ApplicationInitializer.InitializeAsync();
 
         var orchestrator = new OperationOrchestrator(context);
         var menu = new MainMenu(orchestrator);

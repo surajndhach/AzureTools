@@ -13,13 +13,13 @@ public class OperationOrchestrator
 {
     private readonly ApplicationContext _context;
     private readonly InstrumentDataPublisher _publisher;
-    private readonly DataTypeSelectorMenu _dataTypeSelector;
+    private readonly DataTypeSelectorMenu _dataTypeSelectorMenu;
 
     public OperationOrchestrator(ApplicationContext context)
     {
         _context = context;
         _publisher = new InstrumentDataPublisher(context);
-        _dataTypeSelector = new DataTypeSelectorMenu(context.Configuration);
+        _dataTypeSelectorMenu = new DataTypeSelectorMenu(context.Configuration);
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ public class OperationOrchestrator
     {
         try
         {
-            var (selections, isContinuous) = _dataTypeSelector.GetDataTypeSelection();
+            var (selections, isContinuous) = _dataTypeSelectorMenu.GetDataTypeChoices();
             if (selections == null)
             {
                 Console.WriteLine("Invalid data type selection.\n");

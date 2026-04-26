@@ -13,12 +13,12 @@ namespace LoadPerformanceTest.Core;
 /// <summary>
 /// Handles application initialization including configuration, inventory, manifests, and services.
 /// </summary>
-public class ApplicationInitializer
+public static class ApplicationInitializer
 {
     /// <summary>
     /// Initializes the application and returns the application context.
     /// </summary>
-    public async Task<ApplicationContext> InitializeAsync()
+    public static async Task<ApplicationContext> InitializeAsync()
     {
         // Initialize configuration
         using var host = Host.CreateDefaultBuilder()
