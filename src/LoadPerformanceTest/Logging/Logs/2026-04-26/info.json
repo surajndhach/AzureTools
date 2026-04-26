@@ -28,5 +28,35 @@
     "timestamp": "2026-04-26 22:51:39",
     "level": "INFO",
     "message": "Started continuous publishing for Measurement with 30 second(s) interval."
+  },
+  {
+    "timestamp": "2026-04-26 22:56:19",
+    "level": "INFO",
+    "message": "Successfully parsed 1 tenant(s) from device-inventory-tenants1-sensors4-2204260104.json"
+  },
+  {
+    "timestamp": "2026-04-26 22:56:19",
+    "level": "INFO",
+    "message": "Combined parsing complete: 1 total tenant(s) from 1 files"
+  },
+  {
+    "timestamp": "2026-04-26 22:56:19",
+    "level": "INFO",
+    "message": "Parsed inventory file:  \u2014 loaded 1 tenant(s)."
+  },
+  {
+    "timestamp": "2026-04-26 22:56:19",
+    "level": "INFO",
+    "message": "Parsed manifests file: manifests.json \u2014 loaded 4 sub-type(s), extracted 4 manifest(s)."
+  },
+  {
+    "timestamp": "2026-04-26 22:56:22",
+    "level": "INFO",
+    "message": "Starting continuous publishing of all data types."
+  },
+  {
+    "timestamp": "2026-04-26 22:56:22",
+    "level": "INFO",
+    "message": "Started continuous publishing for Measurement with 30 second(s) interval."
   }
 ]

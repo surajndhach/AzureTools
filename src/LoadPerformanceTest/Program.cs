@@ -11,7 +11,7 @@ internal static class Program
         var context = await initializer.InitializeAsync();
 
         var orchestrator = new OperationOrchestrator(context);
-        var menu = new InteractiveMenu(orchestrator);
+        var menu = new MainMenu(orchestrator);
 
         await menu.RunAsync();
 

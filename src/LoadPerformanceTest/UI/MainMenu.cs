@@ -5,11 +5,11 @@ namespace LoadPerformanceTest.UI;
 /// <summary>
 /// Handles the interactive menu display and user input processing.
 /// </summary>
-public class InteractiveMenu
+public class MainMenu
 {
     private readonly OperationOrchestrator _orchestrator;
 
-    public InteractiveMenu(OperationOrchestrator orchestrator)
+    public MainMenu(OperationOrchestrator orchestrator)
     {
         _orchestrator = orchestrator;
     }
