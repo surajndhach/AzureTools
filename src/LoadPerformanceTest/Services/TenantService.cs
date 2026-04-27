@@ -37,9 +37,73 @@ namespace LoadPerformanceTest.Services
         }
 
         /// <summary>
+        /// Deletes created tenants from the list of data provided.
+        /// </summary>
+        public static async Task<long> DeleteTenantsAsync(List<Tenant> data)
+        {
+            Logger.LogInfo($"Starting tenant deletion for {data.Count} tenant(s).");
+            var count = 0;
+            foreach (var tenant in data)
+            {
+                var statusCode = await CallTenantDeleteAPIAsync(tenant.TenantId);
+                if (statusCode == HttpStatusCode.NoContent)
+                {
+                    count++;
+                }
+                else
+                {
+                    Logger.LogWarning($"Tenant '{tenant.TenantId}' was not deleted. HTTP {(int)statusCode} {statusCode}.");
+                }
+            }
+
+            Logger.LogInfo($"Tenant deletion completed: {count}/{data.Count} succeeded.");
+            return count;
+        }
+
+        /// <summary>
+        /// Sends an asynchronous HTTP DELETE request to remove a tenant by ID.
+        /// </summary>
+        private static async Task<HttpStatusCode> CallTenantDeleteAPIAsync(string tenantId)
+        {
+            try
+            {
+                using var client = new HttpClient();
+                var url = $"https://api-feature-us.aquaticinformatics.net/enterprise/core/v1/tenant/{tenantId}";
+                var request = new HttpRequestMessage(HttpMethod.Delete, url);
+
+                var token = await AuthTokenProvider.GetAdminTokenAsync();
+                if (string.IsNullOrEmpty(token))
+                {
+                    Logger.LogError($"Skipping tenant deletion for '{tenantId}' — failed to acquire auth token.");
+                    return HttpStatusCode.Unauthorized;
+                }
+
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = await client.SendAsync(request);
+
+                if (response.StatusCode != HttpStatusCode.NoContent)
+                    Logger.LogWarning($"Unexpected response deleting tenant '{tenantId}'. HTTP {(int)response.StatusCode} {response.StatusCode}.");
+                else
+                    Logger.LogInfo($"Tenant '{tenantId}' deleted successfully.");
+
+                return response.StatusCode;
+            }
+            catch (HttpRequestException ex)
+            {
+                Logger.LogError($"Network error while deleting tenant '{tenantId}'.", ex);
+                return HttpStatusCode.ServiceUnavailable;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"Unexpected error while deleting tenant '{tenantId}'.", ex);
+                return HttpStatusCode.InternalServerError;
+            }
+        }
+
+        /// <summary>
         /// Sends a request to the Create Tenant API to create a new tenant with the specified ID and name.
         /// </summary>
-        public static async Task<HttpStatusCode> CallCreateTenantApiAsync(string tenantId, string name)
+        private static async Task<HttpStatusCode> CallCreateTenantApiAsync(string tenantId, string name)
         {
             try
             {
@@ -84,70 +148,6 @@ namespace LoadPerformanceTest.Services
             catch (Exception ex)
             {
                 Logger.LogError($"Unexpected error while creating tenant '{tenantId}'.", ex);
-                return HttpStatusCode.InternalServerError;
-            }
-        }
-
-        /// <summary>
-        /// Deletes created tenants from the list of data provided.
-        /// </summary>
-        public static async Task<long> DeleteTenantsAsync(List<Tenant> data)
-        {
-            Logger.LogInfo($"Starting tenant deletion for {data.Count} tenant(s).");
-            var count = 0;
-            foreach (var tenant in data)
-            {
-                var statusCode = await CallTenantDeleteAPIAsync(tenant.TenantId);
-                if (statusCode == HttpStatusCode.NoContent)
-                {
-                    count++;
-                }
-                else
-                {
-                    Logger.LogWarning($"Tenant '{tenant.TenantId}' was not deleted. HTTP {(int)statusCode} {statusCode}.");
-                }
-            }
-
-            Logger.LogInfo($"Tenant deletion completed: {count}/{data.Count} succeeded.");
-            return count;
-        }
-
-        /// <summary>
-        /// Sends an asynchronous HTTP DELETE request to remove a tenant by ID.
-        /// </summary>
-        public static async Task<HttpStatusCode> CallTenantDeleteAPIAsync(string tenantId)
-        {
-            try
-            {
-                using var client = new HttpClient();
-                var url = $"https://api-feature-us.aquaticinformatics.net/enterprise/core/v1/tenant/{tenantId}";
-                var request = new HttpRequestMessage(HttpMethod.Delete, url);
-
-                var token = await AuthTokenProvider.GetAdminTokenAsync();
-                if (string.IsNullOrEmpty(token))
-                {
-                    Logger.LogError($"Skipping tenant deletion for '{tenantId}' — failed to acquire auth token.");
-                    return HttpStatusCode.Unauthorized;
-                }
-
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var response = await client.SendAsync(request);
-
-                if (response.StatusCode != HttpStatusCode.NoContent)
-                    Logger.LogWarning($"Unexpected response deleting tenant '{tenantId}'. HTTP {(int)response.StatusCode} {response.StatusCode}.");
-                else
-                    Logger.LogInfo($"Tenant '{tenantId}' deleted successfully.");
-
-                return response.StatusCode;
-            }
-            catch (HttpRequestException ex)
-            {
-                Logger.LogError($"Network error while deleting tenant '{tenantId}'.", ex);
-                return HttpStatusCode.ServiceUnavailable;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError($"Unexpected error while deleting tenant '{tenantId}'.", ex);
                 return HttpStatusCode.InternalServerError;
             }
         }
