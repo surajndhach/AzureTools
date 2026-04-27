@@ -1,7 +1,0 @@
-[
-  {
-    "timestamp": "2026-04-27 10:10:10",
-    "level": "ERROR",
-    "message": "Skipping tenant deletion for \u0027e23a4515-4368-4f45-96af-b071195f82fa\u0027 \u2014 failed to acquire auth token."
-  }
-]
