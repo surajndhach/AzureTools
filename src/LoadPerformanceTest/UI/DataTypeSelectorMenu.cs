@@ -1,4 +1,4 @@
-using LoadPerformanceTest.Utilities;
+using LoadPerformanceTest.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace LoadPerformanceTest.UI;

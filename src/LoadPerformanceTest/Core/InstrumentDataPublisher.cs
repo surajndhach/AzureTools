@@ -1,4 +1,5 @@
 using LoadPerformanceTest.Logging;
+using LoadPerformanceTest.Models;
 using LoadPerformanceTest.Services.EventHub;
 using LoadPerformanceTest.Utilities;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,5 @@
 using LoadPerformanceTest.Logging;
+using LoadPerformanceTest.Models;
 using Newtonsoft.Json.Linq;
 using ONE.Models.CSharp.External;
 using ONE.Models.CSharp.Instrument;
