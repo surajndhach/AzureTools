@@ -1,6 +1,6 @@
 ﻿# LoadPerformanceTest — IoT Registry Load Performance Testing Utility
 
-A .NET 8 console application for load performance testing (LPT) of the Instrument Health Application. It publishes `Instrument.Assigned`, `Instrument.Updated`, and `Instrument.Unassigned` cloud events to Azure Event Grid using a device inventory file, and manages tenant lifecycle via REST APIs.
+A .NET 8 console application for load performance testing (LPT) of the Instrument Health Application. It publishes `Instrument.Assigned`, `Instrument.Updated`, and `Instrument.Unassigned` cloud events to Azure Event Grid, publishes telemetry data (measurements, diagnostics, status, events, settings) to Azure Event Hub, manages device inventory, and handles tenant lifecycle via REST APIs.
 
 ---
 
@@ -24,6 +24,7 @@ A .NET 8 console application for load performance testing (LPT) of the Instrumen
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - Access to the target Azure Event Grid Namespace (topic endpoint, topic name)
+- Access to Azure Event Hub (connection string, hub name)
 - A registered Azure AD Service Principal (`ClientId`, `ClientSecret`, `TenantId`)
 - Valid admin credentials for the Claros API (used for tenant create/delete operations)
 - PowerShell (for running the device inventory generator script)
@@ -43,7 +44,20 @@ Update `LoadPerformanceTest/appsettings.json` with the correct values before run
 | `EventGridSender` | `ClientId` | Azure AD App Registration Client ID |
 | `EventGridSender` | `ClientSecret` | Azure AD App Registration Client Secret |
 | `EventGridSender` | `TenantId` | Azure AD Tenant ID |
+| `EventHub` | `ConnectionString` | Azure Event Hub connection string |
+| `EventHub` | `Name` | Event Hub name |
 | `DeviceInventoryFilePath` | — | Relative path to the device inventory JSON file |
+| `ManifestsFilePath` | — | Path to instrument manifests JSON file |
+| `DataFilePaths` | `Measurement` | Path to measurement data template file |
+| `DataFilePaths` | `Diagnostic` | Path to diagnostic data template file |
+| `DataFilePaths` | `Status` | Path to status data template file |
+| `DataFilePaths` | `Event` | Path to event data template file |
+| `DataFilePaths` | `Settings` | Path to settings data template file |
+| `PublishingIntervals` | `MeasurementIntervalSeconds` | Interval for publishing measurements (default: 30s) |
+| `PublishingIntervals` | `DiagnosticIntervalSeconds` | Interval for publishing diagnostics (default: 600s) |
+| `PublishingIntervals` | `StatusIntervalSeconds` | Interval for publishing status (default: 900s) |
+| `PublishingIntervals` | `EventIntervalSeconds` | Interval for publishing events (default: 480s) |
+| `PublishingIntervals` | `SettingsIntervalSeconds` | Interval for publishing settings (default: 1200s) |
 | `AdminAuth` | `TokenEndpoint` | Claros API token endpoint |
 | `AdminAuth` | `Username` | Admin username for tenant operations |
 | `AdminAuth` | `Password` | Admin password for tenant operations |
@@ -52,7 +66,7 @@ Update `LoadPerformanceTest/appsettings.json` with the correct values before run
 | `AdminAuth` | `Scope` | OAuth scopes |
 | `LogSettings` | `LogFolder` | Folder name for log output (default: `Logs`) |
 
-> **⚠️ Important:** Never commit secrets (`ClientSecret`, `Password`) to source control. Use environment variables or a secrets manager for sensitive values.
+> **⚠️ Important:** Never commit secrets (`ClientSecret`, `Password`, `ConnectionString`) to source control. Use environment variables or a secrets manager for sensitive values.
 
 ### Device Inventory File
 
@@ -140,7 +154,55 @@ Select an option:
   4 - Update Instruments
   5 - Delete Instruments
   6 - Delete Tenants
+  7 - Publish Instrument Data
   Q - Quit
+```
+
+### Menu Option Details
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| **1** | Create Tenants | Provisions tenants via the Claros REST API |
+| **2** | Create Controllers | Publishes `Instrument.Assigned` events for all controllers to Event Grid |
+| **3** | Create Sensors | Publishes `Instrument.Assigned` events for all sensors to Event Grid |
+| **4** | Update Instruments | Publishes `Instrument.Updated` events for all controllers and sensors to Event Grid |
+| **5** | Delete Instruments | Publishes `Instrument.Unassigned` events (sensors first, then controllers) to Event Grid |
+| **6** | Delete Tenants | Removes tenants via the Claros REST API |
+| **7** | Publish Instrument Data | Publishes telemetry data (measurements, diagnostics, status, events, settings) to Event Hub |
+| **Q** | Quit | Exits the application |
+
+### Option 7: Publish Instrument Data
+
+When selecting option 7, you'll be prompted to choose a data type:
+
+```
+Select data type to publish:
+  1 - Measurement Data
+  2 - Diagnostic Data
+  3 - Status Data
+  4 - Event Data
+  5 - Settings Data
+  6 - All Data Types (Continuous)
+Your choice:
+```
+
+#### Data Type Options:
+
+- **Options 1-5**: Publishes the selected data type continuously at the configured interval
+- **Option 6**: Publishes all data types simultaneously, each at their own configured intervals
+
+#### Continuous Publishing:
+
+- Data is published repeatedly based on intervals configured in `appsettings.json` under `PublishingIntervals`
+- Each publish batch updates timestamps and generates fresh data for all instruments in the inventory
+- Press **'Q'** at any time to stop continuous publishing
+- Real-time statistics are displayed showing batch count, success/failure counts, and elapsed time
+
+#### Example Output:
+```
+[14:32:15] Measurement: Published batch #1 - 45 succeeded, 0 failed (Running: 00:00:30)
+[14:32:25] Status: Published batch #1 - 45 succeeded, 0 failed (Running: 00:00:40)
+[14:32:45] Measurement: Published batch #2 - 45 succeeded, 0 failed (Running: 00:01:00)
 ```
 
 Each option prints progress and summary counts (succeeded / failed) to the console.
@@ -162,9 +224,9 @@ LoadPerformanceTest/
 
 ### What gets logged
 
-- **Info:** Inventory parsing, event publish successes, tenant create/delete successes, summary counts.
-- **Warning:** Unexpected HTTP responses during tenant operations, token acquisition issues.
-- **Error:** Exceptions during event publishing, network errors, authentication failures (includes exception type, message, and stack trace).
+- **Info:** Inventory parsing, event publish successes, tenant create/delete successes, Event Hub publish operations, continuous publishing sessions, summary counts.
+- **Warning:** Unexpected HTTP responses during tenant operations, token acquisition issues, skipped RTC measurements without ParameterId.
+- **Error:** Exceptions during event publishing, Event Hub publishing failures, network errors, authentication failures, RTC measurement creation errors (includes exception type, message, and stack trace).
 
 ### Investigating issues
 
@@ -182,18 +244,44 @@ Each log entry includes a `timestamp`, `level`, `message`, and optionally an `ex
 
 ```
 LoadPerformanceTest/
-├── Program.cs                  # Main entry point — interactive menu
-├── CloudEventBuilder.cs        # Builds Azure CloudEvent payloads for all event types
-├── EventGridPublisher.cs       # Sends cloud events to Azure Event Grid
-├── DeviceInventoryParser.cs    # Parses the device inventory JSON file
-├── TenantFacade.cs             # Handles tenant create/delete via REST API
-├── AuthToken.cs                # Acquires OAuth admin tokens for API calls
-├── EventGridSenderOptions.cs   # Configuration model for Event Grid settings
-├── Logger.cs                   # Structured JSON logger (info/warning/error)
-├── Models/
-│   └── DeviceInventory.cs      # Data models: Tenant, Controller, Sensor
-├── Scripts/
-│   └── TenantDeviceGenerator.ps1  # PowerShell script to generate inventory files
-├── Logs/                       # Auto-generated log output (by date)
-└── appsettings.json            # Application configuration
+├── Program.cs                          # Main entry point
+├── Core/                               # Application orchestration
+│   ├── ApplicationInitializer.cs      # Initializes configuration, inventory, manifests, services
+│   ├── ApplicationContext.cs          # Holds application-wide context and dependencies
+│   ├── OperationOrchestrator.cs       # Orchestrates all business operations
+│   ├── InstrumentDataPublisher.cs     # Handles Event Hub publishing (single/continuous)
+│   └── EventGridSenderOptions.cs      # Event Grid configuration model
+├── Services/                           # Business logic services
+│   ├── EventGrid/
+│   │   ├── EventGridPublisher.cs      # Sends cloud events to Azure Event Grid
+│   │   └── CloudEventBuilder.cs       # Builds CloudEvent payloads for instruments
+│   ├── EventHub/
+│   │   └── EventHubPublisher.cs       # Publishes telemetry data to Azure Event Hub
+│   ├── TenantService.cs                # Handles tenant create/delete via REST API
+│   └── Parsers/
+│       └── DeviceInventoryParser.cs    # Parses device inventory JSON file
+├── Utilities/                          # Helper utilities
+│   ├── InstrumentDataBuilder.cs        # Generates InstrumentData from templates
+│   ├── AuthTokenProvider.cs            # Acquires OAuth admin tokens for API calls
+│   └── Logger.cs                       # Structured JSON logger (info/warning/error)
+├── UI/                                 # User interface components
+│   ├── MainMenu.cs                     # Interactive menu display and input handling
+│   └── DataTypeSelectorMenu.cs         # Data type selection for Event Hub publishing
+├── Models/                             # Data models
+│   ├── DeviceInventory.cs              # Tenant, Controller, Sensor models
+│   └── InstrumentDataType.cs           # Enum for data types (Measurement, Diagnostic, etc.)
+├── Configuration/                      # Configuration models
+│   ├── AdminAuthOptions.cs             # Admin authentication configuration
+│   └── LogSettings.cs                  # Logging configuration
+├── Data/                               # Template data files
+│   ├── instrumentmeasurementdata.json  # Measurement data template
+│   ├── instrumentdiagnosticdata.json   # Diagnostic data template
+│   ├── instrumentstatusdata.json       # Status data template
+│   ├── instrumenteventdata.json        # Event data template
+│   ├── instrumentsettingdata.json      # Settings data template
+│   └── manifests.json                  # Instrument manifests (capabilities, parameters)
+├── Scripts/                            # PowerShell scripts
+│   └── TenantDeviceGenerator.ps1       # Generates device inventory files
+├── Logs/                               # Auto-generated log output (by date)
+└── appsettings.json                    # Application configuration
 ```
