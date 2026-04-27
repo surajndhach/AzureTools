@@ -96,7 +96,6 @@ public static class InstrumentDataBuilder
                             // Skip entries without ParameterId - it's a required field
                             if (string.IsNullOrEmpty(def.ParameterId))
                             {
-                                Logger.LogWarning($"Skipping RTC measurement - definition has no ParameterId (UnitTypeId: {def.UnitTypeId})");
                                 continue;
                             }
 
