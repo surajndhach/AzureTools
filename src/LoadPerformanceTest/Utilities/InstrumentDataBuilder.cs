@@ -93,6 +93,13 @@ public static class InstrumentDataBuilder
                         // For RTC devices, use InstrumentTagCapability definitions
                         foreach (var def in manifest.InstrumentTagCapability.Definitions.Items)
                         {
+                            // Skip entries without ParameterId - it's a required field
+                            if (string.IsNullOrEmpty(def.ParameterId))
+                            {
+                                Logger.LogWarning($"Skipping RTC measurement - definition has no ParameterId (UnitTypeId: {def.UnitTypeId})");
+                                continue;
+                            }
+
                             try
                             {
                                 var measurement = new InstrumentMeasurement
@@ -100,7 +107,7 @@ public static class InstrumentDataBuilder
                                     ParameterId = def.ParameterId,
                                     Value = 2, // Set a dummy value or use a default/test value
                                     DecimalPrecision = def.Attributes?.DisplayDecimalPoints ?? 2,
-                                    UnitId = def.UnitTypeId,
+                                    UnitId = def.UnitTypeId ?? "30d9f576-a6d2-4439-9907-7e147af64508", // Provide default if null
                                     TimestampUtc = DateTime.UtcNow.ToClarosDateTime(),
                                 };
                                 instrumentData.InstrumentMeasurementDatas.Items.Add(
@@ -108,6 +115,7 @@ public static class InstrumentDataBuilder
                                     {
                                         Measurement = measurement,
                                         ChannelNumber = 0,
+                                        TagIdentifier = def.Identifier,
                                     }
                                 );
                             }
