@@ -38,15 +38,20 @@ public class MainMenu
                     await _orchestrator.CreateSensorsAsync();
                     break;
                 case "4":
-                    await _orchestrator.UpdateInstrumentsAsync();
+                    await Task.WhenAll(
+                        _orchestrator.CreateControllersAsync(),
+                        _orchestrator.CreateSensorsAsync());
                     break;
                 case "5":
-                    await _orchestrator.DeleteInstrumentsAsync();
+                    await _orchestrator.UpdateInstrumentsAsync();
                     break;
                 case "6":
-                    await _orchestrator.DeleteTenantsAsync();
+                    await _orchestrator.DeleteInstrumentsAsync();
                     break;
                 case "7":
+                    await _orchestrator.DeleteTenantsAsync();
+                    break;
+                case "8":
                     await _orchestrator.PublishInstrumentDataAsync();
                     break;
                 case "Q":
@@ -69,10 +74,11 @@ public class MainMenu
         Console.WriteLine("  1 - Create Tenants");
         Console.WriteLine("  2 - Create Controllers");
         Console.WriteLine("  3 - Create Sensors");
-        Console.WriteLine("  4 - Update Instruments");
-        Console.WriteLine("  5 - Delete Instruments");
-        Console.WriteLine("  6 - Delete Tenants");
-        Console.WriteLine("  7 - Publish Instrument Data");
+        Console.WriteLine("  4 - Create Controllers and Sensors");
+        Console.WriteLine("  5 - Update Instruments");
+        Console.WriteLine("  6 - Delete Instruments");
+        Console.WriteLine("  7 - Delete Tenants");
+        Console.WriteLine("  8 - Publish Instrument Data");
         Console.WriteLine("  Q - Quit");
         Console.Write("\nYour choice: ");
     }
