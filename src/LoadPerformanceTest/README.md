@@ -127,18 +127,19 @@ After generation, update `DeviceInventoryFilePath` in `appsettings.json` to poin
 | 1 | `1` | **Create Tenants** | ✅ Yes | Provisions tenants via the Claros REST API. This must be done first. |
 | 2 | `2` | **Create Controllers** | ✅ Yes | Publishes `Instrument.Assigned` events for all controllers in the inventory. |
 | 3 | `3` | **Create Sensors** | ✅ Yes | Publishes `Instrument.Assigned` events for all sensors under each controller. |
-| 4 | `4` | **Update Instruments** | ⚡ Optional | Publishes `Instrument.Updated` events for all controllers and sensors (sets status to `NotConnected`). **This step is not mandatory and can be skipped without affecting cleanup.** |
+| 3a | `4` | **Create Controllers and Sensors** | ⚡ Optional | Publishes `Instrument.Assigned` events for all controllers and sensors in parallel. Can be used instead of steps 2 and 3. |
+| 4 | `5` | **Update Instruments** | ⚡ Optional | Publishes `Instrument.Updated` events for all controllers and sensors (sets status to `NotConnected`). **This step is not mandatory and can be skipped without affecting cleanup.** |
 
 ### Cleanup Order
 
 > **To clean up everything after the LPT and ensure no resources are left behind, follow the options in this order.** Sensors are deleted before controllers, and instruments before tenants.
 >
-> **Note:** You do **not** need to run "Update Instruments" (option 4) before cleanup. Cleanup works regardless of whether the update step was performed.
+> **Note:** You do **not** need to run "Update Instruments" (option 5) before cleanup. Cleanup works regardless of whether the update step was performed.
 
 | Step | Option | Action | Description |
 |------|--------|--------|-------------|
-| 1 | `5` | **Delete Instruments** | Publishes `Instrument.Unassigned` events — sensors first, then controllers. |
-| 2 | `6` | **Delete Tenants** | Removes tenants via the Claros REST API. |
+| 1 | `6` | **Delete Instruments** | Publishes `Instrument.Unassigned` events — sensors first, then controllers. |
+| 2 | `7` | **Delete Tenants** | Removes tenants via the Claros REST API. |
 
 After cleanup, press `Q` to quit.
 
@@ -151,10 +152,11 @@ Select an option:
   1 - Create Tenants
   2 - Create Controllers
   3 - Create Sensors
-  4 - Update Instruments
-  5 - Delete Instruments
-  6 - Delete Tenants
-  7 - Publish Instrument Data
+  4 - Create Controllers and Sensors
+  5 - Update Instruments
+  6 - Delete Instruments
+  7 - Delete Tenants
+  8 - Publish Instrument Data
   Q - Quit
 ```
 
@@ -165,15 +167,16 @@ Select an option:
 | **1** | Create Tenants | Provisions tenants via the Claros REST API |
 | **2** | Create Controllers | Publishes `Instrument.Assigned` events for all controllers to Event Grid |
 | **3** | Create Sensors | Publishes `Instrument.Assigned` events for all sensors to Event Grid |
-| **4** | Update Instruments | Publishes `Instrument.Updated` events for all controllers and sensors to Event Grid |
-| **5** | Delete Instruments | Publishes `Instrument.Unassigned` events (sensors first, then controllers) to Event Grid |
-| **6** | Delete Tenants | Removes tenants via the Claros REST API |
-| **7** | Publish Instrument Data | Publishes telemetry data (measurements, diagnostics, status, events, settings) to Event Hub |
+| **4** | Create Controllers and Sensors | Publishes `Instrument.Assigned` events for all controllers and sensors in parallel to Event Grid |
+| **5** | Update Instruments | Publishes `Instrument.Updated` events for all controllers and sensors to Event Grid |
+| **6** | Delete Instruments | Publishes `Instrument.Unassigned` events (sensors first, then controllers) to Event Grid |
+| **7** | Delete Tenants | Removes tenants via the Claros REST API |
+| **8** | Publish Instrument Data | Publishes telemetry data (measurements, diagnostics, status, events, settings) to Event Hub |
 | **Q** | Quit | Exits the application |
 
-### Option 7: Publish Instrument Data
+### Option 8: Publish Instrument Data
 
-When selecting option 7, you'll be prompted to choose a data type:
+When selecting option 8, you'll be prompted to choose a data type:
 
 ```
 Select data type to publish:
@@ -257,31 +260,35 @@ LoadPerformanceTest/
 │   │   └── CloudEventBuilder.cs       # Builds CloudEvent payloads for instruments
 │   ├── EventHub/
 │   │   └── EventHubPublisher.cs       # Publishes telemetry data to Azure Event Hub
-│   ├── TenantService.cs                # Handles tenant create/delete via REST API
-│   └── Parsers/
-│       └── DeviceInventoryParser.cs    # Parses device inventory JSON file
+│   ├── Authentication/
+│   │   └── AuthTokenProvider.cs       # Acquires OAuth admin tokens for API calls
+│   └── TenantService.cs               # Handles tenant create/delete via REST API
+├── Parsers/                            # Data file parsers
+│   ├── DeviceInventoryParser.cs       # Parses device inventory JSON file
+│   └── ManifestParser.cs             # Parses instrument manifests JSON file
 ├── Utilities/                          # Helper utilities
-│   ├── InstrumentDataBuilder.cs        # Generates InstrumentData from templates
-│   ├── AuthTokenProvider.cs            # Acquires OAuth admin tokens for API calls
-│   └── Logger.cs                       # Structured JSON logger (info/warning/error)
+│   ├── InstrumentDataBuilder.cs       # Generates InstrumentData from templates
+│   └── SerializationHelper.cs         # Serialization utility methods
+├── Logging/                            # Logging infrastructure
+│   ├── Logger.cs                      # Structured JSON logger (info/warning/error)
+│   └── Logs/                          # Auto-generated log output (by date)
 ├── UI/                                 # User interface components
-│   ├── MainMenu.cs                     # Interactive menu display and input handling
-│   └── DataTypeSelectorMenu.cs         # Data type selection for Event Hub publishing
+│   ├── MainMenu.cs                    # Interactive menu display and input handling
+│   └── DataTypeSelectorMenu.cs        # Data type selection for Event Hub publishing
 ├── Models/                             # Data models
-│   ├── DeviceInventory.cs              # Tenant, Controller, Sensor models
-│   └── InstrumentDataType.cs           # Enum for data types (Measurement, Diagnostic, etc.)
-├── Configuration/                      # Configuration models
-│   ├── AdminAuthOptions.cs             # Admin authentication configuration
-│   └── LogSettings.cs                  # Logging configuration
+│   ├── DeviceInventory.cs             # Tenant, Controller, Sensor models
+│   └── InstrumentDataType.cs          # Enum for data types (Measurement, Diagnostic, etc.)
 ├── Data/                               # Template data files
-│   ├── instrumentmeasurementdata.json  # Measurement data template
-│   ├── instrumentdiagnosticdata.json   # Diagnostic data template
-│   ├── instrumentstatusdata.json       # Status data template
-│   ├── instrumenteventdata.json        # Event data template
-│   ├── instrumentsettingdata.json      # Settings data template
-│   └── manifests.json                  # Instrument manifests (capabilities, parameters)
+│   ├── instrumentdata.json            # General instrument data template
+│   ├── instrumentmeasurementdata.json # Measurement data template
+│   ├── instrumentrtcmeasurementdata.json # RTC measurement data template
+│   ├── instrumentdiagnosticdata.json  # Diagnostic data template
+│   ├── instrumentstatusdata.json      # Status data template
+│   ├── instrumenteventdata.json       # Event data template
+│   ├── instrumentsettingdata.json     # Settings data template
+│   └── manifests.json                 # Instrument manifests (capabilities, parameters)
 ├── Scripts/                            # PowerShell scripts
-│   └── TenantDeviceGenerator.ps1       # Generates device inventory files
-├── Logs/                               # Auto-generated log output (by date)
+│   ├── TenantDeviceGenerator.ps1      # Generates device inventory files
+│   └── inventory.json                 # Sample/generated device inventory file
 └── appsettings.json                    # Application configuration
 ```
