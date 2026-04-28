@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-namespace LoadPerformanceTest
+namespace LoadPerformanceTest.Logging
 {
     public static class Logger
     {
@@ -23,9 +22,7 @@ namespace LoadPerformanceTest
 
             string logFolder = config["LogSettings:LogFolder"] ?? "Logs";
 
-            string projectDir = GetSourceDirectory();
-
-            string basePath = Path.Combine(projectDir, logFolder);
+            string basePath = Path.Combine(AppContext.BaseDirectory, logFolder);
 
             string today = DateTime.Now.ToString("yyyy-MM-dd");
             _logDirectory = Path.Combine(basePath, today);
@@ -104,13 +101,5 @@ namespace LoadPerformanceTest
             }
         }
 
-        /// <summary>
-        /// Returns the directory of this source file, embedded at compile time via [CallerFilePath].
-        /// This resolves to the project source folder regardless of where the binary runs from.
-        /// </summary>
-        private static string GetSourceDirectory([CallerFilePath] string sourceFilePath = "")
-        {
-            return Path.GetDirectoryName(sourceFilePath)!;
-        }
     }
 }

@@ -1,14 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+using LoadPerformanceTest.Logging;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LoadPerformanceTest
+namespace LoadPerformanceTest.Services.Authentication
 {
-    internal static class AuthToken
+    internal static class AuthTokenProvider
     {
         private static readonly IConfigurationSection _authConfig;
 
-        static AuthToken()
+        static AuthTokenProvider()
         {
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
